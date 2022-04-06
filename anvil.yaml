@@ -1,7 +1,8 @@
 allow_embedding: false
 package_name: Material_Design_2
+startup: {type: form, module: WIC_Create_Job}
 name: Material Design 2
-startup_form: Form1
+startup_form: null
 runtime_options: {version: 2, client_version: '3', server_version: python3-sandbox}
 services:
 - source: /runtime/services/tables.yml

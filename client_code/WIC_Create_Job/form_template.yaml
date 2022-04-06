@@ -9,33 +9,66 @@ components:
   layout_properties: {slot: default}
   components:
   - type: Label
-    properties: {}
-    name: label_3
-    layout_properties: {grid_position: 'HXWYJJ,FXWDTR'}
-  - type: TextBox
-    properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: fn,
-      border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
-      font: '', spacing_above: small, type: text, spacing_below: small, italic: false,
-      background: '', bold: false, underline: false}
-    name: text_box_2
-    layout_properties: {grid_position: 'HXWYJJ,KWNKAO'}
+    properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
+      visible: true, text: Create Job, font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: label_4
+    layout_properties: {grid_position: 'XICLVN,CYGPSY'}
   - type: Label
     properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: Last name, font_size: null, font: '', spacing_above: small,
+      visible: true, text: Title, font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: label_3
+    layout_properties: {grid_position: 'HXWYJJ,FXWDTR'}
+  - type: DropDown
+    properties:
+      role: null
+      align: full
+      tooltip: ''
+      placeholder: ''
+      border: ''
+      enabled: true
+      foreground: ''
+      items: ['']
+      visible: true
+      font_size: null
+      font: ''
+      spacing_above: small
+      spacing_below: small
+      italic: false
+      background: ''
+      bold: false
+      underline: false
+      include_placeholder: false
+    name: drop_down_1
+    layout_properties: {grid_position: 'HXWYJJ,NWLUAQ'}
+    event_bindings: {show: drop_down_1_show}
+    data_bindings:
+    - {property: items, code: 'self.item[''title_dropdown'']'}
+  - type: Label
+    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: Speciality, font_size: null, font: '', spacing_above: small,
       icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
       underline: false, icon: ''}
     name: label_1
     layout_properties: {grid_position: 'YZXYMP,HYTFQD'}
   - type: TextBox
     properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: '',
-      border: '', enabled: true, foreground: '', visible: true, text: ln, font_size: null,
+      border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
       font: '', spacing_above: small, type: text, spacing_below: small, italic: false,
       background: '', bold: false, underline: false}
     name: text_box_1
     layout_properties: {grid_position: 'YZXYMP,FLPZPD'}
     event_bindings: {pressed_enter: text_box_1_pressed_enter}
+    data_bindings:
+    - {property: text, code: 'self.item[''speciality'']', writeback: true}
   - type: Button
-    properties: {text: button_1}
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Submit Job, font_size: null, font: '',
+      spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false, icon: ''}
     name: button_1
     layout_properties: {grid_position: 'UUDWMD,XHLMNN'}
     event_bindings: {click: button_1_click}

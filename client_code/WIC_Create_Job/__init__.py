@@ -1,17 +1,19 @@
-from ._anvil_designer import Form1Template
+from ._anvil_designer import WIC_Create_JobTemplate
 from anvil import *
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
-import requests
+import anvil.http
 
-class Form1(Form1Template):
-
+class WIC_Create_Job(WIC_Create_JobTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
-    self.init_components(**properties)
-
+    
+    self.item['title_dropdown'] = ['admin','staff','doctor']
+    self.item['speciality'] = 'cardiology'
+    self.refresh_data_bindings()
+    
     # Any code you write here will run when the form opens.
 
   def link_1_click(self, **event_args):
@@ -24,7 +26,16 @@ class Form1(Form1Template):
 
   def button_1_click(self, **event_args):
     """This method is called when the button is clicked"""
-    requests
+
+    anvil.http.request(url, method='GET',)
+    
+  def drop_down_1_show(self, **event_args):
+    """This method is called when the DropDown is shown on the screen"""
+    
+    
+
+
+
 
 
 
