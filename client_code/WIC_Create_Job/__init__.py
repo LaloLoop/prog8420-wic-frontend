@@ -22,5 +22,5 @@ class WIC_Create_Job(WIC_Create_JobTemplate):
     
     resp = anvil.http.request('http://127.0.0.1:8000/job', method='POST', data=data_dict, json=True)
     
-    print(f"Response MIME type: {resp.content_type}")
+    print(resp)
     
