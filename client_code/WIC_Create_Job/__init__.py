@@ -26,8 +26,10 @@ class WIC_Create_Job(WIC_Create_JobTemplate):
 
   def button_1_click(self, **event_args):
     """This method is called when the button is clicked"""
-
-    anvil.http.request(url, method='GET',)
+    
+    data_dict = 
+    
+    anvil.http.request('http://127.0.0.1:8000/person', method='POST', data=, json=True)
     
   def drop_down_1_show(self, **event_args):
     """This method is called when the DropDown is shown on the screen"""
