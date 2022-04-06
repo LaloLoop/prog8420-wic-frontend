@@ -10,34 +10,17 @@ class WIC_Create_Job(WIC_Create_JobTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     
-    self.item['title_dropdown'] = ['admin','staff','doctor']
+    self.item['title_dropdown'] = ['admin','staff','doctor'] # this will be grabbed from /job GET request
     self.item['speciality'] = 'cardiology'
     self.refresh_data_bindings()
-    
-    # Any code you write here will run when the form opens.
-
-  def link_1_click(self, **event_args):
-    """This method is called when the link is clicked"""
-    pass
-
-  def text_box_1_pressed_enter(self, **event_args):
-    """This method is called when the user presses Enter in this text box"""
-    pass
 
   def button_1_click(self, **event_args):
     """This method is called when the button is clicked"""
+    title = self.drop_down_1.selected_value
+    speciality = self.text_box_1.text
+    data_dict = {'title':title, 'speciality':speciality}
     
-    data_dict = 
+    resp = anvil.http.request('http://127.0.0.1:8000/job', method='POST', data=data_dict, json=True)
     
-    anvil.http.request('http://127.0.0.1:8000/person', method='POST', data=, json=True)
+    print(f"Response MIME type: {resp.content_type}")
     
-  def drop_down_1_show(self, **event_args):
-    """This method is called when the DropDown is shown on the screen"""
-    
-    
-
-
-
-
-
-
