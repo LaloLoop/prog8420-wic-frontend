@@ -44,12 +44,16 @@ from .views.person.Delete_Person import Delete_Person
 #from .views.appointment.Update_Appointment import Update_Appointment
 #from .views.appointment.Delete_Appointment import Delete_Appointmen
 
-home_forms_dict = {'admin':Admin_Home(), 'staff':Staff_Home(), 'doctor': Doctor_Home()}
+class Router:
+    def __init__(self, form_dict): # {'crud'}
+      self.crud_form_dict = form_dict
+  def nav(next, prev):
 
-def show_home_view(old_form, job_title:str, after_login:bool = False):
-  if not after_login:
-    old_form.remove_from_parent()
-  anvil.get_open_form().content_panel.add_component(home_forms_dict[job_title])
+    anvil.get_open_form().content_panel.add_component(home_forms_dict[job_title])
+
+home_forms_dict = {'admin':Admin_Home(router=Router()), 'staff':Staff_Home(), 'doctor': Doctor_Home()}
+
+
 
 person_crud_form_dict = {'crud':CRUD_Person(),'create':Create_Person(),'read':Read_Person(),'update':Update_Person(),'delete':Delete_Person()}
 #job_crud_form_dict = {'crud':CRUD_Job(),'create':Create_Job()),'read':Read_Job(),'update':Update_Job(),'delete':Delete_Job()}
