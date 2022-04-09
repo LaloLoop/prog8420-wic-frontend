@@ -1,6 +1,6 @@
 allow_embedding: false
 package_name: WIC_Test
-startup: {type: form, module: WIC_Create_Job}
+startup: {type: form, module: Package1.WIC_Create_Job}
 name: WIC Test
 startup_form: null
 runtime_options: {version: 2, client_version: '3', server_version: python3-sandbox}
