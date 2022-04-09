@@ -11,5 +11,9 @@ from anvil.tables import app_tables
 #    Module1.say_hello()
 #
 
+from . import router as r
+
+r.get_crud_view_shower('job').show_view('crud'/'read/')
+
 def say_hello():
   print("Hello, world")

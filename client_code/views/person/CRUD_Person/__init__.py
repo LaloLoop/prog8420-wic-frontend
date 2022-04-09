@@ -29,6 +29,8 @@ class CRUD_Person(CRUD_PersonTemplate):
   def button_nav_home_click(self, **event_args):
     email = dict(anvil.users.get_user())['email']
     
+    # get request job title from email
+    
     # get the user's job title from person email
     job_title = 'admin' # assumed for now
     
