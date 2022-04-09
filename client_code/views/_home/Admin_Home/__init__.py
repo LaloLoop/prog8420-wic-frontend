@@ -17,9 +17,9 @@ class Admin_Home(Admin_HomeTemplate):
 
   def button_crud_person_click(self, **event_args):
     """This method is called when the button is clicked"""
-    r.show_crud_person(self)
+    r.get_crud_view_shower('person').show_view('crud', self)
     
-  def button_logout(self, **event_args):
+  def button_logout_click(self, **event_args):
     """This method is called when the button is clicked"""
     pass
 

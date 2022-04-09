@@ -42,11 +42,7 @@ class Base(BaseTemplate):
     
       if job_title in allowed_job_titles:
         break;
-    
-    if job_title == 'admin':
-      r.show_admin_home_after_login()
-    elif job_title == 'staff':
-      r.show_staff_home_after_login()
-    elif job_title == 'doctor':
-      r.show_doctor_home_after_login()
+
+    r.show_home_view(self, job_title, after_login=True)
+
 

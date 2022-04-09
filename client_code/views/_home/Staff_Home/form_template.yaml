@@ -14,9 +14,9 @@ components:
     foreground: '', visible: true, text: CRUD Person, font_size: null, font: '', spacing_above: small,
     icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
     underline: false, icon: ''}
-  name: button_crud_person
+  name: button_nav_crud_person_view
   layout_properties: {grid_position: 'TUQHOU,GFYKGI'}
-  event_bindings: {click: button_crud_person}
+  event_bindings: {click: button_nav_crud_person_view_click}
 - type: Button
   properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
     foreground: '', visible: true, text: Logout, font_size: null, font: '', spacing_above: small,

@@ -18,25 +18,21 @@ class CRUD_Person(CRUD_PersonTemplate):
     # Any code you write here will run when the form opens.
 
   def button_nav_create_view_click(self, **event_args):
-    r.get_crud_view_shower(model).show_view('create')
+    r.get_crud_view_shower(model).show_view('create', self)
   def button_nav_read_view_click(self, **event_args):
-    r.get_crud_view_shower(model).show_view('read')
+    r.get_crud_view_shower(model).show_view('read', self)
   def button_nav_update_view_click(self, **event_args):
-    r.get_crud_view_shower(model).show_view('update')
+    r.get_crud_view_shower(model).show_view('update', self)
   def button_nav_delete_view_click(self, **event_args):
-    r.get_crud_view_shower(model).show_view('delete')
+    r.get_crud_view_shower(model).show_view('delete', self)
 
   def button_nav_home_click(self, **event_args):
     email = dict(anvil.users.get_user())['email']
-    # get the user's job title from person email
-    user_job_title = 'admin' # assumed for now
     
-    if user_job_title == 'admin':
-      r.show_admin_home(self)
-    elif user_job_title == 'staff':
-      r.show_staff_home(self)
-    elif user_job_title == 'doctor':
-      r.show_doctor_home(self)
+    # get the user's job title from person email
+    job_title = 'admin' # assumed for now
+    
+    r.show_home_view(self, job_title, after_login=False)
 
 
 

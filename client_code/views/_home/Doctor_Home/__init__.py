@@ -15,13 +15,13 @@ class Doctor_Home(Doctor_HomeTemplate):
 
     # Any code you write here will run when the form opens.
 
-  def button_crud_prescription_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    r.show_crud_person(self)
+  def button_nav_crud_prescription_view_click(self, **event_args):
+    r.get_crud_view_shower('prescription').show_view('crud', self)
 
   def button_logout_click(self, **event_args):
-    """This method is called when the button is clicked"""
     pass
+
+
 
 
 

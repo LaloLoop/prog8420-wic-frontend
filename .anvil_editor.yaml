@@ -24,8 +24,7 @@ unique_ids:
     views.person: '1649467836147272157811880.44864'
     views.reports: '164947611348625405196517.13824'
     views._home: '1649470663249200423843218.57675'
-  server_modules:
-    ServerModule1: '1649473356877388804363318.06067'
+  server_modules: {}
   assets:
     standard-page.html: HVK35ONGHLP676KV4SFCHEAJDKQAJOHN
     theme.css: KWYSREMVFETCCXQK65XPWNGGDO3YE2CW

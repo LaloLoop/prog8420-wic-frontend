@@ -21,4 +21,4 @@ class Read_Person(Read_PersonTemplate):
 
   def button_nav_crud_view_click(self, **event_args):
     """This method is called when the button is clicked"""
-    r.get_crud_view_shower(model).show_view('crud')
+    r.get_crud_view_shower(model).show_view('crud', self)

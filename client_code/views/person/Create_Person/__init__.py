@@ -25,6 +25,6 @@ class Create_Person(Create_PersonTemplate):
     
     # after successful submission,
     # redirect back to CRUD_Home
-    r.get_crud_view_shower(model).show_view('crud')
+    r.get_crud_view_shower(model).show_view('crud', self)
 
 
