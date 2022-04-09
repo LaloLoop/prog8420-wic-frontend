@@ -1,5 +1,7 @@
 from ._anvil_designer import WIC_Create_JobTemplate
 from anvil import *
+import anvil.users
+import anvil.server
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
