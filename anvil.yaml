@@ -7,7 +7,7 @@ services:
     confirm_email: false, require_secure_passwords: false, allow_remember_me: true,
     remember_me_days: 30}
   server_config: {user_table: users}
-startup: {type: form, module: views.Base}
+startup: {type: module, module: router}
 package_name: PROG8420_Walk_in_Clinic_M2K
 allow_embedding: false
 name: PROG8420_Walk-in_Clinic_M2K

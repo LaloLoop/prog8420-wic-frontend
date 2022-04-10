@@ -6,10 +6,6 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
-from .... import router as r
-
-model = 'person' # change this for different entities
-
 class Update_Person(Update_PersonTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
@@ -27,3 +23,8 @@ class Update_Person(Update_PersonTemplate):
     # after successful submission,
     # redirect back to CRUD_Home
     r.get_crud_view_shower(model).show_view('crud', self)
+
+  def button_back_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    pass
+

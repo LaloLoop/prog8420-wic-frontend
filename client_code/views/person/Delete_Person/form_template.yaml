@@ -3,8 +3,8 @@ container:
   properties: {col_widths: '{}'}
 components:
 - type: Label
-  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
-    text: field, font_size: null, font: '', spacing_above: small, icon_align: left,
+  properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
+    visible: true, text: 'id:', font_size: null, font: '', spacing_above: small, icon_align: left,
     spacing_below: small, italic: false, background: '', bold: false, underline: false,
     icon: ''}
   name: label_1
@@ -14,8 +14,22 @@ components:
     text: readonly value (label), font_size: null, font: '', spacing_above: small,
     icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
     underline: false, icon: ''}
-  name: label_2
+  name: label_id_value
   layout_properties: {grid_position: 'BWQOVS,BXSYUS'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: '', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
+    italic: false, background: '', bold: false, underline: false, icon: ''}
+  name: label_3
+  layout_properties: {grid_position: 'MSAFBG,WDSXPY'}
+- type: Button
+  properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+    foreground: '', visible: true, text: back, font_size: null, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+    underline: false, icon: ''}
+  name: button_back
+  layout_properties: {grid_position: 'FBLNEP,QRZNAQ'}
+  event_bindings: {click: button_back_click}
 - type: Button
   properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
     foreground: '', visible: true, text: Delete Person, font_size: null, font: '',
