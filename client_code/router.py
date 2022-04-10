@@ -5,6 +5,8 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
+from .views.Base import Base
+
 from .views._home.Admin_Home import Admin_Home
 from .views._home.Staff_Home import Staff_Home
 from .views._home.Doctor_Home import Doctor_Home
@@ -53,7 +55,7 @@ class Router:
       old_form.remove_from_parent()
       anvil.get_open_form().content_panel.add_component(routes[route][view])
 
-home_views = {'admin':Admin_Home(router=Router()), 'staff':Staff_Home(router=Router), 'doctor': Doctor_Home(router=Router)}
+home_views = {'admin':Admin_Home(router=Router), 'staff':Staff_Home(router=Router), 'doctor': Doctor_Home(router=Router)}
 person_views = { 'crud':CRUD_Person(),'create':Create_Person(),'read':Read_Person(),'update':Update_Person(),'delete':Delete_Person()}
 job_views = {} # '#crud':CRUD_Job(),'create':Create_Job()),'read':Read_Job(),'update':Update_Job(),'delete':Delete_Job()}
 employee_views = {} # 'crud':CRUD_Employee(),'create': Create_Employee()),'read': Read_Employee(),'update':Update_Employee(),'delete':Delete_Employee()}
@@ -72,3 +74,7 @@ routes = {
   'prescription': prescription_views,
   'appointment': appointment_views
 }
+
+    Form2(my_parameter="an_argument")
+open_form(frm)
+open_form(Base()
