@@ -7,9 +7,9 @@ from anvil.tables import app_tables
 
 from .views.Base import Base
 
-from .views._home.Admin_Home import Admin_Home
-from .views._home.Staff_Home import Staff_Home
-from .views._home.Doctor_Home import Doctor_Home
+from .views.home.Admin_Home import Admin_Home
+from .views.home.Staff_Home import Staff_Home
+from .views.home.Doctor_Home import Doctor_Home
 from .views.person.CRUD_Person import CRUD_Person
 from .views.person.Create_Person import Create_Person
 from .views.person.Read_Person import Read_Person
@@ -75,6 +75,5 @@ routes = {
   'appointment': appointment_views
 }
 
-    Form2(my_parameter="an_argument")
-open_form(frm)
-open_form(Base()
+base = Base(router=Router)
+open_form(base)

@@ -6,8 +6,6 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
-from .... import router as r
-
 model = 'person' # change this for different entities
 
 class Read_Person(Read_PersonTemplate):

@@ -7,7 +7,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 
 class Create_Person(Create_PersonTemplate):
-  def __init__(self, router=None **properties):
+  def __init__(self, router=None, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.router = router

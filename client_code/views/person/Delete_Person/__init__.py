@@ -14,6 +14,10 @@ class Delete_Person(Delete_PersonTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    
+    self.item['label_id_value'] = 'test'
+    
+    anvil.refresh_data_bindings()
 
     # Any code you write here will run when the form opens.
 
