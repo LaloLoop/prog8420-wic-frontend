@@ -6,27 +6,30 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
-from .... import router as r
-
-model = 'person' # change this for different entities
-
 class Delete_Person(Delete_PersonTemplate):
-  def __init__(self, **properties):
+  def __init__(self, router=None, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     
     self.item['label_id_value'] = 'test'
     
-    anvil.refresh_data_bindings()
+    self.refresh_data_bindings()
 
     # Any code you write here will run when the form opens.
 
-    
+  def button_back_click(self, **event_args):
+    self.router.nav_to_route_view(self, 'person', 'crud')
+  
   def button_submit_click(self, **event_args):
-    """This method is called when the button is clicked"""
     # use DELETE request to web api  
     
     # after successful submission,
     # redirect back to CRUD_Home
-    r.get_crud_view_shower(model).show_view('crud', self)
+    self.router.nav_to_route_view(self, 'person', 'crud')
+
+
+
+
+
+
 

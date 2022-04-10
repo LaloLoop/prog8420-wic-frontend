@@ -9,14 +9,14 @@ from anvil.tables import app_tables
 model = 'person' # change this for different entities
 
 class Read_Person(Read_PersonTemplate):
-  def __init__(self, **properties):
+  def __init__(self, router=None, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-
+    self.router = router
     # Any code you write here will run when the form opens.
     
     # use GET request to programmatically make form from JSON, or setup manually?
 
-  def button_nav_crud_view_click(self, **event_args):
+  def button_back_click(self, **event_args):
     """This method is called when the button is clicked"""
-    r.get_crud_view_shower(model).show_view('crud', self)
+    self.router.nav_to_route_view(self, 'person', 'crud')

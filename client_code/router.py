@@ -46,23 +46,61 @@ from .views.person.Delete_Person import Delete_Person
 #from .views.appointment.Update_Appointment import Update_Appointment
 #from .views.appointment.Delete_Appointment import Delete_Appointmen
 
-FAST_API_BACKEND_BASE_URL = 'http://localhost:8080/'
+FAST_API_BACKEND_BASE_URL = r'http://localhost:8080/'
 
 class Router:
-  base_url = FAST_API_BACKEND_URL # use this for GET/POST/PUT/DELETE in f-string
+  base_url = FAST_API_BACKEND_BASE_URL # use this for GET/POST/PUT/DELETE in f-string
 
-  def nav_to_route_view(self, old_form, route:str, view:str):
+  def nav_to_route_view(old_form, route:str, view:str):
       old_form.remove_from_parent()
       anvil.get_open_form().content_panel.add_component(routes[route][view])
 
-home_views = {'admin':Admin_Home(router=Router), 'staff':Staff_Home(router=Router), 'doctor': Doctor_Home(router=Router)}
-person_views = { 'crud':CRUD_Person(),'create':Create_Person(),'read':Read_Person(),'update':Update_Person(),'delete':Delete_Person()}
-job_views = {} # '#crud':CRUD_Job(),'create':Create_Job()),'read':Read_Job(),'update':Update_Job(),'delete':Delete_Job()}
-employee_views = {} # 'crud':CRUD_Employee(),'create': Create_Employee()),'read': Read_Employee(),'update':Update_Employee(),'delete':Delete_Employee()}
-patient_views = {} #'crud':CRUD_Patient(),'create':Create_Patient()),'read':Read_Patient(),'update':Update_Patient(),'delete':Delete_Patient()}
-unit_views = {} #'crud':CRUD_Unit(),'create': Create_Unit()),'read':Read_Unit(),'update':Update_Unit(),'delete':Delete_Unit()}
-prescription_views = {} #'crud':CRUD_Prescription(),'create':Create_Prescription()),'read':Read_Prescription(),'update':Update_Prescription(),'delete':Delete_Prescription()}
-appointment_views = {} #'crud':CRUD_Appointment(),'create':Create_Appointment()),'read':Read_Appointment(),'update':Update_Appointment(),'delete':Delete_Appointment()}
+home_views = {'admin':Admin_Home(router=Router),
+              'staff':Staff_Home(router=Router),
+              'doctor': Doctor_Home(router=Router)}
+person_views = { 'crud':CRUD_Person(router=Router),
+                'create':Create_Person(router=Router),
+                'read':Read_Person(router=Router),
+                'update':Update_Person(router=Router),
+                'delete':Delete_Person(router=Router)}
+
+job_views = {#'crud':CRUD_Job(router=Router),
+             #'create':Create_Job(router=Router),
+             #'read':Read_Job(router=Router),
+             #'update':Update_Job(router=Router),
+             #'delete':Delete_Job(router=Router),
+}
+employee_views = {#'crud':CRUD_Employee(router=Router),
+                  #'create': Create_Employee(router=Router),
+                  #'read': Read_Employee(router=Router),
+                  #'update':Update_Employee(router=Router),
+                  #'delete':Delete_Employee(router=Router),
+}
+patient_views = {#'crud':CRUD_Patient(router=Router),
+                 #'create':Create_Patient(router=Router),
+                 #'read':Read_Patient(router=Router),
+                 #'update':Update_Patient(router=Router),
+                 #'delete':Delete_Patient(router=Router),
+}
+
+unit_views = {#'crud':CRUD_Unit(router=Router),
+              #'create': Create_Unit(router=Router),
+              #'read':Read_Unit(router=Router),
+              #'update':Update_Unit(router=Router),
+              #'delete':Delete_Unit(router=Router)
+}
+prescription_views = {#'crud':CRUD_Prescription(router=Router),
+                      #'create':Create_Prescription(router=Router),
+                      #'read':Read_Prescription(router=Router),
+                      #'update':Update_Prescription(router=Router),
+                      #'delete':Delete_Prescription(router=Router)
+}
+appointment_views = {#'crud':CRUD_Appointment(router=Router),
+                     #'create':Create_Appointment(router=Router),
+                     #'read':Read_Appointment(router=Router),
+                     #'update':Update_Appointment(router=Router),
+                     #'delete':Delete_Appointment(router=Router)
+}
 
 routes = {
   'home': home_views,
@@ -76,4 +114,4 @@ routes = {
 }
 
 base = Base(router=Router)
-open_form(base)
+anvil.open_form(base)
