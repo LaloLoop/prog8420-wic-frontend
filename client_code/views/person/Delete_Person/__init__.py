@@ -17,8 +17,6 @@ class Delete_Person(Delete_PersonTemplate):
 
     # Any code you write here will run when the form opens.
 
-    # use GET request to programmatically make form from JSON, or setup manually?
-
     
   def button_submit_click(self, **event_args):
     """This method is called when the button is clicked"""

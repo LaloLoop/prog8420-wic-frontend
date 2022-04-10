@@ -44,41 +44,31 @@ from .views.person.Delete_Person import Delete_Person
 #from .views.appointment.Update_Appointment import Update_Appointment
 #from .views.appointment.Delete_Appointment import Delete_Appointmen
 
+FAST_API_BACKEND_BASE_URL = 'http://localhost:8080/'
+
 class Router:
-    def show_home_view(old_form, job_title: str, after_login: bool = False):
-        if not after_login:
-            old_form.remove_from_parent()
-        anvil.get_open_form().content_panel.add_component(home_forms_dict[job_title])
+  base_url = FAST_API_BACKEND_URL # use this for GET/POST/PUT/DELETE in f-string
 
-home_forms_dict = {'admin':Admin_Home(router=Router()), 'staff':Staff_Home(), 'doctor': Doctor_Home()}
-
-
-
-person_crud_form_dict = {'crud':CRUD_Person(),'create':Create_Person(),'read':Read_Person(),'update':Update_Person(),'delete':Delete_Person()}
-#job_crud_form_dict = {'crud':CRUD_Job(),'create':Create_Job()),'read':Read_Job(),'update':Update_Job(),'delete':Delete_Job()}
-#employee_crud_form_dict = {'crud':CRUD_Employee(),'create': Create_Employee()),'read': Read_Employee(),'update':Update_Employee(),'delete':Delete_Employee()}
-#patient_crud_form_dict = {'crud':CRUD_Patient(),'create':Create_Patient()),'read':Read_Patient(),'update':Update_Patient(),'delete':Delete_Patient()}
-#unit_crud_form_dict = {'crud':CRUD_Unit(),'create': Create_Unit()),'read':Read_Unit(),'update':Update_Unit(),'delete':Delete_Unit()}
-#prescription_crud_form_dict = {'crud':CRUD_Prescription(),'create':Create_Prescription()),'read':Read_Prescription(),'update':Update_Prescription(),'delete':Delete_Prescription()}
-#appointment_crud_form_dict = {'crud':CRUD_Appointment(),'create':Create_Appointment()),'read':Read_Appointment(),'update':Update_Appointment(),'delete':Delete_Appointment()}
-
-class CRUD_View_Shower:
-  def __init__(self, form_dict): # {'crud'}
-    self.crud_form_dict = form_dict
-  
-  def show_view(self, view_name:str, old_form): # old_form should be self in the button callback
+  def nav_to_route_view(self, old_form, route:str, view:str):
       old_form.remove_from_parent()
-      anvil.get_open_form().content_panel.add_component(self.crud_form_dict[view_name])
+      anvil.get_open_form().content_panel.add_component(routes[route][view])
 
-model_crud_view_showers_dict = {
-  'person': CRUD_View_Shower(person_crud_form_dict),
-# 'job'= CRUD_View_Shower(job_crud_form_dict),
-# 'employee': CRUD_View_Shower(employee_crud_form_dict),
-# 'patient': CRUD_View_Shower(patient_crud_form_dict),
-# 'unit:' CRUD_View_Shower(unit_crud_form_dict),
-# 'prescription': CRUD_View_Shower(prescription_crud_form_dict),
-# 'appointment': CRUD_View_Shower(appointment_crud_form_dict)
+home_views = {'admin':Admin_Home(router=Router()), 'staff':Staff_Home(router=Router), 'doctor': Doctor_Home(router=Router)}
+person_views = { 'crud':CRUD_Person(),'create':Create_Person(),'read':Read_Person(),'update':Update_Person(),'delete':Delete_Person()}
+job_views = {} # '#crud':CRUD_Job(),'create':Create_Job()),'read':Read_Job(),'update':Update_Job(),'delete':Delete_Job()}
+employee_views = {} # 'crud':CRUD_Employee(),'create': Create_Employee()),'read': Read_Employee(),'update':Update_Employee(),'delete':Delete_Employee()}
+patient_views = {} #'crud':CRUD_Patient(),'create':Create_Patient()),'read':Read_Patient(),'update':Update_Patient(),'delete':Delete_Patient()}
+unit_views = {} #'crud':CRUD_Unit(),'create': Create_Unit()),'read':Read_Unit(),'update':Update_Unit(),'delete':Delete_Unit()}
+prescription_views = {} #'crud':CRUD_Prescription(),'create':Create_Prescription()),'read':Read_Prescription(),'update':Update_Prescription(),'delete':Delete_Prescription()}
+appointment_views = {} #'crud':CRUD_Appointment(),'create':Create_Appointment()),'read':Read_Appointment(),'update':Update_Appointment(),'delete':Delete_Appointment()}
+
+routes = {
+  'home': home_views,
+  'person': person_views,
+  'job': job_views,
+  'employee': employee_views,
+  'patient': patient_views,
+  'unit': unit_views,
+  'prescription': prescription_views,
+  'appointment': appointment_views
 }
-
-def get_crud_view_shower(model_name):
-  return model_crud_view_showers_dict[model_name]
