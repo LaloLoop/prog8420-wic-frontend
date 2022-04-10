@@ -6,12 +6,11 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
-from ... import router as r
-
 class Base(BaseTemplate):
-  def __init__(self, **properties):
+  def __init__(self, router=None, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    self.router = router
     
 
     # Any code you write here will run when the form opens.
@@ -41,8 +40,8 @@ class Base(BaseTemplate):
       job_title = email_to_job_title[email]
     
       if job_title in allowed_job_titles:
-        break;
+        break
 
-    r.show_home_view(self, job_title, after_login=True)
+    self.router.show_home_view(self, job_title, after_login=True)
 
 
