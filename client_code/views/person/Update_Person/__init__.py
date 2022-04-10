@@ -15,16 +15,16 @@ class Update_Person(Update_PersonTemplate):
 
     # use GET request to programmatically make form from JSON, or setup manually?
 
-    
   def button_submit_click(self, **event_args):
     """This method is called when the button is clicked"""
     # use PUT request to web api
 
     # after successful submission,
     # redirect back to CRUD_Home
-    r.get_crud_view_shower(model).show_view('crud', self)
+    self.router.nav_to_route_view(self, 'person', 'crud')
 
   def button_back_click(self, **event_args):
     """This method is called when the button is clicked"""
-    pass
+    self.router.nav_to_route_view(self, 'person', 'crud')
+
 
