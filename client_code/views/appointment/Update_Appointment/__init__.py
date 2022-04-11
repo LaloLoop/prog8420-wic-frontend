@@ -15,6 +15,10 @@ class Update_Appointment(Update_AppointmentTemplate):
     self.router = router
     # Any code you write here will run when the form opens.
 
+  def drop_down_doctor_id_value_change(self, **event_args):
+    """This method is called when an item is selected"""
+    pass
+    
   def button_back_click(self, **event_args):
     """This method is called when the button is clicked"""
     self.router.nav_to_route_view(self, model_name, 'crud')
@@ -26,3 +30,6 @@ class Update_Appointment(Update_AppointmentTemplate):
     # after successful submission,
     # redirect back to CRUD_Home
     self.router.nav_to_route_view(self, model_name, 'crud')
+
+
+
