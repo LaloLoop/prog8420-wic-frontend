@@ -29,6 +29,7 @@ components:
     underline: false, icon: ''}
   name: label_selected_entity
   layout_properties: {grid_position: 'CNTQHC,HLGOPU'}
+  event_bindings: {show: label_selected_entity_show}
 - type: DropDown
   properties:
     role: null

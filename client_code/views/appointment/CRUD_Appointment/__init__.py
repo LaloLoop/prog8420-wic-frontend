@@ -6,6 +6,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
+import anvil.http
 model_name = 'appointment'
 
 class CRUD_Appointment(CRUD_AppointmentTemplate):
@@ -29,3 +30,12 @@ class CRUD_Appointment(CRUD_AppointmentTemplate):
 
   def button_nav_home_click(self, **event_args):
     self.router.nav_to_route_view(self, 'home', 'admin')
+
+  def label_selected_entity_show(self, **event_args):
+    #GET
+    resp = anvil.http.request(f'{self.router.base_url}{model_name}s')
+    
+    self.drop_down_all_entities.items = print(resp)
+    
+    print(resp)
+
