@@ -6,7 +6,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
-model_name = 'person'
+model_name = 'patient'
 
 class CRUD_Patient(CRUD_PatientTemplate):
   def __init__(self, router=None, **properties):
@@ -17,19 +17,15 @@ class CRUD_Patient(CRUD_PatientTemplate):
 
   def button_nav_create_view_click(self, **event_args):
     self.router.nav_to_route_view(self, model_name, 'create')
+    
   def button_nav_read_view_click(self, **event_args):
     self.router.nav_to_route_view(self, model_name, 'read')
+  
   def button_nav_update_view_click(self, **event_args):
     self.router.nav_to_route_view(self, model_name, 'update')
+  
   def button_nav_delete_view_click(self, **event_args):
     self.router.nav_to_route_view(self, model_name, 'delete')
 
   def button_nav_home_click(self, **event_args):
-    email = dict(anvil.users.get_user())['email']
-
-    # get request job title from email
-
-    # get the user's job title from person email
-    job_title = 'admin' # assumed for now
-
     self.router.nav_to_route_view(self, 'home', 'admin')
