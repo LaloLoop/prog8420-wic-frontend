@@ -13,6 +13,11 @@ class Update_Person(Update_PersonTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.router = router
+    
+    # GET /person/by_id()  to populate form
+    # resp = anvil.http
+    # self.
+    
     # Any code you write here will run when the form opens.
 
   def button_back_click(self, **event_args):

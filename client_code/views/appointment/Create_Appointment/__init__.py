@@ -26,3 +26,10 @@ class Create_Appointment(Create_AppointmentTemplate):
     # after successful submission,
     # redirect back to CRUD_Home
     self.router.nav_to_route_view(self, model_name, 'crud')
+
+  def drop_down_doctor_id_value_change(self, **event_args):
+    """This method is called when an item is selected"""
+    
+    # GET new appointments by docter id
+    self.refresh_data_bindings()
+

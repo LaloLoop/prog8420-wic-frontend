@@ -21,6 +21,8 @@ components:
   name: text_box_name_value
   layout_properties: {grid_position: 'DRGYNE,JSHVRX'}
   event_bindings: {pressed_enter: text_box_2_pressed_enter}
+  data_bindings:
+  - {property: text, code: 'self.item[''text_box_name_value'']', writeback: true}
 - type: Button
   properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
     foreground: '', visible: true, text: Back, font_size: null, font: '', spacing_above: small,
