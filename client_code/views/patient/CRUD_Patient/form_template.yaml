@@ -1,0 +1,94 @@
+container:
+  type: ColumnPanel
+  properties: {col_widths: '{}'}
+components:
+- type: Label
+  properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
+    visible: true, text: List Of Patients, font_size: null, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+    underline: false, icon: ''}
+  name: label_list_entities
+  layout_properties: {grid_position: 'NWXCHV,TRJZVN'}
+- type: DataGrid
+  properties:
+    columns:
+    - {id: MGQEGB, title: Column 1, data_key: column_1}
+    - {id: OHAFSN, title: Column 2, data_key: column_2}
+    - {id: SULMZM, title: Column 3, data_key: column_3}
+  name: data_grid_of_entities
+  layout_properties: {grid_position: 'LRWQCS,RNMRTE'}
+  components:
+  - type: RepeatingPanel
+    properties: {spacing_above: none, spacing_below: none, item_template: views.person.CRUD_Person.RowTemplate1}
+    name: repeating_panel_1
+    layout_properties: {}
+- type: Label
+  properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
+    visible: true, text: 'Selected Patient:', font_size: null, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+    underline: false, icon: ''}
+  name: label_selected_entity
+  layout_properties: {grid_position: 'CNTQHC,HLGOPU'}
+- type: DropDown
+  properties:
+    role: null
+    align: full
+    tooltip: ''
+    placeholder: ''
+    border: ''
+    enabled: true
+    foreground: ''
+    items: ['']
+    visible: true
+    font_size: null
+    font: ''
+    spacing_above: small
+    spacing_below: small
+    italic: false
+    background: ''
+    bold: false
+    underline: false
+    include_placeholder: false
+  name: drop_down_all_entities
+  layout_properties: {grid_position: 'CNTQHC,OPYAEL'}
+- type: Button
+  properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+    foreground: '', visible: true, text: Go To Create Patient View, font_size: null,
+    font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+    background: '', bold: false, underline: false, icon: ''}
+  name: button_create_view
+  layout_properties: {grid_position: 'MGAUTL,WGQMIB'}
+  event_bindings: {click: button_nav_create_view_click}
+- type: Button
+  properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+    foreground: '', visible: true, text: Go To Read Patient  View, font_size: null,
+    font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+    background: '', bold: false, underline: false, icon: ''}
+  name: button_read_view
+  layout_properties: {grid_position: 'MGAUTL,ELHNRM'}
+  event_bindings: {click: button_nav_read_view_click}
+- type: Button
+  properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+    foreground: '', visible: true, text: Go To Update Patient View, font_size: null,
+    font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+    background: '', bold: false, underline: false, icon: ''}
+  name: button_update_view
+  layout_properties: {grid_position: 'GSTEMQ,QTJQBY'}
+  event_bindings: {click: button_nav_update_view_click}
+- type: Button
+  properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+    foreground: '', visible: true, text: Go To Delete Patient View, font_size: null,
+    font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+    background: '', bold: false, underline: false, icon: ''}
+  name: button_delete_view
+  layout_properties: {grid_position: 'GSTEMQ,IOWSRJ'}
+  event_bindings: {click: button_nav_delete_view_click}
+- type: Button
+  properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+    foreground: '', visible: true, text: Return Home, font_size: null, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+    underline: false, icon: ''}
+  name: button_home
+  layout_properties: {grid_position: 'VKNZWD,UNDRYL'}
+  event_bindings: {click: button_nav_home_click}
+is_package: true

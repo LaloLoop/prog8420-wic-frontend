@@ -3,8 +3,8 @@ services:
   client_config: {}
   server_config: {}
 - source: /runtime/services/anvil/users.yml
-  client_config: {allow_signup: true, enable_automatically: true, use_email: true,
-    confirm_email: false, require_secure_passwords: false, allow_remember_me: true,
+  client_config: {allow_signup: false, enable_automatically: false, use_email: false,
+    confirm_email: false, require_secure_passwords: false, allow_remember_me: false,
     remember_me_days: 30}
   server_config: {user_table: users}
 startup: {type: module, module: router}

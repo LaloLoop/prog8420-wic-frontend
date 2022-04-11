@@ -1,0 +1,68 @@
+container:
+  type: ColumnPanel
+  properties: {col_widths: '{}'}
+components:
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: 'Id:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_id
+  layout_properties: {grid_position: 'BWQOVS,MLVTOM'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: readonly value (label), font_size: null, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+    underline: false, icon: ''}
+  name: label_id_value
+  layout_properties: {grid_position: 'BWQOVS,BXSYUS'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: 'Person:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_person_id
+  layout_properties: {grid_position: 'MSAFBG,WDSXPY'}
+- type: Label
+  properties: {}
+  name: label_person_id_value
+  layout_properties: {grid_position: 'MSAFBG,ZBRDKI'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: 'Job:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_job_id
+  layout_properties: {grid_position: 'LBAGLX,OQCGBP'}
+- type: Label
+  properties: {}
+  name: label_job_id_value
+  layout_properties: {grid_position: 'LBAGLX,VESVTU'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: 'Password:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_password
+  layout_properties: {grid_position: 'BDRYMJ,SPDIAH'}
+- type: Label
+  properties: {}
+  name: label_password_value
+  layout_properties: {grid_position: 'BDRYMJ,BJQLIA'}
+- type: Button
+  properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+    foreground: '', visible: true, text: back, font_size: null, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+    underline: false, icon: ''}
+  name: button_back
+  layout_properties: {grid_position: 'FBLNEP,QRZNAQ'}
+  event_bindings: {click: button_back_click}
+- type: Button
+  properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+    foreground: '', visible: true, text: Delete Employee, font_size: null, font: '',
+    spacing_above: small, icon_align: left, spacing_below: small, italic: false, background: '',
+    bold: false, underline: false, icon: ''}
+  name: button_submit
+  layout_properties: {grid_position: 'FBLNEP,BXZYZV'}
+  event_bindings: {click: button_submit_click}
+is_package: true

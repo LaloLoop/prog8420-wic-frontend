@@ -4,24 +4,123 @@ container:
 components:
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
-    text: field, font_size: null, font: '', spacing_above: small, icon_align: left,
+    text: 'Id:', font_size: null, font: '', spacing_above: small, icon_align: left,
     spacing_below: small, italic: false, background: '', bold: false, underline: false,
     icon: ''}
-  name: label_1
+  name: label_id
   layout_properties: {grid_position: 'BWQOVS,MLVTOM'}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: readonly value (label), font_size: null, font: '', spacing_above: small,
     icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
     underline: false, icon: ''}
-  name: label_2
+  name: label_id_value
   layout_properties: {grid_position: 'BWQOVS,BXSYUS'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: 'First Name:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_first_name
+  layout_properties: {grid_position: 'MSAFBG,WDSXPY'}
+- type: Label
+  properties: {}
+  name: label_first_name_value
+  layout_properties: {grid_position: 'MSAFBG,WXIXXX'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: 'Last Name:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_last_name
+  layout_properties: {grid_position: 'GBKRHZ,JITUEO'}
+- type: Label
+  properties: {}
+  name: label_last_name_value
+  layout_properties: {grid_position: 'GBKRHZ,YFLLDX'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: 'Birthdate:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_birthdate
+  layout_properties: {grid_position: 'KXWEMB,EBVICR'}
+- type: Label
+  properties: {}
+  name: label_birthdate_value
+  layout_properties: {grid_position: 'KXWEMB,XYNNYA'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: 'Street:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_street
+  layout_properties: {grid_position: 'NBFOLE,QNUMYT'}
+- type: Label
+  properties: {}
+  name: label_street_value
+  layout_properties: {grid_position: 'NBFOLE,GUZOEB'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: 'City:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_city
+  layout_properties: {grid_position: 'YLSZOK,CVEWPC'}
+- type: Label
+  properties: {}
+  name: label_city_value
+  layout_properties: {grid_position: 'YLSZOK,HJBAWO'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: 'Province:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_province
+  layout_properties: {grid_position: 'EIMKLI,YHQLEN'}
+- type: Label
+  properties: {}
+  name: label_province_value
+  layout_properties: {grid_position: 'EIMKLI,BADMTZ'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: 'Postal Code:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_postalcode
+  layout_properties: {grid_position: 'KRIOVH,OUMGZQ'}
+- type: Label
+  properties: {}
+  name: label_postalcode_value
+  layout_properties: {grid_position: 'KRIOVH,PUJHCR'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: 'Email:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_email
+  layout_properties: {grid_position: 'IPPXCS,IPYAKN'}
+- type: Label
+  properties: {}
+  name: label_email_value
+  layout_properties: {grid_position: 'IPPXCS,QPUMPA'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: 'Phone Number:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_phonenumber
+  layout_properties: {grid_position: 'ULJUFO,LYPCZV'}
+- type: Label
+  properties: {}
+  name: label_phonenumber_value
+  layout_properties: {grid_position: 'ULJUFO,LHBGEU'}
 - type: Button
   properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-    foreground: '', visible: true, text: Back, font_size: null, font: '', spacing_above: small,
+    foreground: '', visible: true, text: back, font_size: null, font: '', spacing_above: small,
     icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
     underline: false, icon: ''}
   name: button_back
-  layout_properties: {grid_position: 'FBLNEP,BXZYZV'}
+  layout_properties: {grid_position: 'FBLNEP,QRZNAQ'}
   event_bindings: {click: button_back_click}
 is_package: true
