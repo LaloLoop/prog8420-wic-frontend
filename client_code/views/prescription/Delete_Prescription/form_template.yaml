@@ -1,0 +1,70 @@
+container:
+  type: ColumnPanel
+  properties: {col_widths: '{}'}
+components:
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: 'Id:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_id
+  layout_properties: {grid_position: 'BWQOVS,MLVTOM'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: readonly value (label), font_size: null, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+    underline: false, icon: ''}
+  name: label_id_value
+  layout_properties: {grid_position: 'BWQOVS,BXSYUS'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: 'Medication:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_medication
+  layout_properties: {grid_position: 'MSAFBG,WDSXPY'}
+- type: Label
+  properties: {}
+  name: label_medication_value
+  layout_properties: {grid_position: 'MSAFBG,SVAAWX'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: 'Quantity:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_quantity
+  layout_properties: {grid_position: 'BVJOEK,GVQYVK'}
+- type: Label
+  properties: {}
+  name: label_quantity_value
+  layout_properties: {grid_position: 'BVJOEK,RLSPTC'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: 'Unit:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_unit_id
+  layout_properties: {grid_position: 'QVARBI,WCESEO'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: '', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
+    italic: false, background: '', bold: false, underline: false, icon: ''}
+  name: label_unit_id_value
+  layout_properties: {grid_position: 'QVARBI,BDBCXS'}
+- type: Button
+  properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+    foreground: '', visible: true, text: back, font_size: null, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+    underline: false, icon: ''}
+  name: button_back
+  layout_properties: {grid_position: 'FBLNEP,QRZNAQ'}
+  event_bindings: {click: button_back_click}
+- type: Button
+  properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+    foreground: '', visible: true, text: Delete Prescription, font_size: null, font: '',
+    spacing_above: small, icon_align: left, spacing_below: small, italic: false, background: '',
+    bold: false, underline: false, icon: ''}
+  name: button_submit
+  layout_properties: {grid_position: 'FBLNEP,ENCVIP'}
+  event_bindings: {click: button_submit_click}
+is_package: true

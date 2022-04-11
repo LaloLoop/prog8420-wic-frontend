@@ -1,0 +1,102 @@
+container:
+  type: ColumnPanel
+  properties: {col_widths: '{}'}
+components:
+- type: Label
+  properties: {}
+  name: label_validation_errors
+  layout_properties: {grid_position: 'YEYNVS,OJWHOW'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: 'Id:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_id
+  layout_properties: {grid_position: 'MEBEPF,DSRCZB'}
+- type: Label
+  properties: {}
+  name: label_id_value
+  layout_properties: {grid_position: 'MEBEPF,VWLUTU'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: 'Patient:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_patient_id
+  layout_properties: {grid_position: 'DRGYNE,CNKMKR'}
+- type: DropDown
+  properties: {}
+  name: drop_down_person_id_value
+  layout_properties: {grid_position: 'DRGYNE,UYWIMH'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: 'Staff:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_staff_id
+  layout_properties: {grid_position: 'BTKDKG,SHWIEU'}
+- type: DropDown
+  properties: {}
+  name: drop_down_staff_id_value
+  layout_properties: {grid_position: 'BTKDKG,DVYLCH'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: 'Doctor:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_doctor_id
+  layout_properties: {grid_position: 'GPHUCT,BIZYGK'}
+- type: DropDown
+  properties: {}
+  name: drop_down_doctor_id_value
+  layout_properties: {grid_position: 'GPHUCT,GISBFB'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: 'Date and Time:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_date_and_time
+  layout_properties: {grid_position: 'CJONWC,UQOMBN COQFMD,SNCUQH'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: 'Prescription:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_prescription_id
+  layout_properties: {grid_position: 'CJONWC,UQOMBN TJFONO,SEJEHN'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: 'Comments:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_comments
+  layout_properties: {grid_position: 'CJONWC,UQOMBN GGIXES,ZKCYRU'}
+- type: DatePicker
+  properties: {}
+  name: date_picker_date_and_time_value
+  layout_properties: {grid_position: 'CJONWC,SKUBPO YMHJNX,COFZOM'}
+- type: DropDown
+  properties: {}
+  name: drop_down_prescription_id_value
+  layout_properties: {grid_position: 'CJONWC,SKUBPO GDIQYE,FJBRAB'}
+- type: TextArea
+  properties: {}
+  name: text_area_comments_value
+  layout_properties: {grid_position: 'CJONWC,SKUBPO MDZXKP,UHVAIQ'}
+- type: Button
+  properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+    foreground: '', visible: true, text: Back, font_size: null, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+    underline: false, icon: ''}
+  name: button_back
+  layout_properties: {grid_position: 'TWZVKN,VUGSAY'}
+  event_bindings: {click: button_back_click}
+- type: Button
+  properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+    foreground: '', visible: true, text: Create Person, font_size: null, font: '',
+    spacing_above: small, icon_align: left, spacing_below: small, italic: false, background: '',
+    bold: false, underline: false, icon: ''}
+  name: button_submit
+  layout_properties: {grid_position: 'TWZVKN,APIOXD'}
+  event_bindings: {click: button_submit_click}
+is_package: true
