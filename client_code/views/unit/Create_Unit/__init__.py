@@ -20,7 +20,7 @@ class Create_Unit(Create_UnitTemplate):
 
   def button_submit_click(self, **event_args):
     # use POST request to web api
-    name = self.item['name']
+    name = self.item['name_label_value_text']
     data_dict = {'name':name}
     
     resp = anvil.http.request('http://127.0.0.1:8000/unit', method='POST', data=data_dict, json=True)
