@@ -1,6 +1,7 @@
 container:
   type: ColumnPanel
   properties: {col_widths: '{}'}
+  data_bindings: []
 components:
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
@@ -16,6 +17,8 @@ components:
     underline: false, icon: ''}
   name: label_id_value
   layout_properties: {grid_position: 'BWQOVS,BXSYUS'}
+  data_bindings:
+  - {property: text, code: 'self.item[''label_id_value_text'']'}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: 'First Name:', font_size: null, font: '', spacing_above: small, icon_align: left,

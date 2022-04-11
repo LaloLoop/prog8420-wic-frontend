@@ -17,6 +17,8 @@ components:
   properties: {}
   name: text_box_first_name_value
   layout_properties: {grid_position: 'CBIFDM,TGSOFH'}
+  data_bindings:
+  - {property: text, code: 'self.item[''text_box_first_name_text'']', writeback: true}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: 'Last Name:', font_size: null, font: '', spacing_above: small, icon_align: left,
