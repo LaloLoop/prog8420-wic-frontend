@@ -8,7 +8,7 @@ from anvil.tables import app_tables
 
 
 model_name = 'unit'
-@anvil.server.callable
+
 class CRUD_Unit(CRUD_UnitTemplate):
   def __init__(self, router=None, **properties):
     # Set Form properties and Data Bindings.
