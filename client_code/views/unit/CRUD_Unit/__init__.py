@@ -37,6 +37,8 @@ class CRUD_Unit(CRUD_UnitTemplate):
     self.router.nav_to_route_view(self, 'home', 'admin')
 
   def button_home_show(self, **event_args):
-    """This method is called when the Button is shown on the screen"""
-    pass
+    url = f'{self.router.base_url}{model_name}s'
+    resp = anvil.http.request(url, method='GET', json=True)
+    print(resp)
+    self.repeating_panel_1.items = resp
 
