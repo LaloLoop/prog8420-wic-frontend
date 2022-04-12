@@ -35,5 +35,5 @@ class CRUD_Unit(CRUD_UnitTemplate):
     resp = anvil.http.request(url, method='GET', json=True)
     self.repeating_panel_1.items = resp
     list_of_display_name_tuples = [(e['name'], e['id']) for e in resp]
-    self.drop_down_all_entities.items = list_of_display_name_tuples
+    self.item['drop_down_items'] = list_of_display_name_tuples
 
