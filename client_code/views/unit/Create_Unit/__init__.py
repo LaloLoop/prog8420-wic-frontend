@@ -20,12 +20,19 @@ class Create_Unit(Create_UnitTemplate):
 
   def button_submit_click(self, **event_args):
     # use POST request to web api
-    name = self.item['name_label_value_text']
+    #name = self.item['name_label_value_text']
+    name = self.text_box_name_value.text
     data_dict = {'name':name}
     
     url = f'{self.router.base_url}{model_name}'
+    
+    self.label_validation_errors.text = str(data_dict)
+    self.label_validation_errors.text = url
     resp = anvil.http.request(url, method='POST', data=data_dict, json=True)
     
+    print(resp)
+    self.text_area_1.text = str(type(resp))
+    self.label_validation_errors.text = str(type(resp))
     
     # after successful submission,
     # redirect back to CRUD_Home
