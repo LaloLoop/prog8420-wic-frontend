@@ -13,6 +13,7 @@ class Create_Unit(Create_UnitTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.router = router
+    print('on the create unit page')
     # Any code you write here will run when the form opens.
 
   def button_back_click(self, **event_args):
