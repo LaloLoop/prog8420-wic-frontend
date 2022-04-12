@@ -25,3 +25,7 @@ class Read_Unit(Read_UnitTemplate):
     # after successful submission,
     # redirect back to CRUD_Home
     self.router.nav_to_route_view(self, model_name, 'crud')
+
+  def button_back_show(self, **event_args):
+    selected_unit = anvil.server.call('get_selected_unit')
+    print(selected_unit)
