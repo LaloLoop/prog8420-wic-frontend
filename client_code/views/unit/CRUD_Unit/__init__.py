@@ -34,5 +34,6 @@ class CRUD_Unit(CRUD_UnitTemplate):
     url = f'{self.router.base_url}{model_name}s'
     resp = anvil.http.request(url, method='GET', json=True)
     self.repeating_panel_1.items = resp
-    self.drop_down_all_entities = resp
+    list_of_display_name_tuples = [(e['name'], e['id']) for e in resp]
+    self.drop_down_all_entities.items = list_of_display_name_tuples
 
