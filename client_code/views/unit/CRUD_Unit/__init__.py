@@ -14,11 +14,6 @@ class CRUD_Unit(CRUD_UnitTemplate):
     self.init_components(**properties)
     self.router = router
     
-    url = f'{self.router.base_url}{model_name}s'
-    resp = anvil.http.request(url, method='GET', json=True)
-    print(resp)
-    self.repeating_panel_1.items = resp
-    
     # Any code you write here will run when the form opens.
 
   def button_nav_create_view_click(self, **event_args):
