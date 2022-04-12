@@ -33,9 +33,11 @@ class CRUD_Appointment(CRUD_AppointmentTemplate):
 
   def label_selected_entity_show(self, **event_args):
     #GET
-    resp = anvil.http.request(f'{self.router.base_url}{model_name}s')
+    url = f'{self.router.base_url}{model_name}s_with_id_display_name'
     
-    self.drop_down_all_entities.items = print(resp)
+    resp = anvil.http.request(urls, method='GET', json=True)
     
-    print(resp)
+    self.label_validation_errors.text = str(resp)
+    
+    #self.drop_down_all_entities.items =
 
