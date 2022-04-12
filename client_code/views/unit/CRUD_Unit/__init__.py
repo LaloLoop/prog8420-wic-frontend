@@ -6,7 +6,6 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
-
 model_name = 'unit'
 
 class CRUD_Unit(CRUD_UnitTemplate):
@@ -38,11 +37,12 @@ class CRUD_Unit(CRUD_UnitTemplate):
     list_of_display_name_tuples = [(e['name'], e['id']) for e in resp]
     self.drop_down_all_entities.items = list_of_display_name_tuples
 
-  @anvil.server.callable
   def drop_down_all_entities_change(self, **event_args):
+    updateSelectedUnit()
+
+  @anvil.server.callable
+  def updateSelectedUnit():
     print(self.drop_down_all_entities.selected_value)
     anvil.server.session["selected_unit"] = self.drop_down_all_entities.selected_value
     print(anvil.server.session.get('selected_unit'))
-
-    
   
