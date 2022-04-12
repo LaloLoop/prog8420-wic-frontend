@@ -22,7 +22,7 @@ components:
   layout_properties: {grid_position: 'DRGYNE,JSHVRX'}
   event_bindings: {pressed_enter: text_box_2_pressed_enter}
   data_bindings:
-  - {property: text, code: 'self.item[''text_box_name_value'']', writeback: true}
+  - {property: text, code: 'self.item[''name_label_value_text'']', writeback: true}
 - type: Button
   properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
     foreground: '', visible: true, text: Back, font_size: null, font: '', spacing_above: small,
@@ -39,4 +39,8 @@ components:
   name: button_submit
   layout_properties: {grid_position: 'TWZVKN,APIOXD'}
   event_bindings: {click: button_submit_click}
+- type: TextArea
+  properties: {}
+  name: text_area_1
+  layout_properties: {grid_position: 'GJQXXR,UQYZTO'}
 is_package: true

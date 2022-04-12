@@ -7,6 +7,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 
 model_name = 'unit'
+selected_unit = {name: 'none', id: -1}
 
 class CRUD_Unit(CRUD_UnitTemplate):
   def __init__(self, router=None, **properties):
@@ -29,3 +30,13 @@ class CRUD_Unit(CRUD_UnitTemplate):
 
   def button_nav_home_click(self, **event_args):
     self.router.nav_to_route_view(self, 'home', 'admin')
+
+  def button_home_show(self, **event_args):
+    url = f'{self.router.base_url}{model_name}s'
+    resp = anvil.http.request(url, method='GET', json=True)
+    self.repeating_panel_1.items = resp
+    list_of_display_name_tuples = [(e['name'], e['id']) for e in resp]
+    self.drop_down_all_entities.items = list_of_display_name_tuples
+
+
+

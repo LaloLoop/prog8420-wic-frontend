@@ -11,10 +11,21 @@ components:
   layout_properties: {grid_position: 'NWXCHV,TRJZVN'}
 - type: DataGrid
   properties:
+    role: null
     columns:
-    - {id: MGQEGB, title: Column 1, data_key: column_1}
-    - {id: OHAFSN, title: Column 2, data_key: column_2}
-    - {id: SULMZM, title: Column 3, data_key: column_3}
+    - {id: MGQEGB, title: Id, data_key: id, $$hashKey: 'object:1178'}
+    - {id: OHAFSN, title: Name, data_key: name, $$hashKey: 'object:1179'}
+    auto_header: true
+    tooltip: ''
+    border: ''
+    foreground: ''
+    rows_per_page: 20
+    visible: true
+    wrap_on: never
+    show_page_controls: true
+    spacing_above: small
+    spacing_below: small
+    background: ''
   name: data_grid_of_entities
   layout_properties: {grid_position: 'LRWQCS,RNMRTE'}
   components:
@@ -22,6 +33,9 @@ components:
     properties: {spacing_above: none, spacing_below: none, item_template: views.person.CRUD_Person.RowTemplate1}
     name: repeating_panel_1
     layout_properties: {}
+    data_bindings: []
+  data_bindings:
+  - {property: tag, code: 'self.item[''units'']'}
 - type: Label
   properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
     visible: true, text: 'Selected Unit :', font_size: null, font: '', spacing_above: small,
@@ -51,6 +65,8 @@ components:
     include_placeholder: false
   name: drop_down_all_entities
   layout_properties: {grid_position: 'CNTQHC,OPYAEL'}
+  data_bindings: []
+  event_bindings: {change: drop_down_all_entities_change}
 - type: Button
   properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
     foreground: '', visible: true, text: Go To Create Unit View, font_size: null,
@@ -90,5 +106,5 @@ components:
     underline: false, icon: ''}
   name: button_home
   layout_properties: {grid_position: 'VKNZWD,UNDRYL'}
-  event_bindings: {click: button_nav_home_click}
+  event_bindings: {click: button_nav_home_click, show: button_home_show}
 is_package: true
