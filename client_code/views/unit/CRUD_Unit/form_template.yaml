@@ -33,6 +33,7 @@ components:
     properties: {spacing_above: none, spacing_below: none, item_template: views.person.CRUD_Person.RowTemplate1}
     name: repeating_panel_1
     layout_properties: {}
+    data_bindings: []
   data_bindings:
   - {property: tag, code: 'self.item[''units'']'}
 - type: Label
