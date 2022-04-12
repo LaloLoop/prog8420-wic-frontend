@@ -39,4 +39,3 @@ class CRUD_Unit(CRUD_UnitTemplate):
     self.drop_down_all_entities.items = list_of_display_name_tuples
 
 
-
