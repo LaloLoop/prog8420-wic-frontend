@@ -38,8 +38,5 @@ class CRUD_Unit(CRUD_UnitTemplate):
     list_of_display_name_tuples = [(e['name'], e['id']) for e in resp]
     self.drop_down_all_entities.items = list_of_display_name_tuples
 
-    self.drop_down_all_entities.selected_value
 
-  def drop_down_all_entities_change(self, **event_args):
-    selected_unit = self.drop_down_all_entities.selected_value
 
