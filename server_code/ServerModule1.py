@@ -17,7 +17,7 @@ import anvil.server
 #   return 42
 #
 session_units = []
-selected_unit_id = ""
+selected_unit_id = -1
 
 @anvil.server.callable
 def set_units(units):
@@ -36,5 +36,10 @@ def set_selected_unit_id(unit_id):
 @anvil.server.callable
 def get_selected_unit():
   #selected_unit = next(x for x in session_units if x["id"] == selected_unit_id)
+  print(selected_unit_id)
   return selected_unit_id
-                       
+
+@anvil.server.callable
+def test_function():
+  print(f"Hello from the server")
+  return [1, 2, 3, 4]
