@@ -42,7 +42,7 @@ class CRUD_Unit(CRUD_UnitTemplate):
   def drop_down_all_entities_change(self, **event_args):
     print(self.drop_down_all_entities.selected_value)
     anvil.server.session["selected_unit"] = self.drop_down_all_entities.selected_value
-    anvil.server.session.get('selected_unit')
+    print(anvil.server.session.get('selected_unit'))
 
     
   
