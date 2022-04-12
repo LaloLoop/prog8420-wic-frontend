@@ -6,7 +6,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
-model_name = 'units'
+model_name = 'unit'
 
 class CRUD_Unit(CRUD_UnitTemplate):
   def __init__(self, router=None, **properties):
@@ -14,7 +14,7 @@ class CRUD_Unit(CRUD_UnitTemplate):
     self.init_components(**properties)
     self.router = router
     
-    url = f'{self.router.base_url}{model_name}'
+    url = f'{self.router.base_url}{model_name}s'
     resp = anvil.http.request(url, method='GET', json=True)
     print(resp)
     self.repeating_panel_1.items = resp
