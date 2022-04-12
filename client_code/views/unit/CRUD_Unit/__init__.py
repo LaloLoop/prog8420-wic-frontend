@@ -7,6 +7,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 
 model_name = 'unit'
+selected_unit = {name: 'none', id: -1}
 
 class CRUD_Unit(CRUD_UnitTemplate):
   def __init__(self, router=None, **properties):
@@ -35,5 +36,10 @@ class CRUD_Unit(CRUD_UnitTemplate):
     resp = anvil.http.request(url, method='GET', json=True)
     self.repeating_panel_1.items = resp
     list_of_display_name_tuples = [(e['name'], e['id']) for e in resp]
-    self.item['drop_down_items'] = list_of_display_name_tuples
+    self.drop_down_all_entities.items = list_of_display_name_tuples
+
+    self.drop_down_all_entities.selected_value
+
+  def drop_down_all_entities_change(self, **event_args):
+    selected_unit = self.drop_down_all_entities.selected_value
 
