@@ -44,4 +44,5 @@ class CRUD_Unit(CRUD_UnitTemplate):
     anvil.server.session["selected_unit"] = self.drop_down_all_entities.selected_value
     print(anvil.server.session.get('selected_unit'))
 
+    
   
