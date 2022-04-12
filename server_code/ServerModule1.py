@@ -31,6 +31,7 @@ def get_units():
 @anvil.server.callable
 def set_selected_unit_id(unit_id):
   selected_unit_id = unit_id
+  print(selected_unit_id)
 
 @anvil.server.callable
 def get_selected_unit():
