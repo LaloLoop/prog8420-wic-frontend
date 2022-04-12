@@ -33,7 +33,6 @@ class CRUD_Unit(CRUD_UnitTemplate):
   def button_home_show(self, **event_args):
     url = f'{self.router.base_url}{model_name}s'
     resp = anvil.http.request(url, method='GET', json=True)
-    print(resp)
     self.repeating_panel_1.items = resp
     self.drop_down_all_entities = resp
 
