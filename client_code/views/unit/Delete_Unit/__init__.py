@@ -12,7 +12,6 @@ class Delete_Unit(Delete_UnitTemplate):
   def __init__(self, router=None, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    print(self)
     self.router = router
 
     # Any code you write here will run when the form opens.

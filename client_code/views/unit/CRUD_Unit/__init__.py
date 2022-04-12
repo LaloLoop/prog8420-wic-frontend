@@ -7,7 +7,6 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 
 model_name = 'unit'
-selected_unit = {name: 'none', id: -1}
 
 class CRUD_Unit(CRUD_UnitTemplate):
   def __init__(self, router=None, **properties):
