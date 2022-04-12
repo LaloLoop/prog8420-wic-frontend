@@ -23,7 +23,9 @@ class Create_Unit(Create_UnitTemplate):
     name = self.item['name_label_value_text']
     data_dict = {'name':name}
     
-    resp = anvil.http.request('http://127.0.0.1:8000/unit', method='POST', data=data_dict, json=True)
+    url = f'{self.router.base_url}{model_name}'
+    resp = anvil.http.request(url, method='POST', data=data_dict, json=True)
+    
     
     # after successful submission,
     # redirect back to CRUD_Home

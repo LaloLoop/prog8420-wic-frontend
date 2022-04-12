@@ -46,7 +46,7 @@ from .views.appointment.Read_Appointment import Read_Appointment
 from .views.appointment.Update_Appointment import Update_Appointment
 from .views.appointment.Delete_Appointment import Delete_Appointment
 
-FAST_API_BACKEND_BASE_URL = r'http://localhost:8000/'
+FAST_API_BACKEND_BASE_URL = r'https://wic-backend.herokuapp.com/'
 
 class Router:
   base_url = FAST_API_BACKEND_BASE_URL # use this for GET/POST/PUT/DELETE in f-string
