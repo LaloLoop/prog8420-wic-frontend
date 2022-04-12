@@ -35,3 +35,8 @@ class CRUD_Unit(CRUD_UnitTemplate):
 
   def button_nav_home_click(self, **event_args):
     self.router.nav_to_route_view(self, 'home', 'admin')
+
+  def button_home_show(self, **event_args):
+    """This method is called when the Button is shown on the screen"""
+    pass
+
