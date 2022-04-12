@@ -13,6 +13,10 @@ class CRUD_Unit(CRUD_UnitTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.router = router
+    
+    url = f'{self.router.base_url}{model_name}'
+    resp = anvil.http.request(url, method='GET', json=True)
+    print(resp)
     # Any code you write here will run when the form opens.
 
   def button_nav_create_view_click(self, **event_args):
