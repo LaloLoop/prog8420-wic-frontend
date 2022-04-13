@@ -15,7 +15,8 @@ def get_units():
   
 @anvil.server.callable
 def set_selected_unit_id(unit_id):
-  anvil.server.session["selected_unit_id"] = unit_id
+  if unit_id != None:
+    anvil.server.session["selected_unit_id"] = unit_id
 
 @anvil.server.callable
 def get_selected_unit():

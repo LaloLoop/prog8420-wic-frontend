@@ -1,3 +1,4 @@
+is_package: true
 container:
   type: ColumnPanel
   properties: {col_widths: '{}'}
@@ -7,28 +8,39 @@ components:
     visible: true, text: List of Prescriptions, font_size: null, font: '', spacing_above: small,
     icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
     underline: false, icon: ''}
-  name: label_list_entities
   layout_properties: {grid_position: 'NWXCHV,TRJZVN'}
+  name: label_list_entities
 - type: DataGrid
   properties:
     columns:
-    - {id: MGQEGB, title: Column 1, data_key: column_1}
-    - {id: OHAFSN, title: Column 2, data_key: column_2}
-    - {id: SULMZM, title: Column 3, data_key: column_3}
-  name: data_grid_of_entities
+    - {id: MGQEGB, title: Medication, data_key: medication, $$hashKey: 'object:49775'}
+    - {id: OHAFSN, title: Quantity, data_key: quantity, $$hashKey: 'object:49776'}
+    - {id: SULMZM, title: Unit, data_key: unit_display_name, $$hashKey: 'object:49777'}
+    auto_header: true
+    tooltip: ''
+    border: ''
+    foreground: ''
+    rows_per_page: 20
+    visible: true
+    wrap_on: never
+    show_page_controls: true
+    spacing_above: small
+    spacing_below: small
+    background: ''
   layout_properties: {grid_position: 'LRWQCS,RNMRTE'}
+  name: data_grid_of_entities
   components:
   - type: RepeatingPanel
     properties: {spacing_above: none, spacing_below: none, item_template: views.person.CRUD_Person.RowTemplate1}
-    name: repeating_panel_1
     layout_properties: {}
+    name: repeating_panel_1
 - type: Label
   properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
     visible: true, text: 'Selected Prescription :', font_size: null, font: '', spacing_above: small,
     icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
     underline: false, icon: ''}
-  name: label_selected_entity
   layout_properties: {grid_position: 'CNTQHC,HLGOPU'}
+  name: label_selected_entity
 - type: DropDown
   properties:
     role: null
@@ -49,46 +61,46 @@ components:
     bold: false
     underline: false
     include_placeholder: false
-  name: drop_down_all_entities
   layout_properties: {grid_position: 'CNTQHC,OPYAEL'}
+  event_bindings: {change: drop_down_all_entities_change}
+  name: drop_down_all_entities
 - type: Button
   properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
     foreground: '', visible: true, text: Go To Create Prescription View, font_size: null,
     font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
     background: '', bold: false, underline: false, icon: ''}
-  name: button_create_view
   layout_properties: {grid_position: 'MGAUTL,WGQMIB'}
   event_bindings: {click: button_nav_create_view_click}
+  name: button_create_view
 - type: Button
   properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
     foreground: '', visible: true, text: Go To Read Prescription View, font_size: null,
     font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
     background: '', bold: false, underline: false, icon: ''}
-  name: button_read_view
   layout_properties: {grid_position: 'MGAUTL,ELHNRM'}
   event_bindings: {click: button_nav_read_view_click}
+  name: button_read_view
 - type: Button
   properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
     foreground: '', visible: true, text: Go To Update Prescription View, font_size: null,
     font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
     background: '', bold: false, underline: false, icon: ''}
-  name: button_update_view
   layout_properties: {grid_position: 'GSTEMQ,QTJQBY'}
   event_bindings: {click: button_nav_update_view_click}
+  name: button_update_view
 - type: Button
   properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
     foreground: '', visible: true, text: Go To Delete Prescription View, font_size: null,
     font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
     background: '', bold: false, underline: false, icon: ''}
-  name: button_delete_view
   layout_properties: {grid_position: 'GSTEMQ,IOWSRJ'}
   event_bindings: {click: button_nav_delete_view_click}
+  name: button_delete_view
 - type: Button
   properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
     foreground: '', visible: true, text: Return Home, font_size: null, font: '', spacing_above: small,
     icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
     underline: false, icon: ''}
-  name: button_home
   layout_properties: {grid_position: 'VKNZWD,UNDRYL'}
   event_bindings: {click: button_nav_home_click, show: button_home_show}
-is_package: true
+  name: button_home
