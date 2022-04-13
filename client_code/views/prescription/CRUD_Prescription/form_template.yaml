@@ -11,10 +11,22 @@ components:
   layout_properties: {grid_position: 'NWXCHV,TRJZVN'}
 - type: DataGrid
   properties:
+    role: null
     columns:
-    - {id: MGQEGB, title: Column 1, data_key: column_1}
-    - {id: OHAFSN, title: Column 2, data_key: column_2}
-    - {id: SULMZM, title: Column 3, data_key: column_3}
+    - {id: MGQEGB, title: Medication, data_key: medication, $$hashKey: 'object:49775'}
+    - {id: OHAFSN, title: Quantity, data_key: quantity, $$hashKey: 'object:49776'}
+    - {id: SULMZM, title: Unit, data_key: unit_display_name, $$hashKey: 'object:49777'}
+    auto_header: true
+    tooltip: ''
+    border: ''
+    foreground: ''
+    rows_per_page: 20
+    visible: true
+    wrap_on: never
+    show_page_controls: true
+    spacing_above: small
+    spacing_below: small
+    background: ''
   name: data_grid_of_entities
   layout_properties: {grid_position: 'LRWQCS,RNMRTE'}
   components:

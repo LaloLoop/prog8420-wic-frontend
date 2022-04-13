@@ -7,7 +7,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 
 model_name = 'prescription'
-
+#{'medication': 'Atorvastatin', 'quantity': 200, 'unit_id': 1, 'id': 1, 'unit_display_name': 'mg'}
 class CRUD_Prescription(CRUD_PrescriptionTemplate):
   def __init__(self, router=None, **properties):
     # Set Form properties and Data Bindings.
@@ -31,7 +31,7 @@ class CRUD_Prescription(CRUD_PrescriptionTemplate):
     self.router.nav_to_route_view(self, 'home', 'admin')
 
   def button_home_show(self, **event_args):
-    url = f'{self.router.base_url}{model_name}s'
+    url = f'{self.router.base_url}{model_name}s_with_id_display_name'
     resp = anvil.http.request(url, method='GET', json=True)
     self.repeating_panel_1.items = resp
     print(resp)
