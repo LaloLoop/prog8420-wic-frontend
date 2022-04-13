@@ -34,9 +34,10 @@ class CRUD_Prescription(CRUD_PrescriptionTemplate):
     url = f'{self.router.base_url}{model_name}s'
     resp = anvil.http.request(url, method='GET', json=True)
     self.repeating_panel_1.items = resp
-    anvil.server.call('set_units', resp)
-    list_of_display_name_tuples = [(e['name'], e['id']) for e in resp]
-    self.drop_down_all_entities.items = list_of_display_name_tuples
+    print(resp)
+    #anvil.server.call('set_units', resp)
+    #list_of_display_name_tuples = [(e['name'], e['id']) for e in resp]
+    #self.drop_down_all_entities.items = list_of_display_name_tuples
 
   def drop_down_all_entities_change(self, **event_args):
     anvil.server.call('set_selected_unit_id', self.drop_down_all_entities.selected_value)
