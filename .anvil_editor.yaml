@@ -53,7 +53,8 @@ unique_ids:
     views.prescription: '1649476062840919728768896.0425'
     views.person: '1649467836147272157811880.44864'
     views.reports: '164947611348625405196517.13824'
-  server_modules: {}
+  server_modules:
+    UnitServerModule: '1649791519097427988207764.4515'
   assets:
     standard-page.html: HVK35ONGHLP676KV4SFCHEAJDKQAJOHN
     theme.css: KWYSREMVFETCCXQK65XPWNGGDO3YE2CW

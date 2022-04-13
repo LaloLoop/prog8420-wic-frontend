@@ -7,13 +7,13 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 
 model_name = 'unit'
-selected_unit = {'name': 'none', 'id': -1}
 
 class CRUD_Unit(CRUD_UnitTemplate):
   def __init__(self, router=None, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.router = router
+
     # Any code you write here will run when the form opens.
 
   def button_nav_create_view_click(self, **event_args):
@@ -35,8 +35,13 @@ class CRUD_Unit(CRUD_UnitTemplate):
     url = f'{self.router.base_url}{model_name}s'
     resp = anvil.http.request(url, method='GET', json=True)
     self.repeating_panel_1.items = resp
+    anvil.server.call('set_units', resp)
     list_of_display_name_tuples = [(e['name'], e['id']) for e in resp]
     self.drop_down_all_entities.items = list_of_display_name_tuples
 
-
-
+  def drop_down_all_entities_change(self, **event_args):
+    anvil.server.call('set_selected_unit_id', self.drop_down_all_entities.selected_value)
+    print(anvil.server.call('get_selected_unit'))
+    self.button_read_view.enabled = True
+    self.button_delete_view.enabled = True
+    self.button_update_view.enabled = True

@@ -31,7 +31,6 @@ class Create_Unit(Create_UnitTemplate):
     self.label_validation_errors.text = url
     resp = anvil.http.request(url, method='POST', data=data_dict, json=True)
     
-    print(resp)
     self.text_area_1.text = str(type(resp))
     self.label_validation_errors.text = str(type(resp))
     
