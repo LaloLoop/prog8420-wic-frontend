@@ -26,7 +26,6 @@ class Delete_Unit(Delete_UnitTemplate):
     url = f'{self.router.base_url}{model_name}/{unit_id}'
     
     resp = anvil.http.request(url, method='DELETE', json=True)
-    anvil.server.call('set_default_selected_unit')
     
     # after successful submission,
     # redirect back to CRUD_Home
