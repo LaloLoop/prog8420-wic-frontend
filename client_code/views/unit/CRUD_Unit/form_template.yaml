@@ -48,7 +48,7 @@ components:
     role: null
     align: full
     tooltip: ''
-    placeholder: ''
+    placeholder: None
     border: ''
     enabled: true
     foreground: ''
@@ -62,7 +62,7 @@ components:
     background: ''
     bold: false
     underline: false
-    include_placeholder: false
+    include_placeholder: true
   name: drop_down_all_entities
   layout_properties: {grid_position: 'CNTQHC,OPYAEL'}
   data_bindings: []
@@ -76,7 +76,7 @@ components:
   layout_properties: {grid_position: 'MGAUTL,WGQMIB'}
   event_bindings: {click: button_nav_create_view_click}
 - type: Button
-  properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+  properties: {role: null, align: center, tooltip: '', border: '', enabled: false,
     foreground: '', visible: true, text: Go To Read Unit View, font_size: null, font: '',
     spacing_above: small, icon_align: left, spacing_below: small, italic: false, background: '',
     bold: false, underline: false, icon: ''}
@@ -84,7 +84,7 @@ components:
   layout_properties: {grid_position: 'MGAUTL,ELHNRM'}
   event_bindings: {click: button_nav_read_view_click}
 - type: Button
-  properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+  properties: {role: null, align: center, tooltip: '', border: '', enabled: false,
     foreground: '', visible: true, text: Go To Update Unit View, font_size: null,
     font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
     background: '', bold: false, underline: false, icon: ''}
@@ -92,7 +92,7 @@ components:
   layout_properties: {grid_position: 'GSTEMQ,QTJQBY'}
   event_bindings: {click: button_nav_update_view_click}
 - type: Button
-  properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+  properties: {role: null, align: center, tooltip: '', border: '', enabled: false,
     foreground: '', visible: true, text: Go To Delete Unit View, font_size: null,
     font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
     background: '', bold: false, underline: false, icon: ''}

@@ -42,4 +42,6 @@ class CRUD_Unit(CRUD_UnitTemplate):
   def drop_down_all_entities_change(self, **event_args):
     anvil.server.call('set_selected_unit_id', self.drop_down_all_entities.selected_value)
     print(anvil.server.call('get_selected_unit'))
-    #print(anvil.server.call('test_function'))
+    self.button_read_view.enabled = True
+    self.button_delete_view.enabled = True
+    self.button_update_view.enabled = True
