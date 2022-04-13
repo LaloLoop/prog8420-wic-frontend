@@ -7,7 +7,6 @@ import anvil.server
 @anvil.server.callable
 def set_units(units):
   anvil.server.session["session_units"] = units
-  print(units)
   
 @anvil.server.callable
 def get_units():
