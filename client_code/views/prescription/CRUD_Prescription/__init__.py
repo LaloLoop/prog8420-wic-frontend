@@ -7,7 +7,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 
 model_name = 'prescription'
-#{'medication': 'Atorvastatin', 'quantity': 200, 'unit_id': 1, 'id': 1, 'unit_display_name': 'mg'}
+#{'medication': 'Atorvastatin', 'quantity': 200, 'prescription_id': 1, 'id': 1, 'prescription_display_name': 'mg'}
 class CRUD_Prescription(CRUD_PrescriptionTemplate):
   def __init__(self, router=None, **properties):
     # Set Form properties and Data Bindings.
@@ -35,13 +35,13 @@ class CRUD_Prescription(CRUD_PrescriptionTemplate):
     resp = anvil.http.request(url, method='GET', json=True)
     self.repeating_panel_1.items = resp
     print(resp)
-    #anvil.server.call('set_units', resp)
+    anvil.server.call('set_prescriptions', resp)
     #list_of_display_name_tuples = [(e['name'], e['id']) for e in resp]
     #self.drop_down_all_entities.items = list_of_display_name_tuples
 
   def drop_down_all_entities_change(self, **event_args):
-    anvil.server.call('set_selected_unit_id', self.drop_down_all_entities.selected_value)
-    print(anvil.server.call('get_selected_unit'))
+    anvil.server.call('set_selected_prescription_id', self.drop_down_all_entities.selected_value)
+    print(anvil.server.call('get_selected_prescription'))
     self.button_read_view.enabled = True
     self.button_delete_view.enabled = True
     self.button_update_view.enabled = True
