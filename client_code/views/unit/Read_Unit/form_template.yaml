@@ -1,6 +1,7 @@
 container:
   type: ColumnPanel
   properties: {col_widths: '{}'}
+  event_bindings: {show: form_show}
 components:
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
@@ -35,5 +36,5 @@ components:
     underline: false, icon: ''}
   name: button_back
   layout_properties: {grid_position: 'FBLNEP,QRZNAQ'}
-  event_bindings: {click: button_back_click, show: button_back_show}
+  event_bindings: {click: button_back_click}
 is_package: true

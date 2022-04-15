@@ -18,7 +18,9 @@ class Read_Unit(Read_UnitTemplate):
   def button_back_click(self, **event_args):
     self.router.nav_to_route_view(self, model_name, 'crud')
     
-  def button_back_show(self, **event_args):
+  def form_show(self, **event_args):
+    """This method is called when the column panel is shown on the screen"""
+    pass
     _id = anvil.server.call('get_selected_entity_id')
     url = f"{self.router.base_url}{model_name}/{_id}"
     resp = anvil.http.request(url, method='GET', json=True)
@@ -27,3 +29,6 @@ class Read_Unit(Read_UnitTemplate):
     # populate form with current values of entity
     self.label_id_value.text = _id
     self.text_box_name_value.text = entity_id_to_fields[_id]['name']
+
+
+
