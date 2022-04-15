@@ -12,9 +12,7 @@ components:
 - type: DataGrid
   properties:
     role: null
-    columns:
-    - {id: MGQEGB, title: Id, data_key: id, $$hashKey: 'object:1178'}
-    - {id: OHAFSN, title: Name, data_key: name, $$hashKey: 'object:1179'}
+    columns: []
     auto_header: true
     tooltip: ''
     border: ''
@@ -27,15 +25,12 @@ components:
     spacing_below: small
     background: ''
   name: data_grid_of_entities
-  layout_properties: {grid_position: 'LRWQCS,RNMRTE'}
+  layout_properties: {grid_position: 'IQDKCQ,RVTWFY'}
   components:
   - type: RepeatingPanel
-    properties: {spacing_above: none, spacing_below: none, item_template: views.person.CRUD_Person.RowTemplate1}
-    name: repeating_panel_1
+    properties: {spacing_above: none, spacing_below: none, item_template: views.unit.CRUD_Unit.RowTemplateUnit}
+    name: repeating_panel_of_entities
     layout_properties: {}
-    data_bindings: []
-  data_bindings:
-  - {property: tag, code: 'self.item[''units'']'}
 - type: Label
   properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
     visible: true, text: 'Selected Unit :', font_size: null, font: '', spacing_above: small,
@@ -62,7 +57,7 @@ components:
     background: ''
     bold: false
     underline: false
-    include_placeholder: true
+    include_placeholder: false
   name: drop_down_all_entities
   layout_properties: {grid_position: 'CNTQHC,OPYAEL'}
   data_bindings: []
@@ -76,7 +71,7 @@ components:
   layout_properties: {grid_position: 'MGAUTL,WGQMIB'}
   event_bindings: {click: button_nav_create_view_click}
 - type: Button
-  properties: {role: null, align: center, tooltip: '', border: '', enabled: false,
+  properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
     foreground: '', visible: true, text: Go To Read Unit View, font_size: null, font: '',
     spacing_above: small, icon_align: left, spacing_below: small, italic: false, background: '',
     bold: false, underline: false, icon: ''}
@@ -84,7 +79,7 @@ components:
   layout_properties: {grid_position: 'MGAUTL,ELHNRM'}
   event_bindings: {click: button_nav_read_view_click}
 - type: Button
-  properties: {role: null, align: center, tooltip: '', border: '', enabled: false,
+  properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
     foreground: '', visible: true, text: Go To Update Unit View, font_size: null,
     font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
     background: '', bold: false, underline: false, icon: ''}
@@ -92,7 +87,7 @@ components:
   layout_properties: {grid_position: 'GSTEMQ,QTJQBY'}
   event_bindings: {click: button_nav_update_view_click}
 - type: Button
-  properties: {role: null, align: center, tooltip: '', border: '', enabled: false,
+  properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
     foreground: '', visible: true, text: Go To Delete Unit View, font_size: null,
     font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
     background: '', bold: false, underline: false, icon: ''}

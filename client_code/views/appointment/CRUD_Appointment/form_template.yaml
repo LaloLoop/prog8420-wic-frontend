@@ -1,6 +1,8 @@
 container:
   type: ColumnPanel
-  properties: {col_widths: '{}'}
+  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
+    spacing_below: small, background: ''}
 components:
 - type: Label
   properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
@@ -11,16 +13,25 @@ components:
   layout_properties: {grid_position: 'NWXCHV,TRJZVN'}
 - type: DataGrid
   properties:
-    columns:
-    - {id: MGQEGB, title: Column 1, data_key: column_1}
-    - {id: OHAFSN, title: Column 2, data_key: column_2}
-    - {id: SULMZM, title: Column 3, data_key: column_3}
+    role: null
+    columns: []
+    auto_header: true
+    tooltip: ''
+    border: ''
+    foreground: ''
+    rows_per_page: 5
+    visible: true
+    wrap_on: never
+    show_page_controls: true
+    spacing_above: small
+    spacing_below: small
+    background: ''
   name: data_grid_of_entities
-  layout_properties: {grid_position: 'LRWQCS,RNMRTE'}
+  layout_properties: {grid_position: 'XMTICB,FBMWLN', full_width_row: true, row_background: ''}
   components:
   - type: RepeatingPanel
-    properties: {spacing_above: none, spacing_below: none, item_template: views.person.CRUD_Person.RowTemplate1}
-    name: repeating_panel_1
+    properties: {spacing_above: none, spacing_below: none, item_template: views.appointment.CRUD_Appointment.RowTemplateAppointment}
+    name: repeating_panel_of_entities
     layout_properties: {}
 - type: Label
   properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
@@ -29,13 +40,13 @@ components:
     underline: false, icon: ''}
   name: label_selected_entity
   layout_properties: {grid_position: 'CNTQHC,HLGOPU'}
-  event_bindings: {show: label_selected_entity_show}
+  event_bindings: {}
 - type: DropDown
   properties:
     role: null
     align: full
     tooltip: ''
-    placeholder: ''
+    placeholder: None
     border: ''
     enabled: true
     foreground: ''

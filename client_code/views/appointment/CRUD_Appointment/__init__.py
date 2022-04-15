@@ -35,32 +35,50 @@ class CRUD_Appointment(CRUD_AppointmentTemplate):
     url = f'{self.router.base_url}{model_name}s-with-id-display-name'
     resp = anvil.http.request(url, method='GET', json=True)
     
-    # convert resp (list of dicts) into dict[id] = dict of fields
-    entity_id_to_fields = {}
+    # convert resp (list of dicts) into dict[id] = dict of fields (not including id)
+    entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp)
     
-    for e in resp:
-      e_id = e['id']
-      del e['id']
-      entity_id_to_fields[e_id] = {**e}
-
-    display_fields = ['id','patient_display_name','staff_display_name',
-                      'doctor_display_name', 'prescription_display_name',
-                      'date_and_time', 'comments']
-    table_columns = ['Id', 'Patient', 'Staff', 'Doctor', 'Prescription', 'Time', 'Comments']
+    # display fields within each entity dict
+    display_fields = ['patient_display_name', 'staff_display_name','doctor_display_name',
+                      'prescription_display_name','date_and_time', 'comments']
     
-    table_rows = []
-    for _id in entity_id_fields.keys():
-      table_rows.append({table_columns[i]:entity_id_fields[_id][f] for i,f in enumerate(display_fields)})
-    self.repeating_panel_1.items = table_rows
+    # populate data grid
+    table_columns = ['Patient', 'Staff', 'Doctor', 'Prescription', 'Time', 'Comments']
     
-    list_of_display_name_tuples = [(entity_id_to_fields[_id]['', _id]) for _id in sorted(entity_id_to_fields.keys())]
+    table_rows = [] # repeating_panel takes a list of dictionaries/rows
+    for _id in entity_id_to_fields.keys():
+      fields_dict = entity_id_to_fields[_id]
+      table_rows.append({col:fields_dict[f] for col,f in zip(table_columns,display_fields)})
+  
+    grid_col_widths = [200,200,200,100,100,100] 
+    grid_cols=[{'id':col,
+                'width':grid_col_widths[i], 
+                'title':col,
+                'data_key':col} for i,col in enumerate(table_columns)]
+    
+    # set the data grid width to the entire screen width
+    self.data_grid_of_entities.rows_per_page = 3
+    self.data_grid_of_entities.show_page_controls = True
+    self.data_grid_of_entities.width = sum(grid_col_widths)
+    self.data_grid_of_entities.columns = grid_cols
+    self.repeating_panel_of_entities.items = table_rows
+  
+    # populate dropdown
+    list_of_display_name_tuples = \
+      [(entity_id_to_fields[_id]['appointment_display_name'], _id)
+       for _id in sorted(entity_id_to_fields.keys())]
+    
     self.drop_down_all_entities.items = list_of_display_name_tuples
+    self.drop_down_all_entities.placeholder = self.router.crud_dropdown_placeholder
+    if self.drop_down_all_entities.selected_value == self.router.crud_dropdown_placeholder:
+      self.button_read_view.enabled = False
+      self.button_delete_view.enabled = False
+      self.button_update_view.enabled = False
 
   def drop_down_all_entities_change(self, **event_args):
-    anvil.server.call('set_selected_entity_id', self.drop_down_all_entities.selected_value)
-    self.button_read_view.enabled = True
-    self.button_delete_view.enabled = True
-    self.button_update_view.enabled = True
- 
-
-
+    selected = self.drop_down_all_entities.selected_value
+    anvil.server.call('set_selected_unit_id', selected)
+    if selected != self.router.crud_dropdown_placeholder:
+      self.button_read_view.enabled = True
+      self.button_delete_view.enabled = True
+      self.button_update_view.enabled = True

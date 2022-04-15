@@ -5,7 +5,7 @@ components:
 - type: Label
   properties: {}
   name: label_validation_errors
-  layout_properties: {grid_position: 'YEYNVS,OJWHOW'}
+  layout_properties: {grid_position: 'VGTAPA,NZNXTJ'}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: 'Id:', font_size: null, font: '', spacing_above: small, icon_align: left,
@@ -31,7 +31,7 @@ components:
     background: '', bold: false, underline: false}
   name: text_box_name_value
   layout_properties: {grid_position: 'DRGYNE,JSHVRX'}
-  event_bindings: {pressed_enter: text_box_2_pressed_enter}
+  event_bindings: {}
 - type: Button
   properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
     foreground: '', visible: true, text: Back, font_size: null, font: '', spacing_above: small,

@@ -20,7 +20,7 @@ components:
     background: '', bold: false, underline: false}
   name: text_box_name_value
   layout_properties: {grid_position: 'DRGYNE,JSHVRX'}
-  event_bindings: {pressed_enter: text_box_2_pressed_enter}
+  event_bindings: {}
   data_bindings:
   - {property: text, code: 'self.item[''name_label_value_text'']', writeback: true}
 - type: Button

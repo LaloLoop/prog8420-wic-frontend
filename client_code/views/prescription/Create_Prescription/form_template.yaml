@@ -17,7 +17,7 @@ components:
   properties: {}
   name: text_box_medication_value
   layout_properties: {grid_position: 'DRGYNE,XFKPEH'}
-  event_bindings: {pressed_enter: text_box_medication_value_pressed_enter}
+  event_bindings: {}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: 'Quantity:', font_size: null, font: '', spacing_above: small, icon_align: left,

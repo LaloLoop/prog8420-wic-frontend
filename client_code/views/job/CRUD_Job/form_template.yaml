@@ -34,7 +34,7 @@ components:
     role: null
     align: full
     tooltip: ''
-    placeholder: ''
+    placeholder: None
     border: ''
     enabled: true
     foreground: ''
