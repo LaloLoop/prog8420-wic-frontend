@@ -33,7 +33,7 @@ class CRUD_Appointment(CRUD_AppointmentTemplate):
 
   def drop_down_all_entities_change(self, **event_args):
     selected = self.drop_down_all_entities.selected_value
-    anvil.server.call('set_selected_unit_id', selected)
+    anvil.server.call('set_selected_entity_id', selected)
     
     if selected != self.router.crud_dropdown_placeholder:
       self.button_read_view.enabled = True
