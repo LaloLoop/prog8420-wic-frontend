@@ -16,6 +16,7 @@ components:
     underline: false, icon: ''}
   name: label_id_value
   layout_properties: {grid_position: 'BWQOVS,BXSYUS'}
+  event_bindings: {}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: 'Patient:', font_size: null, font: '', spacing_above: small, icon_align: left,
@@ -66,7 +67,7 @@ components:
     spacing_below: small, italic: false, background: '', bold: false, underline: false,
     icon: ''}
   name: label_prescription_id
-  layout_properties: {grid_position: 'KCEJQA,QAUCBP'}
+  layout_properties: {grid_position: 'KCEJQA,FKZYFE'}
 - type: Label
   properties: {}
   name: label_prescription_id_value
@@ -89,5 +90,5 @@ components:
     underline: false, icon: ''}
   name: button_back
   layout_properties: {grid_position: 'FBLNEP,QRZNAQ'}
-  event_bindings: {click: button_back_click}
+  event_bindings: {click: button_back_click, show: button_back_show}
 is_package: true
