@@ -29,8 +29,15 @@ class CRUD_Unit(CRUD_UnitTemplate):
 
   def button_nav_home_click(self, **event_args):
     self.router.nav_to_route_view(self, 'home', 'admin')
-
-  def button_home_show(self, **event_args):
+    
+  def drop_down_all_entities_change(self, **event_args):
+    anvil.server.call('set_selected_entity_id', self.drop_down_all_entities.selected_value)
+    if self.drop_down_all_entities.selected_value != self.router.crud_dropdown_placeholder:
+      self.button_read_view.enabled = True
+      self.button_delete_view.enabled = True
+      self.button_update_view.enabled = True
+  
+  def form_show(self, **event_args):
     url = f'{self.router.base_url}{model_name}s'
     resp = anvil.http.request(url, method='GET', json=True)
     
@@ -75,10 +82,3 @@ class CRUD_Unit(CRUD_UnitTemplate):
       self.button_read_view.enabled = False
       self.button_delete_view.enabled = False
       self.button_update_view.enabled = False
-
-  def drop_down_all_entities_change(self, **event_args):
-    anvil.server.call('set_selected_entity_id', self.drop_down_all_entities.selected_value)
-    if self.drop_down_all_entities.selected_value != self.router.crud_dropdown_placeholder:
-      self.button_read_view.enabled = True
-      self.button_delete_view.enabled = True
-      self.button_update_view.enabled = True

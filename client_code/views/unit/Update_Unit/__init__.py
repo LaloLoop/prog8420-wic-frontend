@@ -43,8 +43,7 @@ class Update_Unit(Update_UnitTemplate):
       
     self.label_validation_errors.text = validation_msg
 
-  # setup page on show
-  def button_back_show(self, **event_args):
+  def form_show(self, **event_args):
     _id = anvil.server.call('get_selected_entity_id')
     url = f"{self.router.base_url}{model_name}/{_id}"
     resp = anvil.http.request(url, method='GET', json=True)
@@ -54,3 +53,6 @@ class Update_Unit(Update_UnitTemplate):
     self.label_validation_errors.text = ""
     self.label_id_value.text = _id
     self.text_box_name_value.text = entity_id_to_fields[_id]['name']
+
+
+

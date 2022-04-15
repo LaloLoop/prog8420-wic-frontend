@@ -29,3 +29,8 @@ class CRUD_Patient(CRUD_PatientTemplate):
 
   def button_nav_home_click(self, **event_args):
     self.router.nav_to_route_view(self, 'home', 'admin')
+
+  def form_show(self, **event_args):
+    """This method is called when the column panel is shown on the screen"""
+    pass
+

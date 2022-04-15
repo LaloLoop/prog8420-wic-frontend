@@ -18,7 +18,7 @@ class Read_Appointment(Read_AppointmentTemplate):
   def button_back_click(self, **event_args):
     self.router.nav_to_route_view(self, model_name, 'crud')
     
-  def button_back_show(self, **event_args):
+  def form_show(self, **event_args):
     _id = anvil.server.call('get_selected_entity_id')
     url = f"{self.router.base_url}{model_name}/{_id}"
     resp = anvil.http.request(url, method='GET', json=True)
@@ -32,5 +32,6 @@ class Read_Appointment(Read_AppointmentTemplate):
     self.label_prescription_id_value = entity_id_to_fields['prescription_display_name']
     self.label_date_and_time_value = entity_id_to_fields['date_and_time']
     self.label_comments_value = entity_id_to_fields['comments']
+
 
 

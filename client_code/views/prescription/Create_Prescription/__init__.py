@@ -33,12 +33,14 @@ class Create_Prescription(Create_PrescriptionTemplate):
     # redirect back to CRUD_Home
     self.router.nav_to_route_view(self, model_name, 'crud')
 
-  def button_back_show(self, **event_args):
+  def form_show(self, **event_args):
     url = f'{self.router.base_url}units'
     resp = anvil.http.request(url, method='GET', json=True)
 
     list_of_display_name_tuples = [(e['name'], e['id']) for e in resp]
     self.drop_down_unit_id_value.items = list_of_display_name_tuples
     
+
+
 
 

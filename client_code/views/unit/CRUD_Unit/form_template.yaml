@@ -1,6 +1,7 @@
 container:
   type: ColumnPanel
   properties: {col_widths: '{}'}
+  event_bindings: {show: form_show}
 components:
 - type: Label
   properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
@@ -25,7 +26,7 @@ components:
     spacing_below: small
     background: ''
   name: data_grid_of_entities
-  layout_properties: {grid_position: 'IQDKCQ,RVTWFY'}
+  layout_properties: {grid_position: 'IQDKCQ,RVTWFY', full_width_row: true}
   components:
   - type: RepeatingPanel
     properties: {spacing_above: none, spacing_below: none, item_template: views.unit.CRUD_Unit.RowTemplateUnit}
@@ -101,5 +102,5 @@ components:
     underline: false, icon: ''}
   name: button_home
   layout_properties: {grid_position: 'VKNZWD,UNDRYL'}
-  event_bindings: {click: button_nav_home_click, show: button_home_show}
+  event_bindings: {click: button_nav_home_click}
 is_package: true

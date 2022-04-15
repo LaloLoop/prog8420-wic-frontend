@@ -43,7 +43,9 @@ class Create_Unit(Create_UnitTemplate):
       
     self.label_validation_errors.text = validation_msg
       
-  # setup page on show
-  def button_back_show(self, **event_args):
+  def form_show(self, **event_args):
     self.label_validation_errors.text = ""
     self.text_box_name_value = ""
+
+
+

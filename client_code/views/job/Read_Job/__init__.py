@@ -18,7 +18,8 @@ class Read_Job(Read_JobTemplate):
   def button_back_click(self, **event_args):
     self.router.nav_to_route_view(self, model_name, 'crud')
 
-  def button_back_show(self, **event_args):
-    """This method is called when the Button is shown on the screen"""
+  def form_show(self, **event_args):
+    """This method is called when the column panel is shown on the screen"""
     pass
+
 

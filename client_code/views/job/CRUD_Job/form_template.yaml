@@ -1,6 +1,7 @@
 container:
   type: ColumnPanel
   properties: {col_widths: '{}'}
+  event_bindings: {show: form_show}
 components:
 - type: Label
   properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
@@ -11,16 +12,25 @@ components:
   layout_properties: {grid_position: 'NWXCHV,TRJZVN'}
 - type: DataGrid
   properties:
-    columns:
-    - {id: MGQEGB, title: Column 1, data_key: column_1}
-    - {id: OHAFSN, title: Column 2, data_key: column_2}
-    - {id: SULMZM, title: Column 3, data_key: column_3}
+    role: null
+    columns: []
+    auto_header: true
+    tooltip: ''
+    border: ''
+    foreground: ''
+    rows_per_page: 20
+    visible: true
+    wrap_on: never
+    show_page_controls: true
+    spacing_above: small
+    spacing_below: small
+    background: ''
   name: data_grid_of_entities
-  layout_properties: {grid_position: 'LRWQCS,RNMRTE'}
+  layout_properties: {grid_position: 'LRWQCS,RNMRTE', full_width_row: true}
   components:
   - type: RepeatingPanel
     properties: {spacing_above: none, spacing_below: none, item_template: views.person.CRUD_Person.RowTemplate1}
-    name: repeating_panel_1
+    name: repeating_panel_of_entities
     layout_properties: {}
 - type: Label
   properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
@@ -90,5 +100,5 @@ components:
     underline: false, icon: ''}
   name: button_home
   layout_properties: {grid_position: 'VKNZWD,UNDRYL'}
-  event_bindings: {click: button_nav_home_click, show: button_home_show}
+  event_bindings: {click: button_nav_home_click}
 is_package: true

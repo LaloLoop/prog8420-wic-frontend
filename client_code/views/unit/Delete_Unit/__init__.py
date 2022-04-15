@@ -36,8 +36,8 @@ class Delete_Unit(Delete_UnitTemplate):
         validation_msg += f"{d['loc'][1]}: {d['msg']}\n"
       
       self.label_validation_errors.text = validation_msg
-
-  def label_id_value_show(self, **event_args):
+  
+  def form_show(self, **event_args):
     _id = anvil.server.call('get_selected_entity_id')
     url = f"{self.router.base_url}{model_name}/{_id}"
     resp = anvil.http.request(url, method='GET', json=True)
@@ -46,3 +46,6 @@ class Delete_Unit(Delete_UnitTemplate):
     # populate form with current values of entity
     self.label_id_value.text = _id
     self.label_name_value.text = entity_id_to_fields[_id]['name']
+
+
+

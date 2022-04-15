@@ -25,7 +25,8 @@ class Delete_Job(Delete_JobTemplate):
     # redirect back to CRUD_Home
     self.router.nav_to_route_view(self, model_name, 'crud')
 
-  def button_back_show(self, **event_args):
-    """This method is called when the Button is shown on the screen"""
+  def form_show(self, **event_args):
+    """This method is called when the column panel is shown on the screen"""
     pass
+
 
