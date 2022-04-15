@@ -13,7 +13,6 @@ class CRUD_Unit(CRUD_UnitTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.router = router
-
     # Any code you write here will run when the form opens.
 
   def button_nav_create_view_click(self, **event_args):
@@ -34,6 +33,7 @@ class CRUD_Unit(CRUD_UnitTemplate):
   def button_home_show(self, **event_args):
     url = f'{self.router.base_url}{model_name}s'
     resp = anvil.http.request(url, method='GET', json=True)
+    
     self.repeating_panel_1.items = resp
     anvil.server.call('set_units', resp)
     list_of_display_name_tuples = [(e['name'], e['id']) for e in resp]

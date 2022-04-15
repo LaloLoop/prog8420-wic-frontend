@@ -31,13 +31,9 @@ class CRUD_Appointment(CRUD_AppointmentTemplate):
   def button_nav_home_click(self, **event_args):
     self.router.nav_to_route_view(self, 'home', 'admin')
 
-  def label_selected_entity_show(self, **event_args):
-    #GET
-    url = f'{self.router.base_url}{model_name}s_with_id_display_name'
+  def button_home_show(self, **event_args):
+    url = f'{self.router.base_url}{model_name}s_'
+    resp = anvil.http.request(url, method='GET', json=True)
     
-    resp = anvil.http.request(urls, method='GET', json=True)
-    
-    self.label_validation_errors.text = str(resp)
-    
-    #self.drop_down_all_entities.items =
+
 
