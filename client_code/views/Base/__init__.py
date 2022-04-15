@@ -16,6 +16,6 @@ class Base(BaseTemplate):
 
   def label_wic_show(self, **event_args):
     """This method is called when the Label is shown on the screen"""
-    self.router.nav_to_route_view(self, 'home', 'admin')
+    self.router.nav_to_route_view(self, 'auth', 'login')
 
 

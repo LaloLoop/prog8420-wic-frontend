@@ -7,6 +7,7 @@ from anvil.tables import app_tables
 
 from .views.Base import Base
 
+from .views.auth.LoginForm import LoginForm
 from .views.home.Admin_Home import Admin_Home
 from .views.home.Staff_Home import Staff_Home
 from .views.home.Doctor_Home import Doctor_Home
@@ -67,7 +68,10 @@ class Router:
       entity_id_to_fields[str(e_id)] = {**e}
     return entity_id_to_fields
   
-
+auth_views = {
+  'login': LoginForm(router=Router)
+}
+  
 home_views = {
               'admin':Admin_Home(router=Router),
               'staff':Staff_Home(router=Router),
@@ -133,6 +137,7 @@ appointment_views = {
 report_views = {}
 
 routes = {
+  'auth': auth_views,
   'home': home_views,
   'person': person_views,
   'job': job_views,
