@@ -20,7 +20,7 @@ class Create_Unit(Create_UnitTemplate):
 
   def button_submit_click(self, **event_args):
     # use POST request to web api
-    url = f'{self.router.base_url}{model_name}/{self.label_id_value.text}'
+    url = f'{self.router.base_url}{model_name}'
     data_dict = {'name':self.text_box_name_value.text}
     
     successful_request = False
