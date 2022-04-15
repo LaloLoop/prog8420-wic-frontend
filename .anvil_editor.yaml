@@ -54,7 +54,7 @@ unique_ids:
     views.person: '1649467836147272157811880.44864'
     views.reports: '164947611348625405196517.13824'
   server_modules:
-    AppointmentServerModule: '1649980961087191018811379.013'
+    EntityServerModule: '1649980961087191018811379.013'
     PrescriptionServerModule: '1649816367281544677685658.65857'
     UnitServerModule: '1649791519097427988207764.4515'
   assets:

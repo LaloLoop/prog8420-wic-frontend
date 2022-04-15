@@ -31,7 +31,7 @@ class CRUD_Prescription(CRUD_PrescriptionTemplate):
     self.router.nav_to_route_view(self, 'home', 'admin')
 
   def button_home_show(self, **event_args):
-    url = f'{self.router.base_url}{model_name}s_with_id_display_name'
+    url = f'{self.router.base_url}{model_name}s-with-id-display-name'
     resp = anvil.http.request(url, method='GET', json=True)
     self.repeating_panel_1.items = resp
     anvil.server.call('set_prescriptions', resp)
