@@ -52,6 +52,7 @@ components:
         underline: false, icon: ''}
       name: signin_button
       layout_properties: {grid_position: 'BYCWIK,USGOFH'}
+      event_bindings: {click: signin_button_click}
 - type: FlowPanel
   properties: {}
   name: navbar_links
