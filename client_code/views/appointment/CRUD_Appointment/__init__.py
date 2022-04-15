@@ -31,13 +31,58 @@ class CRUD_Appointment(CRUD_AppointmentTemplate):
   def button_nav_home_click(self, **event_args):
     self.router.nav_to_route_view(self, 'home', 'admin')
 
-  def label_selected_entity_show(self, **event_args):
-    #GET
-    url = f'{self.router.base_url}{model_name}s_with_id_display_name'
+  def drop_down_all_entities_change(self, **event_args):
+    selected = self.drop_down_all_entities.selected_value
+    anvil.server.call('set_selected_entity_id', selected)
     
-    resp = anvil.http.request(urls, method='GET', json=True)
+    if selected != self.router.crud_dropdown_placeholder:
+      self.button_read_view.enabled = True
+      self.button_delete_view.enabled = True
+      self.button_update_view.enabled = True
     
-    self.label_validation_errors.text = str(resp)
+  def form_show(self, **event_args):
+    url = f'{self.router.base_url}{model_name}s-with-id-display-name'
+    resp = anvil.http.request(url, method='GET', json=True)
     
-    #self.drop_down_all_entities.items =
-
+    # convert resp (list of dicts) into dict[id] = dict of fields (not including id)
+    entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp)
+    
+    # display fields within each entity dict
+    display_fields = ['patient_display_name', 'staff_display_name','doctor_display_name',
+                      'prescription_display_name','date_and_time', 'comments']
+    
+    # populate data grid
+    table_columns = ['Patient', 'Staff', 'Doctor', 'Prescription', 'Time', 'Comments']
+    
+    table_rows = [] # repeating_panel takes a list of dictionaries/rows
+    for _id in entity_id_to_fields.keys():
+      fields_dict = entity_id_to_fields[_id]
+      table_rows.append({col:fields_dict[f] for col,f in zip(table_columns,display_fields)})
+  
+    grid_col_widths = [230,200,200,100,100,100] 
+    grid_cols=[{'id':col,
+                'width':grid_col_widths[i], 
+                'title':col,
+                'data_key':col} for i,col in enumerate(table_columns)]
+    
+    # set the data grid width to the entire screen width
+    self.data_grid_of_entities.rows_per_page = 3
+    self.data_grid_of_entities.show_page_controls = True
+    self.data_grid_of_entities.width = sum(grid_col_widths)
+    self.data_grid_of_entities.columns = grid_cols
+    self.repeating_panel_of_entities.items = table_rows
+  
+    # populate dropdown
+    list_of_display_name_tuples = \
+      [(entity_id_to_fields[_id]['appointment_display_name'], _id)
+       for _id in sorted(entity_id_to_fields.keys())]
+    
+    self.drop_down_all_entities.include_placeholder = True
+    self.drop_down_all_entities.placeholder = self.router.crud_dropdown_placeholder
+    self.drop_down_all_entities.selected_value = self.router.crud_dropdown_placeholder
+    self.drop_down_all_entities.items = list_of_display_name_tuples
+    
+    if self.drop_down_all_entities.selected_value == self.router.crud_dropdown_placeholder:
+      self.button_read_view.enabled = False
+      self.button_delete_view.enabled = False
+      self.button_update_view.enabled = False

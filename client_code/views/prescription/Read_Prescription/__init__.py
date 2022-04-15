@@ -17,3 +17,8 @@ class Read_Prescription(Read_PrescriptionTemplate):
 
   def button_back_click(self, **event_args):
     self.router.nav_to_route_view(self, model_name, 'crud')
+
+  def form_show(self, **event_args):
+    """This method is called when the column panel is shown on the screen"""
+    pass
+

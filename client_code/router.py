@@ -50,10 +50,23 @@ FAST_API_BACKEND_BASE_URL = r'https://wic-backend.herokuapp.com/'
 
 class Router:
   base_url = FAST_API_BACKEND_BASE_URL # use this for GET/POST/PUT/DELETE in f-string
-
+  crud_dropdown_placeholder = "None"
+  
   def nav_to_route_view(old_form, route:str, view:str):
       old_form.remove_from_parent()
       anvil.get_open_form().content_panel.add_component(routes[route][view])
+      
+  def convert_resp_to_entity_id_to_fields_dict(resp):
+    if not isinstance(resp, list): # if response is a single dict, vs list of dicts
+      resp = [resp] 
+    
+    entity_id_to_fields = {}
+    for e in resp:
+      e_id = e['id']
+      del e['id']
+      entity_id_to_fields[str(e_id)] = {**e}
+    return entity_id_to_fields
+  
 
 home_views = {
               'admin':Admin_Home(router=Router),

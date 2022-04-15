@@ -13,7 +13,6 @@ class Delete_Unit(Delete_UnitTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.router = router
-
     # Any code you write here will run when the form opens.
 
   def button_back_click(self, **event_args):
@@ -21,18 +20,32 @@ class Delete_Unit(Delete_UnitTemplate):
 
   def button_submit_click(self, **event_args):
     # use DELETE request to web api
-    unit_id = self.label_id_value.text
-    
-    url = f'{self.router.base_url}{model_name}/{unit_id}'
-    
-    resp = anvil.http.request(url, method='DELETE', json=True)
-    
-    # after successful submission,
-    # redirect back to CRUD_Home
-    self.router.nav_to_route_view(self, model_name, 'crud')
+    url = f'{self.router.base_url}{model_name}/{self.label_id_value.text}'
+    data_dict = {'name':self.label_name_value.text}
+    try:
+      resp = anvil.http.request(url, method='DELETE', data=data_dict, json=True)
+    except: # 404 error, this is a main.py endpoint error, not schemas.py ValidationError
+      resp = {'detail':'Id: Unit with this id wasn''t found.'}
 
-  def label_id_value_show(self, **event_args):
-    selected_unit = anvil.server.call('get_selected_unit')
-    self.label_id_value.text = selected_unit['id']
-    self.label_name_value.text = selected_unit['name']
+    if 'detail' not in resp.keys(): # detail means error
+      # after successful submission, redirect back to CRUD_Home
+      self.router.nav_to_route_view(self, model_name, 'crud')
+    else:
+      validation_msg = ""
+      for d in resp['detail']: 
+        validation_msg += f"{d['loc'][1]}: {d['msg']}\n"
+      
+      self.label_validation_errors.text = validation_msg
+  
+  def form_show(self, **event_args):
+    _id = anvil.server.call('get_selected_entity_id')
+    url = f"{self.router.base_url}{model_name}/{_id}"
+    resp = anvil.http.request(url, method='GET', json=True)
+    entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp)
+  
+    # populate form with current values of entity
+    self.label_id_value.text = _id
+    self.label_name_value.text = entity_id_to_fields[_id]['name']
+
+
 

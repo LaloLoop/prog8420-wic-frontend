@@ -33,3 +33,9 @@ class Create_Appointment(Create_AppointmentTemplate):
     # GET new appointments by docter id
     self.refresh_data_bindings()
 
+  def form_show(self, **event_args):
+    """This method is called when the column panel is shown on the screen"""
+    pass
+
+
+
