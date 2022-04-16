@@ -35,7 +35,6 @@ unique_ids:
     views.job.Create_Job: '164961501706199154458004.16966'
     views.home.Doctor_Home: '1649636723018478452395638.39124'
     views.prescription.Delete_Prescription: '1649630602089153741198158.9223'
-    views.WIC_Create_Job: DE56LUXOXDR3KPUSD33CDCXZTY5WN2YQ
     views.prescription.Create_Prescription: '1649630594244208160330247.8272'
     views.patient.Read_Patient: '1649633565892660288563452.619'
     views.person.CRUD_Person: '1649475185394433318504690.7479'

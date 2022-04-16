@@ -45,7 +45,4 @@ class Create_Unit(Create_UnitTemplate):
       
   def form_show(self, **event_args):
     self.label_validation_errors.text = ""
-    self.text_box_name_value = ""
-
-
-
+    self.text_box_name_value.text = ""

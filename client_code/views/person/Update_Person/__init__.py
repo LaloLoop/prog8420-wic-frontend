@@ -24,13 +24,67 @@ class Update_Person(Update_PersonTemplate):
     self.router.nav_to_route_view(self, model_name, 'crud')
 
   def button_submit_click(self, **event_args):
-    # use POST request to web api
+    # use PUT request to web api
+    url = f'{self.router.base_url}{model_name}/{self.label_id_value.text}'
 
-    # after successful submission,
-    # redirect back to CRUD_Home
-    self.router.nav_to_route_view(self, model_name, 'crud')
+    data_dict = {
+      'first_name': self.text_box_first_name_value.text,
+      'last_name': self.text_box_last_name_value.text,
+      'birthdate': str(self.date_picker_birthdate_value.date),
+      'street': self.text_box_street_value.text,
+      'city': self.text_box_city_value.text,
+      'province': self.drop_down_province_value.selected_value,
+      'postalcode': self.text_box_postal_code_value.text,
+      'email': self.text_box_email_value.text,
+      'phone_number': self.text_box_phonenumber_value.text
+    }
+    
+    successful_request = False
+    try:
+      resp = anvil.http.request(url, method='PUT', data=data_dict, json=True)
+      successful_request = True
+    except: # 404 error, this is a main.py endpoint error, not schemas.py ValidationError
+      resp = {'detail': 'Person with this Email already exists?'}
+
+    if 'detail' not in resp.keys(): # detail means error
+      # after successful submission, redirect back to CRUD_Home
+      self.router.nav_to_route_view(self, model_name, 'crud')
+      return
+    elif not successful_request:
+      validation_msg = f"{resp['detail']}"    
+    else:
+      validation_msg = ""
+      for d in resp['detail']: 
+        validation_msg += f"{d['loc'][1]}: {d['msg']}\n"
+      
+    self.label_validation_errors.text = validation_msg
 
   def form_show(self, **event_args):
-    """This method is called when the column panel is shown on the screen"""
-    pass
+    self.label_validation_errors.text = ""    
+    current_id = anvil.server.call('get_selected_entity_id')
+    
+    url = f"{self.router.base_url}{model_name}/{current_id}"
+    resp = anvil.http.request(url, method='GET', json=True)
+    current_entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp)
+    
+    self.label_id_value.text = current_id
+    
+    self.text_box_first_name_value.text = current_entity_id_to_fields[current_id]['first_name']
+    self.text_box_last_name_value.text = current_entity_id_to_fields[current_id]['last_name']
+    
+    self.date_picker_birthdate_value.date = current_entity_id_to_fields[current_id]['birthdate']
+    
+    self.text_box_street_value.text = current_entity_id_to_fields[current_id]['street']
+    self.text_box_city_value.text = current_entity_id_to_fields[current_id]['city']
 
+    
+    url = f'{self.router.base_url}person-list-of-provinces'
+    provinces = anvil.http.request(url, method='GET', json=True)
+    
+    self.drop_down_province_value.items = sorted([(p,p) for p in provinces], key = lambda x: x[0])
+    
+    self.drop_down_province_value.selected_value = current_entity_id_to_fields[current_id]['province'] 
+    
+    self.text_box_postal_code_value.text = current_entity_id_to_fields[current_id]['postalcode'] 
+    self.text_box_email_value.text = current_entity_id_to_fields[current_id]['email'] 
+    self.text_box_phonenumber_value.text = current_entity_id_to_fields[current_id]['phone_number'] 

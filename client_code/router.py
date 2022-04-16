@@ -65,6 +65,7 @@ class Router:
       e_id = e['id']
       del e['id']
       entity_id_to_fields[str(e_id)] = {**e}
+      e['id'] = e_id # readd so we can use it for sorting later
     return entity_id_to_fields
   
 
