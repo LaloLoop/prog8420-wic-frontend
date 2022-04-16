@@ -1,5 +1,6 @@
 unique_ids:
   forms:
+    views.Form2: '1650074966088433653060505.216'
     views.appointment.CRUD_Appointment.RowTemplateAppointment: '1649989671841183273021318.82718'
     views.patient.CRUD_Patient: '1649630374302267015285706.3297'
     views.patient.Create_Patient: '1649630536578918282810653.7435'
@@ -14,6 +15,7 @@ unique_ids:
     views.unit.CRUD_Unit: '1649630102266499978289026.7428'
     views.unit.CRUD_Unit.RowTemplateUnit: '1649989955587243758389327.38113'
     views.patient.Delete_Patient: '1649630559768714902114154.7264'
+    views.Form1: '1650074957900194429222016.58575'
     views.person.Update_Person: '164963279171079079009629.33212'
     views.person.Create_Person: '1649475232504592507683199.9594'
     views.home.Admin_Home: '1649474997361199702820217.9687'
