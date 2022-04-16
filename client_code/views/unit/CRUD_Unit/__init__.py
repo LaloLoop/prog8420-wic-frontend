@@ -31,12 +31,18 @@ class CRUD_Unit(CRUD_UnitTemplate):
     self.router.nav_to_route_view(self, 'home', 'admin')
     
   def drop_down_all_entities_change(self, **event_args):
-    anvil.server.call('set_selected_entity_id', self.drop_down_all_entities.selected_value)
-    if self.drop_down_all_entities.selected_value != self.router.crud_dropdown_placeholder:
+    selected = self.drop_down_all_entities.selected_value
+    anvil.server.call('set_selected_entity_id', selected)
+    
+    if selected != self.router.crud_dropdown_placeholder:
       self.button_read_view.enabled = True
       self.button_delete_view.enabled = True
       self.button_update_view.enabled = True
-  
+    else:
+      self.button_read_view.enabled = False
+      self.button_delete_view.enabled = False
+      self.button_update_view.enabled = False
+    
   def form_show(self, **event_args):
     url = f'{self.router.base_url}{model_name}s'
     resp = anvil.http.request(url, method='GET', json=True)
@@ -51,11 +57,11 @@ class CRUD_Unit(CRUD_UnitTemplate):
     table_columns = ['Unit']
     
     table_rows = [] # repeating_panel takes a list of dictionaries/rows
-    for _id in entity_id_to_fields.keys():
-      fields_dict = entity_id_to_fields[_id]
+    for _id in [e['id'] for e in sorted(resp, key = lambda x: x['name'])]:
+      fields_dict = entity_id_to_fields[str(_id)]
       table_rows.append({col:fields_dict[f] for col,f in zip(table_columns,display_fields)})
   
-    #grid_col_widths = [200]
+    #grid_col_widths = [230,200,200,100,100,100] 
     grid_cols=[{'id':col,
                 #'width':grid_col_widths[i], 
                 'title':col,
@@ -67,11 +73,11 @@ class CRUD_Unit(CRUD_UnitTemplate):
     #self.data_grid_of_entities.width = sum(grid_col_widths)
     self.data_grid_of_entities.columns = grid_cols
     self.repeating_panel_of_entities.items = table_rows
-    
+  
     # populate dropdown
-    list_of_display_name_tuples = \
+    list_of_display_name_tuples = sorted( \
       [(entity_id_to_fields[_id]['name'], _id)
-       for _id in sorted(entity_id_to_fields.keys())]
+       for _id in sorted(entity_id_to_fields.keys())], key = lambda x: x[0])
     
     self.drop_down_all_entities.include_placeholder = True
     self.drop_down_all_entities.placeholder = self.router.crud_dropdown_placeholder

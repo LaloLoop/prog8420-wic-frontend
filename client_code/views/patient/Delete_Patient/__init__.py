@@ -21,12 +21,23 @@ class Delete_Patient(Delete_PatientTemplate):
 
   def button_submit_click(self, **event_args):
     # use DELETE request to web api
-
-    # after successful submission,
-    # redirect back to CRUD_Home
+    url = f"{self.router.base_url}{model_name}/{self.label_id_value.text}"
+    
+    try:
+      resp = anvil.http.request(url, method='DELETE', json=True)
+    except: # 404 error, this is a main.py endpoint error, not schemas.py ValidationError
+      self.label_validation_errors.text = "unsuccessful delete"
+      return
     self.router.nav_to_route_view(self, model_name, 'crud')
 
   def form_show(self, **event_args):
-    """This method is called when the column panel is shown on the screen"""
-    pass
-
+    _id = anvil.server.call('get_selected_entity_id')
+    url = f"{self.router.base_url}{model_name}-with-id-display-name/{_id}"
+    resp = anvil.http.request(url, method='GET', json=True)
+    entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp)
+    
+    # populate form with current values of entity
+    self.label_validation_errors.text = ""
+    self.label_id_value.text = _id
+    self.label_person_id_value.text = entity_id_to_fields[_id]['person_display_name']
+    self.label_ohip_value.text = entity_id_to_fields[_id]['ohip']

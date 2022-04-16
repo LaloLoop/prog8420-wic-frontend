@@ -29,6 +29,7 @@ components:
   properties: {}
   name: drop_down_title_value
   layout_properties: {grid_position: 'DRGYNE,PUYXDV'}
+  event_bindings: {}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: 'Speciality:', font_size: null, font: '', spacing_above: small, icon_align: left,
@@ -50,7 +51,7 @@ components:
   event_bindings: {click: button_back_click}
 - type: Button
   properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-    foreground: '', visible: true, text: Create Job, font_size: null, font: '', spacing_above: small,
+    foreground: '', visible: true, text: Update Job, font_size: null, font: '', spacing_above: small,
     icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
     underline: false, icon: ''}
   name: button_submit

@@ -19,7 +19,12 @@ class Read_Job(Read_JobTemplate):
     self.router.nav_to_route_view(self, model_name, 'crud')
 
   def form_show(self, **event_args):
-    """This method is called when the column panel is shown on the screen"""
-    pass
-
-
+    _id = anvil.server.call('get_selected_entity_id')
+    url = f"{self.router.base_url}{model_name}/{_id}"
+    resp = anvil.http.request(url, method='GET', json=True)
+    entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp)
+    
+    # populate form with current values of entity
+    self.label_id_value.text = _id
+    self.label_title_value.text = entity_id_to_fields[_id]['title']
+    self.label_speciality_value.text = entity_id_to_fields[_id]['speciality']

@@ -14,22 +14,24 @@ class Read_Person(Read_PersonTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.router = router
-    
-    # GET request 
-    #anvil.http.request()
-    #resp = anvil.http.request('http://127.0.0.1:8000/person', method='GET', json=True)
-    #resp['title']
-    #resp['id']
-    
-    self.item['label_id_value_text'] = 'From GET Request' # resp['id']
-    self.refresh_data_bindings()
-
     # Any code you write here will run when the form opens.
 
   def button_back_click(self, **event_args):
     self.router.nav_to_route_view(self, model_name, 'crud')
-
+  
   def form_show(self, **event_args):
-    """This method is called when the column panel is shown on the screen"""
-    pass
-
+    _id = anvil.server.call('get_selected_entity_id')
+    url = f"{self.router.base_url}{model_name}/{_id}"
+    resp = anvil.http.request(url, method='GET', json=True)
+    entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp)
+    
+    self.label_id_value.text = _id
+    self.label_first_name_value.text = entity_id_to_fields[_id]['first_name']
+    self.label_last_name_value.text = entity_id_to_fields[_id]['last_name']
+    self.label_birthdate_value.text = entity_id_to_fields[_id]['birthdate']
+    self.label_street_value.text = entity_id_to_fields[_id]['street']
+    self.label_city_value.text = entity_id_to_fields[_id]['city']
+    self.label_province_value.text = entity_id_to_fields[_id]['province']
+    self.label_postalcode_value.text = entity_id_to_fields[_id]['postalcode']
+    self.label_email_value.text = entity_id_to_fields[_id]['email']
+    self.label_phonenumber_value.text = entity_id_to_fields[_id]['phone_number']

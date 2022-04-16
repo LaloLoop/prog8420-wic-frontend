@@ -32,6 +32,3 @@ class Read_Appointment(Read_AppointmentTemplate):
     self.label_prescription_id_value.text  = entity_id_to_fields[_id]['prescription_display_name']
     self.label_date_and_time_value.text  = entity_id_to_fields[_id]['date_and_time']
     self.label_comments_value.text  = entity_id_to_fields[_id]['comments']
-
-
-

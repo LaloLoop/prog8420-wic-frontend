@@ -4,6 +4,10 @@ container:
   event_bindings: {show: form_show}
 components:
 - type: Label
+  properties: {}
+  name: label_validation_errors
+  layout_properties: {grid_position: 'VTYJBH,BFAZXT'}
+- type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: 'Id:', font_size: null, font: '', spacing_above: small, icon_align: left,
     spacing_below: small, italic: false, background: '', bold: false, underline: false,
@@ -12,9 +16,8 @@ components:
   layout_properties: {grid_position: 'BWQOVS,MLVTOM'}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
-    text: readonly value (label), font_size: null, font: '', spacing_above: small,
-    icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-    underline: false, icon: ''}
+    text: '', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
+    italic: false, background: '', bold: false, underline: false, icon: ''}
   name: label_id_value
   layout_properties: {grid_position: 'BWQOVS,BXSYUS'}
 - type: Label

@@ -19,6 +19,13 @@ class Read_Prescription(Read_PrescriptionTemplate):
     self.router.nav_to_route_view(self, model_name, 'crud')
 
   def form_show(self, **event_args):
-    """This method is called when the column panel is shown on the screen"""
-    pass
-
+    current_id = anvil.server.call('get_selected_entity_id')
+    
+    url = f"{self.router.base_url}{model_name}-with-id-display-name/{current_id}"
+    resp = anvil.http.request(url, method='GET', json=True)
+    current_entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp)
+   
+    self.label_id_value.text = current_id
+    self.label_medication_value.text = current_entity_id_to_fields[current_id]['medication']
+    self.label_quantity_value.text = current_entity_id_to_fields[current_id]['quantity']
+    self.label_unit_id_value.text = current_entity_id_to_fields[current_id]['unit_display_name']
