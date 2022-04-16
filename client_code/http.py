@@ -18,7 +18,7 @@ class HttpClient:
   def request(self, *args, **kwargs):
     resp = anvil.server.call('auth_request', *args, **kwargs)
     if not resp['ok']:
-      raise anvil.http.HttpError(status=resp['status_code'], content=content['content'])
+      raise anvil.http.HttpError(resp['status_code'], resp['content'])
       
     return resp['content']
   

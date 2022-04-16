@@ -34,30 +34,30 @@ class Create_Employee(Create_EmployeeTemplate):
     
     job_title = entity_id_to_fields[self.drop_down_job_id_value.selected_value]['title']
     
-    
-    self.label_validation_errors.text = str(entity_id_to_fields) + '\n' + str(self.drop_down_job_id_value.items)\
-      + '\n' + str(job_title) + '\n' + str(job_title == 'admin')
-    
+
     is_superuser = (job_title == 'admin') 
     
     data_dict = { 
-      'person_id': self.drop_down_person_id_value.selected_value,
-      'job_id': self.drop_down_job_id_value.selected_value,
+      'person_id': int(self.drop_down_person_id_value.selected_value),
+      'job_id': int(self.drop_down_job_id_value.selected_value),
       'email': email,
       'password': self.text_box_password_value.text,
       'is_superuser': is_superuser,
       'is_active': False,
       'is_verified': False,
     }
+
+    self.label_1.text = str(data_dict)
     
     successful_request = False
     try:
       # use POST request to web api
       url = f'{self.router.base_url}auth/register'
-      resp = anvil.http.request(url, method='POST', data=data_dict, json=True)
+      resp = self.http.request(url, method='POST', data=data_dict, json=True)
       successful_request = True
-    except: # 404 error, this is a main.py endpoint error, not schemas.py ValidationError
-      resp = {'detail': 'Employee was unable to be created.'}
+    except anvil.http.HttpError as e: # 404 error, this is a main.py endpoint error, not schemas.py ValidationError
+      
+      resp = {'detail': f'{e.content}\n{e.status}'}
 
     if 'detail' not in resp.keys(): # detail means error
       # after successful submission, redirect back to CRUD_Home
