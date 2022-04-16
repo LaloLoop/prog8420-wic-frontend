@@ -9,10 +9,11 @@ from anvil.tables import app_tables
 model_name = 'employee'
 
 class CRUD_Employee(CRUD_EmployeeTemplate):
-  def __init__(self, router=None, **properties):
+  def __init__(self, router, httpc, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.router = router
+    
     # Any code you write here will run when the form opens.
 
   def button_nav_create_view_click(self, **event_args):

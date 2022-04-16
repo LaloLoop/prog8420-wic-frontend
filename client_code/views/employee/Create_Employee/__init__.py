@@ -34,21 +34,26 @@ class Create_Employee(Create_EmployeeTemplate):
     
     job_title = entity_id_to_fields[self.drop_down_job_id_value.selected_value]['title']
     
-    # use POST request to web api
-    url = f'{self.router.base_url}{model_name}'
-
+    
+    self.label_validation_errors.text = str(entity_id_to_fields) + '\n' + str(self.drop_down_job_id_value.items)\
+      + '\n' + str(job_title) + '\n' + str(job_title == 'admin')
+    
+    is_superuser = (job_title == 'admin') 
+    
     data_dict = { 
       'person_id': self.drop_down_person_id_value.selected_value,
       'job_id': self.drop_down_job_id_value.selected_value,
       'email': email,
       'password': self.text_box_password_value.text,
-      'is_superuser': False if not job_title == 'admin' else True,
+      'is_superuser': is_superuser,
       'is_active': False,
-      'is_verified': False
+      'is_verified': False,
     }
     
     successful_request = False
     try:
+      # use POST request to web api
+      url = f'{self.router.base_url}auth/register'
       resp = anvil.http.request(url, method='POST', data=data_dict, json=True)
       successful_request = True
     except: # 404 error, this is a main.py endpoint error, not schemas.py ValidationError
