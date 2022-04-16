@@ -24,7 +24,6 @@ def base_request(url, method="GET", data=None, headers=None, jsonbody = True):
   params = {'url': url, 'method': method}
   
   if data is not None:
-    print(data)
     if jsonbody:
       params['json']=data
     else:
@@ -32,8 +31,6 @@ def base_request(url, method="GET", data=None, headers=None, jsonbody = True):
     
   if headers is not None:
     params['headers'] = headers
-  
-  print(params)
   
   resp = requests.request(**params)
   
