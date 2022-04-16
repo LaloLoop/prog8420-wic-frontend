@@ -20,18 +20,15 @@ class LoginForm(LoginFormTemplate):
     user = self.user_box.text
     password = self.password_box.text
     
-    url = f"{self.router.base_url}auth/jwt/login"
-    data_dict = {'username': user, 'password': password}
-    
     self.feedback_banner.visible = False
     
     user_data = None
     try:
-      resp = anvil.server.call("wic_request", url, method="POST", data=data_dict)
-      user_data = anvil.http.request(f"{self.router.base_url}users/me", json=True)
+      anvil.server.call("login", user, password)
+      user_data = anvil.server.call("auth_request", f"{self.router.base_url}users/me", json=True)
       
       banner_color = '#a5d6a7'
-      feedback = "Login successful"
+      feedback = f"Welcome {user_data['email']}"
       
     except anvil.http.HttpError as e:
       banner_color = '#ff5252'
