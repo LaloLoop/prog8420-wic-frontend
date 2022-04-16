@@ -60,6 +60,3 @@ class Create_Job(Create_JobTemplate):
     self.drop_down_title_value.items = sorted([(jt,jt) for jt in job_titles], key = lambda x: x[0])
     
     self.text_box_speciality_value.text = ""
-
-
-

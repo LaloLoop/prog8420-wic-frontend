@@ -20,27 +20,47 @@ class Create_Prescription(Create_PrescriptionTemplate):
 
   def button_submit_click(self, **event_args):
     # use POST request to web api
-    medication = self.text_box_medication_value.text
-    quantity = self.text_box_quantity_value.text
-    unit_id = self.drop_down_unit_id_value.selected_value
-    data_dict = {'medication':medication, 'quantity': quantity, 'unit_id': unit_id}   
-    
     url = f'{self.router.base_url}{model_name}'
 
-    resp = anvil.http.request(url, method='POST', data=data_dict, json=True)
-    print(resp)
-    # after successful submission,
-    # redirect back to CRUD_Home
-    self.router.nav_to_route_view(self, model_name, 'crud')
+    data_dict = { \
+      'medication': self.text_box_medication_value.text,
+      'quantity': self.text_box_quantity_value.text,
+      'unit_id': self.drop_down_unit_id_value.selected_value
+    }
+    
+    successful_request = False
+    try:
+      resp = anvil.http.request(url, method='POST', data=data_dict, json=True)
+      successful_request = True
+    except: # 404 error, this is a main.py endpoint error, not schemas.py ValidationError
+      resp = {'detail': 'Appointment with this patient, or doctor and time, already exists.'}
+
+    if 'detail' not in resp.keys(): # detail means error
+      # after successful submission, redirect back to CRUD_Home
+      self.router.nav_to_route_view(self, model_name, 'crud')
+      return
+    elif not successful_request:
+      validation_msg = f"{resp['detail']}"    
+    else:
+      validation_msg = ""
+      for d in resp['detail']: 
+        validation_msg += f"{d['loc'][1]}: {d['msg']}\n"
+      
+    self.label_validation_errors.text = validation_msg
 
   def form_show(self, **event_args):
+    self.text_box_medication_value.text = ""
+    self.text_box_quantity_value.text = ""
+    # use GET requests for list units
+    # to populate all of the drop down(s)
     url = f'{self.router.base_url}units'
     resp = anvil.http.request(url, method='GET', json=True)
-
-    list_of_display_name_tuples = [(e['name'], e['id']) for e in resp]
-    self.drop_down_unit_id_value.items = list_of_display_name_tuples
+    entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp)
     
-
-
-
-
+    self.drop_down_unit_id_value.include_placeholder = True
+    self.drop_down_unit_id_value.placeholder = self.router.crud_dropdown_placeholder
+    self.drop_down_unit_id_value.selected_value = self.router.crud_dropdown_placeholder    
+    
+    _ids = entity_id_to_fields.keys()
+    self.drop_down_unit_id_value.items = sorted(\
+      [(entity_id_to_fields[_id]['name'], _id) for _id in _ids], key = lambda x: x[0])

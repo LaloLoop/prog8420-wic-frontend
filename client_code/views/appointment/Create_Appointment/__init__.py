@@ -73,7 +73,7 @@ class Create_Appointment(Create_AppointmentTemplate):
     
     _ids = sorted(entity_id_to_fields.keys())
     self.drop_down_patient_id_value.items = sorted( \
-      [(entity_id_to_fields[_id]['person_display_name'], _id) for _id in _ids], keys = lambda x: x[0])
+      [(entity_id_to_fields[_id]['person_display_name'], _id) for _id in _ids], key = lambda x: x[0])
     
     url = f'{self.router.base_url}employees-staff-with-id-display-name'
     resp = anvil.http.request(url, method='GET', json=True)
