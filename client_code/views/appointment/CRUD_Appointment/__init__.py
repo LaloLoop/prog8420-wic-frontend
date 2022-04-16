@@ -39,6 +39,10 @@ class CRUD_Appointment(CRUD_AppointmentTemplate):
       self.button_read_view.enabled = True
       self.button_delete_view.enabled = True
       self.button_update_view.enabled = True
+    else:
+      self.button_read_view.enabled = False
+      self.button_delete_view.enabled = False
+      self.button_update_view.enabled = False
     
   def form_show(self, **event_args):
     url = f'{self.router.base_url}{model_name}s-with-id-display-name'
@@ -55,8 +59,8 @@ class CRUD_Appointment(CRUD_AppointmentTemplate):
     table_columns = ['Patient', 'Staff', 'Doctor', 'Prescription', 'Time', 'Comments']
     
     table_rows = [] # repeating_panel takes a list of dictionaries/rows
-    for _id in entity_id_to_fields.keys():
-      fields_dict = entity_id_to_fields[_id]
+    for _id in [e['id'] for e in sorted(resp, key = lambda x: x['patient_display_name'])]:
+      fields_dict = entity_id_to_fields[str(_id)]
       table_rows.append({col:fields_dict[f] for col,f in zip(table_columns,display_fields)})
   
     grid_col_widths = [230,200,200,100,100,100] 
@@ -73,9 +77,9 @@ class CRUD_Appointment(CRUD_AppointmentTemplate):
     self.repeating_panel_of_entities.items = table_rows
   
     # populate dropdown
-    list_of_display_name_tuples = \
+    list_of_display_name_tuples = sorted( \
       [(entity_id_to_fields[_id]['appointment_display_name'], _id)
-       for _id in sorted(entity_id_to_fields.keys())]
+       for _id in sorted(entity_id_to_fields.keys())], key = lambda x: x[0])
     
     self.drop_down_all_entities.include_placeholder = True
     self.drop_down_all_entities.placeholder = self.router.crud_dropdown_placeholder

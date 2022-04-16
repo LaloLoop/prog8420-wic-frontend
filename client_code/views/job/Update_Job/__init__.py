@@ -17,15 +17,58 @@ class Update_Job(Update_JobTemplate):
 
   def button_back_click(self, **event_args):
     self.router.nav_to_route_view(self, model_name, 'crud')
+  def drop_down_doctor_id_value_change(self, **event_args):
+    doctor_id = self.drop_down_doctor_id_value.selected_value
 
+    # use GET request for new appointments by docter id
+    url = f'{self.router.base_url}{model_name}-available-date-and-times/{doctor_id}'
+    resp = anvil.http.request(url, method='GET', json=True)
+    self.drop_down_date_and_time.items = [(dt,dt) for dt in resp]
+    self.refresh_data_bindings()
+    
   def button_submit_click(self, **event_args):
     # use PUT request to web api
+    url = f'{self.router.base_url}{model_name}/{self.label_id_value.text}'
+    
+    data_dict = { \
+      'title': self.drop_down_title_value.selected_value,
+      'speciality': self.text_box_speciality_value.text,
+    }
+    successful_request = False
+    try:
+      resp = anvil.http.request(url, method='PUT', data=data_dict, json=True)
+      successful_request = True
+    except: # 404 error, this is a main.py endpoint error, not schemas.py ValidationError
+      resp = {'detail': 'Job already exists?.'}
 
-    # after successful submission,
-    # redirect back to CRUD_Home
-    self.router.nav_to_route_view(self, model_name, 'crud')
+    if 'detail' not in resp.keys(): # detail means error
+      # after successful submission, redirect back to CRUD_Home
+      self.router.nav_to_route_view(self, model_name, 'crud')
+      return
+    elif not successful_request:
+      validation_msg = f"{resp['detail']}"    
+    else:
+      validation_msg = ""
+      for d in resp['detail']: 
+        validation_msg += f"{d['loc'][1]}: {d['msg']}\n"
+      
+    self.label_validation_errors.text = validation_msg
 
   def form_show(self, **event_args):
-    """This method is called when the column panel is shown on the screen"""
-    pass
-
+    current_id = anvil.server.call('get_selected_entity_id')
+    
+    url = f"{self.router.base_url}{model_name}/{current_id}"
+    resp = anvil.http.request(url, method='GET', json=True)
+    current_entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp)
+    
+    self.label_id_value.text = current_id
+    
+    # use GET requests for list of job titles
+    # to populate all of the drop downs
+    url = f'{self.router.base_url}{model_name}-list-of-job-titles'
+    job_titles = anvil.http.request(url, method='GET', json=True)
+    
+    self.drop_down_title_value.items = sorted([(jt,jt) for jt in job_titles], key = lambda x: x[0])
+    self.drop_down_title_value.selected_value = current_entity_id_to_fields[current_id]['title']
+    
+    self.text_box_speciality_value.text = current_entity_id_to_fields[current_id]['speciality']

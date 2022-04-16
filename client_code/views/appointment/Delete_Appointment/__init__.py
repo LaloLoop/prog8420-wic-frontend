@@ -20,24 +20,14 @@ class Delete_Appointment(Delete_AppointmentTemplate):
 
   def button_submit_click(self, **event_args):
     # use DELETE request to web api
-    _id = anvil.server.call('get_selected_entity_id')
-    url = f"{self.router.base_url}{model_name}/{_id}"
+    url = f"{self.router.base_url}{model_name}/{self.label_id_value.text}"
     
-    successful_request = False
     try:
       resp = anvil.http.request(url, method='DELETE', json=True)
-      successful_request = True
     except: # 404 error, this is a main.py endpoint error, not schemas.py ValidationError
-      resp = {'detail':'Id: Unit with this id wasn''t found.'}
-
-    if 'detail' not in resp.keys(): # detail means error
-      # after successful submission, redirect back to CRUD_Home
-      self.router.nav_to_route_view(self, model_name, 'crud')
+      self.label_validation_errors.text = "unsuccessful delete"
       return
-    elif not successful_request:
-      validation_msg = f"{resp['detail']}"   
-      
-    self.label_validation_errors.text = validation_msg
+    self.router.nav_to_route_view(self, model_name, 'crud')
 
   def form_show(self, **event_args):
     _id = anvil.server.call('get_selected_entity_id')

@@ -18,6 +18,7 @@ components:
   properties: {}
   name: drop_down_title_value
   layout_properties: {grid_position: 'DRGYNE,PUYXDV'}
+  event_bindings: {}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: 'Speciality:', font_size: null, font: '', spacing_above: small, icon_align: left,
