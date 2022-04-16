@@ -20,12 +20,36 @@ class Delete_Appointment(Delete_AppointmentTemplate):
 
   def button_submit_click(self, **event_args):
     # use DELETE request to web api
+    _id = anvil.server.call('get_selected_entity_id')
+    url = f"{self.router.base_url}{model_name}/{_id}"
+    
+    successful_request = False
+    try:
+      resp = anvil.http.request(url, method='DELETE', json=True)
+      successful_request = True
+    except: # 404 error, this is a main.py endpoint error, not schemas.py ValidationError
+      resp = {'detail':'Id: Unit with this id wasn''t found.'}
 
-    # after successful submission,
-    # redirect back to CRUD_Home
-    self.router.nav_to_route_view(self, model_name, 'crud')
+    if 'detail' not in resp.keys(): # detail means error
+      # after successful submission, redirect back to CRUD_Home
+      self.router.nav_to_route_view(self, model_name, 'crud')
+      return
+    elif not successful_request:
+      validation_msg = f"{resp['detail']}"   
+      
+    self.label_validation_errors.text = validation_msg
 
   def form_show(self, **event_args):
-    """This method is called when the column panel is shown on the screen"""
-    pass
-
+    _id = anvil.server.call('get_selected_entity_id')
+    url = f"{self.router.base_url}{model_name}-with-id-display-name/{_id}"
+    resp = anvil.http.request(url, method='GET', json=True)
+    entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp)
+    
+    # populate form with current values of entity
+    self.label_id_value.text = _id
+    self.label_patient_id_value.text = entity_id_to_fields[_id]['patient_display_name']
+    self.label_staff_id_value.text  = entity_id_to_fields[_id]['staff_display_name']
+    self.label_doctor_id_value.text  = entity_id_to_fields[_id]['doctor_display_name']
+    self.label_prescription_id_value.text  = entity_id_to_fields[_id]['prescription_display_name']
+    self.label_date_and_time_value.text  = entity_id_to_fields[_id]['date_and_time']
+    self.label_comments_value.text  = entity_id_to_fields[_id]['comments']

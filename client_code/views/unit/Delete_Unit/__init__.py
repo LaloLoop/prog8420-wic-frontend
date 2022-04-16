@@ -22,6 +22,7 @@ class Delete_Unit(Delete_UnitTemplate):
     # use DELETE request to web api
     url = f'{self.router.base_url}{model_name}/{self.label_id_value.text}'
     data_dict = {'name':self.label_name_value.text}
+    
     try:
       resp = anvil.http.request(url, method='DELETE', data=data_dict, json=True)
     except: # 404 error, this is a main.py endpoint error, not schemas.py ValidationError
@@ -36,7 +37,7 @@ class Delete_Unit(Delete_UnitTemplate):
         validation_msg += f"{d['loc'][1]}: {d['msg']}\n"
       
       self.label_validation_errors.text = validation_msg
-  
+      
   def form_show(self, **event_args):
     _id = anvil.server.call('get_selected_entity_id')
     url = f"{self.router.base_url}{model_name}/{_id}"
