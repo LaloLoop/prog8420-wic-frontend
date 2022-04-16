@@ -27,9 +27,9 @@ class LoginForm(LoginFormTemplate):
     
     user_data = None
     try:
-      anvil.http.request(url, method="POST", data=data_dict)
+      resp = anvil.server.call("wic_request", url, method="POST", data=data_dict)
       user_data = anvil.http.request(f"{self.router.base_url}users/me", json=True)
-      anvil.server.call("store_autenticated", user_data)
+      
       banner_color = '#a5d6a7'
       feedback = "Login successful"
       
