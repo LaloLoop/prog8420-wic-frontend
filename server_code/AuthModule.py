@@ -4,6 +4,8 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.server
 
+import requests
+
 # This is a server module. It runs on the Anvil server,
 # rather than in the user's browser.
 #
@@ -17,13 +19,5 @@ import anvil.server
 #   return 42
 #
 @anvil.server.callable
-def store_autenticated(user_info):
-  anvil.server.session["user_info"] = user_info
-
-@anvil.server.callable
-def get_user_info():
-  return anvil.server.session["user_info"]
-
-@anvil.server.callable
-def is_authenticated():
-  return anvil.server.session.get("user_info") is not None
+def request(url, method="GET", data=None, json=False):
+  requests.request(method=method, )
