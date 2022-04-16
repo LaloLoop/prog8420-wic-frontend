@@ -112,10 +112,10 @@ job_views = {
 
 employee_views = {
                   'crud':CRUD_Employee(router=AuthRouter()),
-                  'create': Create_Employee(router=Router()),
+                  'create': Create_Employee(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL)),
                   'read': Read_Employee(router=Router()),
-                  'update':Update_Employee(router=Router()),
-                  'delete':Delete_Employee(router=Router()),
+                  'update':Update_Employee(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL)),
+                  'delete':Delete_Employee(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL)),
                   }
 
 patient_views = {

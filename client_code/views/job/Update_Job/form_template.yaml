@@ -25,11 +25,10 @@ components:
     icon: ''}
   name: label_title
   layout_properties: {grid_position: 'DRGYNE,CNKMKR'}
-- type: DropDown
+- type: Label
   properties: {}
-  name: drop_down_title_value
-  layout_properties: {grid_position: 'DRGYNE,PUYXDV'}
-  event_bindings: {}
+  name: label_title_value
+  layout_properties: {grid_position: 'DRGYNE,HCCEZL'}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: 'Speciality:', font_size: null, font: '', spacing_above: small, icon_align: left,

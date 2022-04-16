@@ -30,8 +30,8 @@ class Update_Job(Update_JobTemplate):
     # use PUT request to web api
     url = f'{self.router.base_url}{model_name}/{self.label_id_value.text}'
     
-    data_dict = { \
-      'title': self.drop_down_title_value.selected_value,
+    data_dict = {
+      'title': self.label_title_value.text,
       'speciality': self.text_box_speciality_value.text,
     }
     successful_request = False
@@ -69,7 +69,5 @@ class Update_Job(Update_JobTemplate):
     url = f'{self.router.base_url}{model_name}-list-of-job-titles'
     job_titles = anvil.http.request(url, method='GET', json=True)
     
-    self.drop_down_title_value.items = sorted([(jt,jt) for jt in job_titles], key = lambda x: x[0])
-    self.drop_down_title_value.selected_value = current_entity_id_to_fields[current_id]['title']
-    
+    self.label_title_value.text = current_entity_id_to_fields[current_id]['title']
     self.text_box_speciality_value.text = current_entity_id_to_fields[current_id]['speciality']

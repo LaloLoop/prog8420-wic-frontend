@@ -73,7 +73,7 @@ class Create_Appointment(Create_AppointmentTemplate):
     self.drop_down_patient_id_value.placeholder = self.router.crud_dropdown_placeholder
     self.drop_down_patient_id_value.selected_value = self.router.crud_dropdown_placeholder
     
-    _ids = sorted(entity_id_to_fields.keys())
+    _ids = entity_id_to_fields.keys()
     self.drop_down_patient_id_value.items = sorted( \
       [(entity_id_to_fields[_id]['person_display_name'], _id) for _id in _ids], key = lambda x: x[0])
     
