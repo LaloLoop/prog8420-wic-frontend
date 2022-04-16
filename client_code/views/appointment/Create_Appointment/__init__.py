@@ -16,7 +16,6 @@ class Create_Appointment(Create_AppointmentTemplate):
     # Any code you write here will run when the form opens.
 
   def button_back_click(self, **event_args):
-    """This method is called when the button is clicked"""
     self.router.nav_to_route_view(self, model_name, 'crud')
 
   def drop_down_doctor_id_value_change(self, **event_args):
@@ -41,16 +40,13 @@ class Create_Appointment(Create_AppointmentTemplate):
       'comments': self.text_area_comments_value.text
     }
     
-    self.label_validation_errors.text = str(data_dict)
-    
     successful_request = False
     try:
       resp = anvil.http.request(url, method='POST', data=data_dict, json=True)
       successful_request = True
     except: # 404 error, this is a main.py endpoint error, not schemas.py ValidationError
-      resp = {'detail': 'Appointment with this doctor and time already exists.'}
-    
-    #self.label_validation_errors.text = 'Y' if successful_request else 'N'
+      resp = {'detail': 'Appointment with this patient, or doctor and time, already exists.'}
+
     if 'detail' not in resp.keys(): # detail means error
       # after successful submission, redirect back to CRUD_Home
       self.router.nav_to_route_view(self, model_name, 'crud')
@@ -62,30 +58,9 @@ class Create_Appointment(Create_AppointmentTemplate):
       for d in resp['detail']: 
         validation_msg += f"{d['loc'][1]}: {d['msg']}\n"
       
-    #self.label_validation_errors.text = validation_msg
+    self.label_validation_errors.text = validation_msg
 
   def form_show(self, **event_args):
-    # set placeholders
-    self.drop_down_patient_id_value.include_placeholder = True
-    self.drop_down_patient_id_value.placeholder = self.router.crud_dropdown_placeholder
-    self.drop_down_patient_id_value.selected_value = self.router.crud_dropdown_placeholder
-    
-    self.drop_down_doctor_id_value.include_placeholder = True
-    self.drop_down_doctor_id_value.placeholder = self.router.crud_dropdown_placeholder
-    self.drop_down_doctor_id_value.selected_value = self.router.crud_dropdown_placeholder
-    
-    self.drop_down_staff_id_value.include_placeholder = True
-    self.drop_down_staff_id_value.placeholder = self.router.crud_dropdown_placeholder
-    self.drop_down_staff_id_value.selected_value = self.router.crud_dropdown_placeholder
- 
-    self.drop_down_prescription_id_value.include_placeholder = True
-    self.drop_down_prescription_id_value.placeholder = self.router.crud_dropdown_placeholder
-    self.drop_down_prescription_id_value.selected_value = self.router.crud_dropdown_placeholder
-    
-    self.drop_down_date_and_time.include_placeholder = True
-    self.drop_down_date_and_time.placeholder = self.router.crud_dropdown_placeholder
-    self.drop_down_date_and_time.selected_value = self.router.crud_dropdown_placeholder
-
     # use GET requests for list of patients, staff, doctor, prescriptions
     # to populate all of the drop downs
     url = f'{self.router.base_url}patients-with-id_display-name'
@@ -95,12 +70,20 @@ class Create_Appointment(Create_AppointmentTemplate):
     self.drop_down_patient_id_value.items = \
       [(entity_id_to_fields[_id]['person_display_name'], _id) for _id in _ids]
     
+    self.drop_down_patient_id_value.include_placeholder = True
+    self.drop_down_patient_id_value.placeholder = self.router.crud_dropdown_placeholder
+    self.drop_down_patient_id_value.selected_value = self.router.crud_dropdown_placeholder
+    
     url = f'{self.router.base_url}employees-staff-with-id-display-name'
     resp = anvil.http.request(url, method='GET', json=True)
     entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp)
     _ids = sorted(entity_id_to_fields.keys())
     self.drop_down_staff_id_value.items = \
       [(entity_id_to_fields[_id]['person_display_name'], _id) for _id in _ids]
+
+    self.drop_down_staff_id_value.include_placeholder = True
+    self.drop_down_staff_id_value.placeholder = self.router.crud_dropdown_placeholder
+    self.drop_down_staff_id_value.selected_value = self.router.crud_dropdown_placeholder
     
     url = f'{self.router.base_url}employees-doctor-with-id-display-name'
     resp = anvil.http.request(url, method='GET', json=True)
@@ -108,6 +91,10 @@ class Create_Appointment(Create_AppointmentTemplate):
     _ids = sorted(entity_id_to_fields.keys())
     self.drop_down_doctor_id_value.items = \
       [(entity_id_to_fields[_id]['person_display_name'], _id) for _id in _ids]
+
+    self.drop_down_doctor_id_value.include_placeholder = True
+    self.drop_down_doctor_id_value.placeholder = self.router.crud_dropdown_placeholder
+    self.drop_down_doctor_id_value.selected_value = self.router.crud_dropdown_placeholder
     
     intial_doctor_id = _ids[0]
 
@@ -117,9 +104,17 @@ class Create_Appointment(Create_AppointmentTemplate):
     _ids = sorted(entity_id_to_fields.keys())
     self.drop_down_prescription_id_value.items = \
       [(entity_id_to_fields[_id]['prescription_display_name'], _id) for _id in _ids]
-    
+ 
+    self.drop_down_prescription_id_value.include_placeholder = True
+    self.drop_down_prescription_id_value.placeholder = self.router.crud_dropdown_placeholder
+    self.drop_down_prescription_id_value.selected_value = self.router.crud_dropdown_placeholder
+
     url = f'{self.router.base_url}appointment-available-date-and-times/{intial_doctor_id}'
     date_and_times = anvil.http.request(url, method='GET', json=True)
-    self.drop_down_date_and_time.items = [(dt,dt) for dt in date_and_times]  
-
+    self.drop_down_date_and_time_values.items = [(dt,dt) for dt in date_and_times]
+    
+    self.drop_down_date_and_time_value.include_placeholder = True
+    self.drop_down_date_and_time_value.placeholder = self.router.crud_dropdown_placeholder
+    self.drop_down_date_and_time_value.selected_value = self.router.crud_dropdown_placeholder
+    
     self.text_area_comments_value.text = ""

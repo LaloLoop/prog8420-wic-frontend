@@ -1,6 +1,5 @@
 unique_ids:
   forms:
-    views.Form2: '1650074966088433653060505.216'
     views.appointment.CRUD_Appointment.RowTemplateAppointment: '1649989671841183273021318.82718'
     views.patient.CRUD_Patient: '1649630374302267015285706.3297'
     views.patient.Create_Patient: '1649630536578918282810653.7435'
@@ -15,7 +14,6 @@ unique_ids:
     views.unit.CRUD_Unit: '1649630102266499978289026.7428'
     views.unit.CRUD_Unit.RowTemplateUnit: '1649989955587243758389327.38113'
     views.patient.Delete_Patient: '1649630559768714902114154.7264'
-    views.Form1: '1650074957900194429222016.58575'
     views.person.Update_Person: '164963279171079079009629.33212'
     views.person.Create_Person: '1649475232504592507683199.9594'
     views.home.Admin_Home: '1649474997361199702820217.9687'
@@ -37,7 +35,6 @@ unique_ids:
     views.job.Create_Job: '164961501706199154458004.16966'
     views.home.Doctor_Home: '1649636723018478452395638.39124'
     views.prescription.Delete_Prescription: '1649630602089153741198158.9223'
-    views.WIC_Create_Job: DE56LUXOXDR3KPUSD33CDCXZTY5WN2YQ
     views.prescription.Create_Prescription: '1649630594244208160330247.8272'
     views.patient.Read_Patient: '1649633565892660288563452.619'
     views.person.CRUD_Person: '1649475185394433318504690.7479'
