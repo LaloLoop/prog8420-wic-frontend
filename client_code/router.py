@@ -95,7 +95,7 @@ home_views = {
              }
 
 person_views = {
-                'crud':CRUD_Person(router=Router()),
+                'crud':CRUD_Person(router=AuthRouter()),
                 'create':Create_Person(router=Router()),
                 'read':Read_Person(router=Router()),
                 'update':Update_Person(router=Router()),
@@ -103,7 +103,7 @@ person_views = {
                 }
 
 job_views = {
-             'crud':CRUD_Job(router=Router()),
+             'crud':CRUD_Job(router=AuthRouter()),
              'create':Create_Job(router=Router()),
              'read':Read_Job(router=Router()),
              'update':Update_Job(router=Router()),
@@ -111,7 +111,7 @@ job_views = {
             }
 
 employee_views = {
-                  'crud':CRUD_Employee(router=Router()),
+                  'crud':CRUD_Employee(router=AuthRouter()),
                   'create': Create_Employee(router=Router()),
                   'read': Read_Employee(router=Router()),
                   'update':Update_Employee(router=Router()),
@@ -119,7 +119,7 @@ employee_views = {
                   }
 
 patient_views = {
-                 'crud':CRUD_Patient(router=Router()),
+                 'crud':CRUD_Patient(router=AuthRouter()),
                  'create':Create_Patient(router=Router()),
                  'read':Read_Patient(router=Router()),
                  'update':Update_Patient(router=Router()),
@@ -127,7 +127,7 @@ patient_views = {
                 }
 
 unit_views = {
-              'crud':CRUD_Unit(router=Router()),
+              'crud':CRUD_Unit(router=AuthRouter()),
               'create': Create_Unit(router=Router()),
               'read':Read_Unit(router=Router()),
               'update':Update_Unit(router=Router()),
@@ -135,7 +135,7 @@ unit_views = {
               }
 
 prescription_views = {
-                      'crud':CRUD_Prescription(router=Router()),
+                      'crud':CRUD_Prescription(router=AuthRouter()),
                       'create':Create_Prescription(router=Router()),
                       'read':Read_Prescription(router=Router()),
                       'update':Update_Prescription(router=Router()),
@@ -143,7 +143,7 @@ prescription_views = {
                       }
 
 appointment_views = {
-                     'crud':CRUD_Appointment(router=Router()),
+                     'crud':CRUD_Appointment(router=AuthRouter()),
                      'create':Create_Appointment(router=Router()),
                      'read':Read_Appointment(router=Router()),
                      'update':Update_Appointment(router=Router()),
