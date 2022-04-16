@@ -38,4 +38,4 @@ class Doctor_Home(Doctor_HomeTemplate):
     pass
 
   def button_logout_click(self, **event_args):
-    self.router.logout()
+    self.router.logout(self)

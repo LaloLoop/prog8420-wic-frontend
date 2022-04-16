@@ -71,10 +71,10 @@ class Router:
       e['id'] = e_id # readd so we can use it for sorting later
     return entity_id_to_fields
   
-  def logout(self):
-    anvil.server.call('logout', self.router.base_url)
+  def logout(self, view):
+    anvil.server.call('logout', self.base_url)
     
-    self.nav_to_route_view(self, 'auth', 'login') # cycle through all 3
+    self.nav_to_route_view(view, 'auth', 'login') # cycle through all 3
   
 class AuthRouter(Router):
   def nav_to_route_view(self, old_form, route:str, view:str):

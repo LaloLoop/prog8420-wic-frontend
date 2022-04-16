@@ -38,4 +38,4 @@ class Staff_Home(Staff_HomeTemplate):
     pass
 
   def button_logout_click(self, **event_args):
-    self.router.logout()
+    self.router.logout(self)
