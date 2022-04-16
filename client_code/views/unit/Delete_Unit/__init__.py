@@ -26,7 +26,7 @@ class Delete_Unit(Delete_UnitTemplate):
     try:
       resp = anvil.http.request(url, method='DELETE', data=data_dict, json=True)
     except: # 404 error, this is a main.py endpoint error, not schemas.py ValidationError
-      resp = {'detail':'Id: Unit with this id wasn''t found.'}
+      resp = {'detail':'Unit is referenced as a foreign key?.'}
 
     if 'detail' not in resp.keys(): # detail means error
       # after successful submission, redirect back to CRUD_Home
@@ -45,8 +45,6 @@ class Delete_Unit(Delete_UnitTemplate):
     entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp)
   
     # populate form with current values of entity
+    self.label_validation_errors.text = ""
     self.label_id_value.text = _id
     self.label_name_value.text = entity_id_to_fields[_id]['name']
-
-
-

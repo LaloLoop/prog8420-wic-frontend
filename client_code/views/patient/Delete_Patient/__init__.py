@@ -37,6 +37,7 @@ class Delete_Patient(Delete_PatientTemplate):
     entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp)
     
     # populate form with current values of entity
+    self.label_validation_errors.text = ""
     self.label_id_value.text = _id
     self.label_person_id_value.text = entity_id_to_fields[_id]['person_display_name']
     self.label_ohip_value.text = entity_id_to_fields[_id]['ohip']

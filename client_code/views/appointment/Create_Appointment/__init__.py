@@ -66,6 +66,8 @@ class Create_Appointment(Create_AppointmentTemplate):
     url = f'{self.router.base_url}patients-unbooked-with-id-display-name'
     resp = anvil.http.request(url, method='GET', json=True)
     entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp)
+
+    self.label_validation_errors.text = ""    
     
     self.drop_down_patient_id_value.include_placeholder = True
     self.drop_down_patient_id_value.placeholder = self.router.crud_dropdown_placeholder

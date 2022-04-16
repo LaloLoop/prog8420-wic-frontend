@@ -19,13 +19,55 @@ class Update_Prescription(Update_PrescriptionTemplate):
     self.router.nav_to_route_view(self, model_name, 'crud')
 
   def button_submit_click(self, **event_args):
-    # use POST request to web api
+    # use PUT request to web api
+    url = f'{self.router.base_url}{model_name}/{self.label_id_value.text}'
 
-    # after successful submission,
-    # redirect back to CRUD_Home
-    self.router.nav_to_route_view(self, model_name, 'crud')
+    data_dict = { \
+      'medication': self.text_box_medication_value.text,
+      'quantity': self.text_box_quantity_value.text,
+      'unit_id': self.drop_down_unit_id_value.selected_value
+    }
+    
+    successful_request = False
+    try:
+      resp = anvil.http.request(url, method='PUT', data=data_dict, json=True)
+      successful_request = True
+    except: # 404 error, this is a main.py endpoint error, not schemas.py ValidationError
+      resp = {'detail': 'Prescription wasn''t updated'}
+
+    if 'detail' not in resp.keys(): # detail means error
+      # after successful submission, redirect back to CRUD_Home
+      self.router.nav_to_route_view(self, model_name, 'crud')
+      return
+    elif not successful_request:
+      validation_msg = f"{resp['detail']}"    
+    else:
+      validation_msg = ""
+      for d in resp['detail']: 
+        validation_msg += f"{d['loc'][1]}: {d['msg']}\n"
+      
+    self.label_validation_errors.text = validation_msg
 
   def form_show(self, **event_args):
-    """This method is called when the column panel is shown on the screen"""
-    pass
+    current_id = anvil.server.call('get_selected_entity_id')
+    
+    url = f"{self.router.base_url}{model_name}-with-id-display-name/{current_id}"
+    resp = anvil.http.request(url, method='GET', json=True)
+    current_entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp)
 
+    self.label_validation_errors.text = ""    
+    self.label_id_value.text = current_id
+    self.text_box_medication_value.text = current_entity_id_to_fields[current_id]['medication']
+    self.text_box_quantity_value.text = current_entity_id_to_fields[current_id]['quantity']
+    
+    # use GET requests for list units
+    # to populate all of the drop down(s)
+    url = f'{self.router.base_url}units'
+    resp = anvil.http.request(url, method='GET', json=True)
+    entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp)
+    
+    _ids = entity_id_to_fields.keys()
+    self.drop_down_unit_id_value.items = sorted(\
+      [(entity_id_to_fields[_id]['name'], _id) for _id in _ids], key = lambda x: x[0])
+    
+    self.drop_down_unit_id_value.selected_value = str(current_entity_id_to_fields[current_id]['unit_id'])

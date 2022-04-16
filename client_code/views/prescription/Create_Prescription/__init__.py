@@ -33,7 +33,7 @@ class Create_Prescription(Create_PrescriptionTemplate):
       resp = anvil.http.request(url, method='POST', data=data_dict, json=True)
       successful_request = True
     except: # 404 error, this is a main.py endpoint error, not schemas.py ValidationError
-      resp = {'detail': 'Appointment with this patient, or doctor and time, already exists.'}
+      resp = {'detail': 'Prescription wasn\'t created' }
 
     if 'detail' not in resp.keys(): # detail means error
       # after successful submission, redirect back to CRUD_Home
@@ -49,6 +49,7 @@ class Create_Prescription(Create_PrescriptionTemplate):
     self.label_validation_errors.text = validation_msg
 
   def form_show(self, **event_args):
+    self.label_validation_errors.text = ""
     self.text_box_medication_value.text = ""
     self.text_box_quantity_value.text = ""
     # use GET requests for list units

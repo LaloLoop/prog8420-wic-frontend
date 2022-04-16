@@ -28,6 +28,3 @@ class Read_Job(Read_JobTemplate):
     self.label_id_value.text = _id
     self.label_title_value.text = entity_id_to_fields[_id]['title']
     self.label_speciality_value.text = entity_id_to_fields[_id]['speciality']
-
-
-

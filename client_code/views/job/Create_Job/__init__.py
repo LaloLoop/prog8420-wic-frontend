@@ -52,6 +52,8 @@ class Create_Job(Create_JobTemplate):
     # to populate all of the drop downs
     url = f'{self.router.base_url}{model_name}-list-of-job-titles'
     job_titles = anvil.http.request(url, method='GET', json=True)
+
+    self.label_validation_errors.text = ""
     
     self.drop_down_title_value.include_placeholder = True
     self.drop_down_title_value.placeholder = self.router.crud_dropdown_placeholder

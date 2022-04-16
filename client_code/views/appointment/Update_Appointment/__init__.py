@@ -63,6 +63,8 @@ class Update_Appointment(Update_AppointmentTemplate):
     url = f"{self.router.base_url}{model_name}-with-id-display-name/{current_id}"
     resp = anvil.http.request(url, method='GET', json=True)
     current_entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp)
+
+    self.label_validation_errors.text = ""    
     
     self.label_id_value.text = current_id
     

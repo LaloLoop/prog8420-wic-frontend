@@ -36,6 +36,7 @@ class Delete_Job(Delete_JobTemplate):
     entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp)
     
     # populate form with current values of entity
+    self.label_validation_errors.text = ""
     self.label_id_value.text = _id
     self.label_title_value.text = entity_id_to_fields[_id]['title']
     self.label_speciality_value.text = entity_id_to_fields[_id]['speciality']
