@@ -47,17 +47,19 @@ from .views.appointment.Read_Appointment import Read_Appointment
 from .views.appointment.Update_Appointment import Update_Appointment
 from .views.appointment.Delete_Appointment import Delete_Appointment
 
+from .http import HttpClient
+
 FAST_API_BACKEND_BASE_URL = r'https://wic-backend.herokuapp.com/'
 
 class Router:
   base_url = FAST_API_BACKEND_BASE_URL # use this for GET/POST/PUT/DELETE in f-string
   crud_dropdown_placeholder = "None"
   
-  def nav_to_route_view(old_form, route:str, view:str):
+  def nav_to_route_view(self, old_form, route:str, view:str):
       old_form.remove_from_parent()
       anvil.get_open_form().content_panel.add_component(routes[route][view])
       
-  def convert_resp_to_entity_id_to_fields_dict(resp):
+  def convert_resp_to_entity_id_to_fields_dict(self, resp):
     if not isinstance(resp, list): # if response is a single dict, vs list of dicts
       resp = [resp] 
     
@@ -68,14 +70,22 @@ class Router:
       entity_id_to_fields[str(e_id)] = {**e}
     return entity_id_to_fields
   
+class AuthRouter(Router):
+  def nav_to_route_view(self, old_form, route:str, view:str):
+    if route == 'home':
+      title = anvil.server.call('get_session_permissions')
+      view = title
+    
+    super().nav_to_route_view(old_form, route, view)
+  
 auth_views = {
-  'login': LoginForm(router=Router)
+  'login': LoginForm(router=AuthRouter(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL))
 }
   
 home_views = {
-              'admin':Admin_Home(router=Router),
-              'staff':Staff_Home(router=Router),
-              'doctor': Doctor_Home(router=Router)
+              'admin':Admin_Home(router=Router()),
+              'staff':Staff_Home(router=Router()),
+              'doctor': Doctor_Home(router=Router())
              }
 
 person_views = {
@@ -111,11 +121,11 @@ patient_views = {
                 }
 
 unit_views = {
-              'crud':CRUD_Unit(router=Router),
-              'create': Create_Unit(router=Router),
-              'read':Read_Unit(router=Router),
-              'update':Update_Unit(router=Router),
-              'delete':Delete_Unit(router=Router),
+              'crud':CRUD_Unit(router=Router()),
+              'create': Create_Unit(router=Router()),
+              'read':Read_Unit(router=Router()),
+              'update':Update_Unit(router=Router()),
+              'delete':Delete_Unit(router=Router()),
               }
 
 prescription_views = {
@@ -150,5 +160,5 @@ routes = {
 }
 
 # since router is our startup module, open the Base Form here
-base = Base(router=Router)
+base = Base(router=Router())
 anvil.open_form(base)
