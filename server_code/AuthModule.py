@@ -20,14 +20,20 @@ import requests
 #
 
 @anvil.server.callable
-def base_request(url, method="GET", data=None, headers=None):
+def base_request(url, method="GET", data=None, headers=None, jsonbody = True):
   params = {'url': url, 'method': method}
   
   if data is not None:
-    params['data']=data
+    print(data)
+    if jsonbody:
+      params['json']=data
+    else:
+      params['data']=data
     
   if headers is not None:
     params['headers'] = headers
+  
+  print(params)
   
   resp = requests.request(**params)
   
@@ -78,7 +84,7 @@ class LoginStep(FlowStep):
     username = args[0]
     password = args[1]
     return request(f"{self.base_url}auth/jwt/login", "POST", 
-                   {'username': username, 'password': password})
+                   {'username': username, 'password': password}, jsonbody=False)
   
   def process_response(self, response):
     if response['ok']:
