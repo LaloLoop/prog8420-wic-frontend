@@ -1,0 +1,34 @@
+container:
+  type: ColumnPanel
+  properties: {col_widths: '{}'}
+components:
+- type: ColumnPanel
+  properties: {role: card, col_widths: '{}'}
+  name: card_1
+  layout_properties: {grid_position: 'WKPQXS,FLPLEH'}
+  components:
+  - type: Label
+    properties: {role: headline, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: Most prescribed medication, font_size: null, font: '',
+      spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false, icon: ''}
+    name: headline_1
+    layout_properties: {grid_position: 'XZHRMF,NCMXLT'}
+  - type: Plot
+    properties: {}
+    name: plot_1
+    layout_properties: {grid_position: 'KMSVYJ,FSCVLV'}
+  - type: DataGrid
+    properties:
+      columns:
+      - {id: KBRTCG, title: Column 1, data_key: column_1}
+      - {id: AYNQHI, title: Column 2, data_key: column_2}
+      - {id: LDPMQM, title: Column 3, data_key: column_3}
+    name: data_grid_1
+    layout_properties: {grid_position: 'RAZRNQ,TMQSMC'}
+    components:
+    - type: RepeatingPanel
+      properties: {spacing_above: none, spacing_below: none, item_template: views.reports.MostPrescribed.RowTemplate2}
+      name: repeating_panel_1
+      layout_properties: {}
+is_package: true
