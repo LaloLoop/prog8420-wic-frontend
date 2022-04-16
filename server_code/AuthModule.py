@@ -121,3 +121,13 @@ def login(base_url, username, password):
 def get_session_permissions():
   return anvil.server.session['job_title']['title']
   
+
+@anvil.server.callable
+def logout(base_url):
+  resp = request(f"{base_url}auth/jwt/logout", "POST")
+  
+  del anvil.server.session['token']
+  del anvil.server.session['user_info']
+  del anvil.server.session['job_title']
+  
+  return resp

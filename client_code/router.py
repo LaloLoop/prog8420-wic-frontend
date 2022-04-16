@@ -70,6 +70,11 @@ class Router:
       entity_id_to_fields[str(e_id)] = {**e}
     return entity_id_to_fields
   
+  def logout(self):
+    anvil.server.call('logout', self.router.base_url)
+    
+    self.nav_to_route_view(self, 'auth', 'login') # cycle through all 3
+  
 class AuthRouter(Router):
   def nav_to_route_view(self, old_form, route:str, view:str):
     if route == 'home':

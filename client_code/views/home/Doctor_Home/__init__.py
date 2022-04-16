@@ -38,4 +38,4 @@ class Doctor_Home(Doctor_HomeTemplate):
     pass
 
   def button_logout_click(self, **event_args):
-    self.router.nav_to_route_view(self, 'home', 'admin') # cycle through all 3
+    self.router.logout()

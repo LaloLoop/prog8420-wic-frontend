@@ -38,7 +38,7 @@ class Admin_Home(Admin_HomeTemplate):
     pass
   
   def button_logout_click(self, **event_args):
-    self.router.nav_to_route_view(self, 'home', 'staff') # cycle through all 3
+    self.router.logout()
 
 
 

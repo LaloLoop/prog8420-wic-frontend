@@ -14,14 +14,18 @@ class LoginForm(LoginFormTemplate):
     self.http = httpc
     self.router = router
 
-    # Any code you write here will run when the form opens.
-
+  def reset_feedback(self):
+    self.feedback_banner.visible = False
+    self.feedback_banner.color = '#ffffff'
+    self.feedback_banner.text = ''
+    
+    
   def signin_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     username = self.user_box.text
     password = self.password_box.text
     
-    self.feedback_banner.visible = False
+    self.reset_feedback()
     
     user_role = None
     try:
@@ -39,3 +43,8 @@ class LoginForm(LoginFormTemplate):
     
     if user_role is not None:
       self.router.nav_to_route_view(self, 'home', user_role['title'])
+
+  def card_1_show(self, **event_args):
+    """This method is called when the column panel is shown on the screen"""
+    self.reset_feedback()
+
