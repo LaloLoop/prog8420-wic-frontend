@@ -70,7 +70,7 @@ class CRUD_Person(CRUD_PersonTemplate):
                 'data_key':col} for i,col in enumerate(table_columns)]
     
     # set the data grid width to the entire screen width
-    self.data_grid_of_entities.rows_per_page = 10
+    self.data_grid_of_entities.rows_per_page = 5
     self.data_grid_of_entities.show_page_controls = True
     self.data_grid_of_entities.width = sum(grid_col_widths)
     self.data_grid_of_entities.columns = grid_cols
