@@ -19,6 +19,9 @@ class LoginForm(LoginFormTemplate):
     self.feedback_banner.color = '#ffffff'
     self.feedback_banner.text = ''
     
+  def reset_login_input(self):
+    self.user_box.text = ""
+    self.password_box.text = ""
     
   def signin_button_click(self, **event_args):
     """This method is called when the button is clicked"""
@@ -47,4 +50,5 @@ class LoginForm(LoginFormTemplate):
   def card_1_show(self, **event_args):
     """This method is called when the column panel is shown on the screen"""
     self.reset_feedback()
+    self.reset_login_input()
 
