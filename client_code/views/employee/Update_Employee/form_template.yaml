@@ -9,15 +9,26 @@ components:
   layout_properties: {grid_position: 'YEYNVS,OJWHOW'}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: 'Id:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_id
+  layout_properties: {grid_position: 'AKJICA,RHUXHG'}
+- type: Label
+  properties: {}
+  name: label_id_value
+  layout_properties: {grid_position: 'AKJICA,PAHOUP'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: 'Person:', font_size: null, font: '', spacing_above: small, icon_align: left,
     spacing_below: small, italic: false, background: '', bold: false, underline: false,
     icon: ''}
   name: label_person_id
   layout_properties: {grid_position: 'DRGYNE,CNKMKR'}
-- type: DropDown
+- type: Label
   properties: {}
-  name: drop_down_person_id_value
-  layout_properties: {grid_position: 'DRGYNE,AQNEXV'}
+  name: label_person_id_value
+  layout_properties: {grid_position: 'DRGYNE,URENLA'}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: 'Job:', font_size: null, font: '', spacing_above: small, icon_align: left,
@@ -38,13 +49,13 @@ components:
   layout_properties: {grid_position: 'DHMNSP,SANEXC ETGGGN,RHHUYG'}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
-    text: Is Super-user, font_size: null, font: '', spacing_above: small, icon_align: left,
+    text: 'Is SuperUser?', font_size: null, font: '', spacing_above: small, icon_align: left,
     spacing_below: small, italic: false, background: '', bold: false, underline: false,
     icon: ''}
   name: label_is_superuser
   layout_properties: {grid_position: 'DHMNSP,SANEXC JCHESI,DVYAVN'}
 - type: TextBox
-  properties: {role: null, align: left, hide_text: true, tooltip: '', placeholder: '',
+  properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: '',
     border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
     font: '', spacing_above: small, type: text, spacing_below: small, italic: false,
     background: '', bold: false, underline: false}
