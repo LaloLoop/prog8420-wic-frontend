@@ -36,10 +36,6 @@ components:
       properties: {spacing_above: none, spacing_below: none, item_template: views.reports.AvailabilityReport.RowTemplate3}
       name: repeating_panel_1
       layout_properties: {}
-  - type: TextArea
-    properties: {}
-    name: text_area_1
-    layout_properties: {grid_position: 'VBOYBO,DTEBLX'}
   - type: Button
     properties: {role: primary-color, align: center, tooltip: '', border: '', enabled: true,
       foreground: '', visible: true, text: Generate report, font_size: null, font: '',
