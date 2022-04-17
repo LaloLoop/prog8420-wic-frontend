@@ -31,10 +31,10 @@ class AvailabilityReport(AvailabilityReportTemplate):
                 'title':title,
                 'data_key':col} for title, col in zip(column_names, columns)]
     
-    self.av_grid.rows_per_page = 5
-    self.av_grid.columns = grid_cols
+    self.av_grid.rows_per_page = 3
     self.av_grid.show_page_controls = True
     self.av_grid.width = col_width * len(grid_cols)
+    self.av_grid.columns = grid_cols
     self.repeating_panel_1.items = report_data
     
 
