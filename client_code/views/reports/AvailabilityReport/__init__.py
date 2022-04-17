@@ -13,6 +13,10 @@ class AvailabilityReport(AvailabilityReportTemplate):
     self.init_components(**properties)
     self.router = router
     self.av_grid.role = 'wide'
+    
+    media_obj = anvil.server.call('make_plot')
+    self.image_1.source = media_obj
+    self.download_link.url = media_obj
 
     # Any code you write here will run when the form opens.
 
