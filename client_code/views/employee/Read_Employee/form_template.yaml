@@ -50,6 +50,39 @@ components:
   properties: {}
   name: label_password_value
   layout_properties: {grid_position: 'BDRYMJ,BJQLIA'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: 'Is Active?', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_is_active
+  layout_properties: {grid_position: 'GROERX,WFKFUH'}
+- type: Label
+  properties: {}
+  name: label_is_active_value
+  layout_properties: {grid_position: 'GROERX,GCWFII'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: 'Is Verified?', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_is_verified
+  layout_properties: {grid_position: 'SLKYIY,RHZJST'}
+- type: Label
+  properties: {}
+  name: label_is_verified_value
+  layout_properties: {grid_position: 'SLKYIY,AIPHHB'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: 'Is Superuser?', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_is_superuser
+  layout_properties: {grid_position: 'OKRIXW,FSAGLT'}
+- type: Label
+  properties: {}
+  name: label_is_superuser_value
+  layout_properties: {grid_position: 'OKRIXW,GDAIRI'}
 - type: Button
   properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
     foreground: '', visible: true, text: back, font_size: null, font: '', spacing_above: small,
