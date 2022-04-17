@@ -51,4 +51,9 @@ class LoginForm(LoginFormTemplate):
     """This method is called when the column panel is shown on the screen"""
     self.reset_feedback()
     self.reset_login_input()
+    
+    logged_in = self.http.is_logged_in()
+    
+    if logged_in == True:
+      self.router.nav_to_route_view(self, 'home', 'admin')
 

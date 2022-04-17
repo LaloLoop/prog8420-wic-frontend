@@ -38,5 +38,8 @@ class HttpClient:
     
     return result['content']
 
-      
+  
+  def is_logged_in(self):
+    return anvil.server.call('is_logged_in', self.base_url)
+  
       

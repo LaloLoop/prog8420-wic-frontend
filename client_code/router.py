@@ -152,7 +152,7 @@ appointment_views = {
                     }
 
 report_views = {
-  'availability': AvailabilityReport(router=Router())
+  'availability': AvailabilityReport(router=AuthRouter())
 }
 
 routes = {

@@ -38,5 +38,10 @@ class AvailabilityReport(AvailabilityReportTemplate):
     self.repeating_panel_1.items = report_data
     
 
+  def nav_back_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    self.router.nav_to_route_view(self, 'home', 'admin')
+
+
 
   

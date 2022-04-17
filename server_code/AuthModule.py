@@ -131,3 +131,12 @@ def logout(base_url):
   del anvil.server.session['job_title']
   
   return resp
+
+@anvil.server.callable
+def is_logged_in(base_url):
+  token = anvil.server.session.get('token')
+  if token is not None:
+    resp = GetUserStep(base_url).run()
+    return resp['ok']
+  
+  return False
