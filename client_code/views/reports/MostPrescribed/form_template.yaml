@@ -20,12 +20,24 @@ components:
     layout_properties: {grid_position: 'KMSVYJ,FSCVLV'}
   - type: DataGrid
     properties:
+      role: null
       columns:
-      - {id: KBRTCG, title: Column 1, data_key: column_1}
-      - {id: AYNQHI, title: Column 2, data_key: column_2}
-      - {id: LDPMQM, title: Column 3, data_key: column_3}
+      - {id: UTVUSE, title: Column 1, data_key: column_1, $$hashKey: 'object:11104'}
+      - {id: WSQFRB, title: Column 2, data_key: column_2, $$hashKey: 'object:11106'}
+      - {id: IIBSKM, title: Column 3, data_key: column_3, $$hashKey: 'object:11108'}
+      auto_header: true
+      tooltip: ''
+      border: ''
+      foreground: ''
+      rows_per_page: 20
+      visible: true
+      wrap_on: never
+      show_page_controls: true
+      spacing_above: small
+      spacing_below: small
+      background: ''
     name: data_grid_1
-    layout_properties: {grid_position: 'RAZRNQ,TMQSMC'}
+    layout_properties: {grid_position: 'YQRQFL,UMAYEE', x: 0, y: 0, width: 900, full_width_row: false}
     components:
     - type: RepeatingPanel
       properties: {spacing_above: none, spacing_below: none, item_template: views.reports.MostPrescribed.RowTemplate2}
