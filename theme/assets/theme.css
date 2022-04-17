@@ -798,3 +798,12 @@ textarea.anvil-component[disabled] {
 https://stackoverflow.com/questions/30533055/calculating-shadow-values-for-all-material-design-elevations
 */
 
+.anvil-role-wide .data-grid-child-panel {
+  overflow-x: auto;
+}
+
+.anvil-role-wide .anvil-data-row-panel {
+  flex-wrap: nowrap;
+  min-width: -moz-min-content;
+  min-width: min-content;
+}

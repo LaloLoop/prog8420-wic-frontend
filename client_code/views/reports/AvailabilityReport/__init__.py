@@ -12,6 +12,7 @@ class AvailabilityReport(AvailabilityReportTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.router = router
+    self.av_grid.role = 'wide'
 
     # Any code you write here will run when the form opens.
 
@@ -19,14 +20,16 @@ class AvailabilityReport(AvailabilityReportTemplate):
     """This method is called when the button is clicked"""
     data = anvil.http.request(f"{self.router.base_url}reports/availability", json=True)
     
-    columns = data['columns'][:3]
+    columns = data['columns']
     report_data = data['data']
     col_width = 200
     
+    column_names = ['Doctor'] + [s[s.index('T') + 1:-3] for s in columns[1:]]
+    
     grid_cols=[{'id':col,
                 'width':col_width, 
-                'title':col,
-                'data_key':col} for col in columns]
+                'title':title,
+                'data_key':col} for title, col in zip(column_names, columns)]
     
     self.av_grid.rows_per_page = 5
     self.av_grid.columns = grid_cols
