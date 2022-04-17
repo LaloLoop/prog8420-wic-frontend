@@ -33,6 +33,7 @@ class AvailabilityReport(AvailabilityReportTemplate):
     
     self.av_grid.rows_per_page = 5
     self.av_grid.columns = grid_cols
+    self.av_grid.show_page_controls = True
     self.av_grid.width = col_width * len(grid_cols)
     self.repeating_panel_1.items = report_data
     
