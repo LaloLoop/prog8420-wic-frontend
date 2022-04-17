@@ -20,7 +20,7 @@ class Create_Person(Create_PersonTemplate):
 
   def button_submit_click(self, **event_args):
     # use POST request to web api
-    url = f'{self.router.base_url}{model_name}'
+    url = f'{self.router.base_url}{model_name}/'
 
     data_dict = {
       'first_name': self.text_box_first_name_value.text,

@@ -20,7 +20,7 @@ class Create_Job(Create_JobTemplate):
     
   def button_submit_click(self, **event_args):
     # use POST request to web api
-    url = f'{self.router.base_url}{model_name}'
+    url = f'{self.router.base_url}{model_name}/'
 
     data_dict = { \
       'title': self.drop_down_title_value.selected_value,

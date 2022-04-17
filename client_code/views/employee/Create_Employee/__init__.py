@@ -72,7 +72,7 @@ class Create_Employee(Create_EmployeeTemplate):
   def form_show(self, **event_args):
     # use GET requests for list of persons and jobs_ids
     # to populate all of the drop downs
-    url = f'{self.router.base_url}persons-unassigned'
+    url = f'{self.router.base_url}persons-unassigned/'
     resp = anvil.http.request(url, method='GET', json=True)
     entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp)
 
