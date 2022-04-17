@@ -27,8 +27,8 @@ class Create_Unit(Create_UnitTemplate):
     try:
       resp = anvil.http.request(url, method='POST', data=data_dict, json=True)
       successful_request = True
-    except: # 404 error, this is a main.py endpoint error, not schemas.py ValidationError
-      resp = {'detail':'Name: Unit with this name already exists.'}
+    except anvil.http.HttpError as e: # 404 error, this is a main.py endpoint error, not schemas.py ValidationError
+      resp = {'detail': f'{e.status}'}
     
     if 'detail' not in resp.keys(): # detail means error
       # after successful submission, redirect back to CRUD_Home

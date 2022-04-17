@@ -14,10 +14,6 @@ class Update_Person(Update_PersonTemplate):
     self.init_components(**properties)
     self.router = router
     
-    # GET /person/by_id()  to populate form
-    # resp = anvil.http
-    # self.
-    
     # Any code you write here will run when the form opens.
 
   def button_back_click(self, **event_args):
@@ -76,7 +72,6 @@ class Update_Person(Update_PersonTemplate):
     
     self.text_box_street_value.text = current_entity_id_to_fields[current_id]['street']
     self.text_box_city_value.text = current_entity_id_to_fields[current_id]['city']
-
     
     url = f'{self.router.base_url}person-list-of-provinces'
     provinces = anvil.http.request(url, method='GET', json=True)

@@ -65,7 +65,7 @@ class Update_Patient(Update_PatientTemplate):
     
     _ids = entity_id_to_fields.keys()
     self.drop_down_person_id_value.items = sorted( \
-      [(entity_id_to_fields[_id]['person_display_name'], _id) for _id in _ids] + \
+      [(entity_id_to_fields[_id]['email'], _id) for _id in _ids] + \
       [(current_entity_id_to_fields[current_id]['person_display_name'], \
         current_entity_id_to_fields[current_id]['person_id'])] \
       , key = lambda x: x[0])

@@ -25,7 +25,7 @@ class Create_Person(Create_PersonTemplate):
     data_dict = {
       'first_name': self.text_box_first_name_value.text,
       'last_name': self.text_box_last_name_value.text,
-      'birthdate': str(self.date_picker_birthdate_value.date),
+      'birthdate': self.date_picker_birthdate_value.date,
       'street': self.text_box_street_value.text,
       'city': self.text_box_city_value.text,
       'province': self.drop_down_province_value.selected_value,
@@ -33,26 +33,22 @@ class Create_Person(Create_PersonTemplate):
       'email': self.text_box_email_value.text,
       'phone_number': self.text_box_phonenumber_value.text
     }
-    
-    successful_request = False
-    try:
-      resp = anvil.http.request(url, method='POST', data=data_dict, json=True)
-      successful_request = True
-    except: # 404 error, this is a main.py endpoint error, not schemas.py ValidationError
-      resp = {'detail': 'Person with this Email already exists?'}
 
-    if 'detail' not in resp.keys(): # detail means error
-      # after successful submission, redirect back to CRUD_Home
-      self.router.nav_to_route_view(self, model_name, 'crud')
-      return
-    elif not successful_request:
-      validation_msg = f"{resp['detail']}"    
-    else:
+    resp = {}
+    #try:
+    resp = anvil.http.request(url, method='POST', data=data_dict, json=True)
+    #except anvil.http.HttpError as e:
+    #self.label_validation_errors.text = str(e)
+
+    if 'detail' in resp:
       validation_msg = ""
       for d in resp['detail']: 
         validation_msg += f"{d['loc'][1]}: {d['msg']}\n"
+      self.label_validation_errors.text = validation_msg
       
-    self.label_validation_errors.text = validation_msg
+    if self.label_validation_errors.text == "":
+      self.router.nav_to_route_view(self, model_name, 'crud')
+      return
 
   def form_show(self, **event_args):
     self.label_validation_errors.text = ""
