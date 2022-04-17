@@ -1,5 +1,5 @@
 dependencies:
-- app_id: form_checker
+- app_id: Clone of Form Validation
   version: {dev: false}
 services:
 - source: /runtime/services/tables.yml
