@@ -8,12 +8,12 @@ unique_ids:
     views.Base: '1649471420799537385935808.592'
     views.appointment.Update_Appointment: '1649634912546269711219381.0629'
     views.employee.Create_Employee: '1649630695663334930544180.305'
-    views.reports.MostPrescribed.RowTemplate2: '1650142726279517254998568.2491'
     views.appointment.Delete_Appointment: '1649630733195115912996093.25656'
     views.employee.Delete_Employee: '1649630702964237452050859.97867'
     views.auth.LoginForm: '1650042000817515290943786.1603'
     views.appointment.Create_Appointment: '1649630724904557967770672.6272'
     views.unit.CRUD_Unit: '1649630102266499978289026.7428'
+    views.reports.AvailabilityReport: '1650142611307803651950354.7617'
     views.unit.CRUD_Unit.RowTemplateUnit: '1649989955587243758389327.38113'
     views.patient.Delete_Patient: '1649630559768714902114154.7264'
     views.person.Update_Person: '164963279171079079009629.33212'
@@ -26,7 +26,7 @@ unique_ids:
     views.employee.Update_Employee: '1649634087729654034456617.6675'
     views.prescription.CRUD_Prescription: '1649630068592175065151339.4752'
     views.appointment.Read_Appointment: '1649635550020964707426517.2568'
-    views.reports.MostPrescribed: '1650142611307803651950354.7617'
+    views.reports.AvailabilityReport.RowTemplate2: '1650142726279517254998568.2491'
     views.job.CRUD_Job: '1649629875713110637232988.53812'
     views.job.Read_Job: '1649633796103251530679696.32214'
     views.unit.Delete_Unit: '1649630635130657335773447.131'
@@ -62,6 +62,7 @@ unique_ids:
   server_modules:
     AuthModule: '1650063848778711075483375.3615'
     EntityServerModule: '1649980961087191018811379.013'
+    ReportsModule: '1650221531506912934660203.5735'
   assets:
     standard-page.html: HVK35ONGHLP676KV4SFCHEAJDKQAJOHN
     theme.css: KWYSREMVFETCCXQK65XPWNGGDO3YE2CW

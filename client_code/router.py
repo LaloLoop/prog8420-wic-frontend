@@ -46,6 +46,7 @@ from .views.appointment.Create_Appointment import Create_Appointment
 from .views.appointment.Read_Appointment import Read_Appointment
 from .views.appointment.Update_Appointment import Update_Appointment
 from .views.appointment.Delete_Appointment import Delete_Appointment
+from .views.reports.AvailabilityReport import AvailabilityReport
 
 from .http import HttpClient
 
@@ -150,7 +151,9 @@ appointment_views = {
                      'delete':Delete_Appointment(router=Router()),
                     }
 
-report_views = {}
+report_views = {
+  'availability': AvailabilityReport(router=Router())
+}
 
 routes = {
   'auth': auth_views,
