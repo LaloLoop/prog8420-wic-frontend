@@ -19,7 +19,8 @@ class AvailabilityReport(AvailabilityReportTemplate):
     """This method is called when the button is clicked"""
     data = anvil.http.request(f"{self.router.base_url}reports/availability", json=True)
     
-    self.text_area_1.text = data
+    self.av_grid.columns = data['columns']
+    
 
 
   

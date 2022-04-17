@@ -14,10 +14,28 @@ components:
       underline: false, icon: ''}
     name: headline_1
     layout_properties: {grid_position: 'XZHRMF,NCMXLT'}
-  - type: TextArea
-    properties: {}
-    name: text_area_1
-    layout_properties: {grid_position: 'HZOLCR,JGPCEZ'}
+  - type: DataGrid
+    properties:
+      role: null
+      columns: []
+      auto_header: true
+      tooltip: ''
+      border: ''
+      foreground: ''
+      rows_per_page: 20
+      visible: true
+      wrap_on: never
+      show_page_controls: true
+      spacing_above: small
+      spacing_below: small
+      background: ''
+    name: av_grid
+    layout_properties: {grid_position: 'YVQIOH,KIHDQL'}
+    components:
+    - type: RepeatingPanel
+      properties: {spacing_above: none, spacing_below: none, item_template: views.reports.AvailabilityReport.RowTemplate3}
+      name: repeating_panel_1
+      layout_properties: {}
   - type: Button
     properties: {role: primary-color, align: center, tooltip: '', border: '', enabled: true,
       foreground: '', visible: true, text: Generate report, font_size: null, font: '',
