@@ -13,10 +13,6 @@ class AvailabilityReport(AvailabilityReportTemplate):
     self.init_components(**properties)
     self.router = router
     self.av_grid.role = 'wide'
-    
-    media_obj = anvil.server.call('make_plot')
-    self.image_1.source = media_obj
-    self.download_link.url = media_obj
 
     # Any code you write here will run when the form opens.
 
@@ -42,7 +38,11 @@ class AvailabilityReport(AvailabilityReportTemplate):
     self.av_grid.columns = grid_cols
     self.repeating_panel_1.items = report_data
     
+    self.get_av_graph()
 
+  def get_av_graph(self):
+    self.av_graph.source = f"{self.router.base_url}graphs/availability"
+    
   def nav_back_click(self, **event_args):
     """This method is called when the button is clicked"""
     self.router.nav_to_route_view(self, 'home', 'admin')
