@@ -45,29 +45,13 @@ class Create_Employee(Create_EmployeeTemplate):
       #'is_active': False,
       #'is_verified': False,
     }
-
-    successful_request = False
+    url = f'{self.router.base_url}auth/register'
     try:
-      # use POST request to web api
-      url = f'{self.router.base_url}auth/register'
       resp = self.http.request(url, method='POST', data=data_dict, json=True)
-      successful_request = True
-    except anvil.http.HttpError as e: # 404 error, this is a main.py endpoint error, not schemas.py ValidationError
-      
-      resp = {'detail': f'Unable to create Employee'}
-
-    if 'detail' not in resp.keys(): # detail means error
-      # after successful submission, redirect back to CRUD_Home
+      self.label_validation_errors.text = ''
       self.router.nav_to_route_view(self, model_name, 'crud')
-      return
-    elif not successful_request:
-      validation_msg = f"{resp['detail']}"    
-    else:
-      validation_msg = ""
-      for d in resp['detail']: 
-        validation_msg += f"{d['loc'][1]}: {d['msg']}\n"
-      
-    self.label_validation_errors.text = validation_msg
+    except anvil.http.HttpError as e:
+      self.label_validation_errors.text = f'{e.status}'
 
   def form_show(self, **event_args):
     # use GET requests for list of persons and jobs_ids

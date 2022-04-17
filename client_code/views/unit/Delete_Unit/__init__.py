@@ -25,18 +25,10 @@ class Delete_Unit(Delete_UnitTemplate):
     
     try:
       resp = anvil.http.request(url, method='DELETE', data=data_dict, json=True)
-    except: # 404 error, this is a main.py endpoint error, not schemas.py ValidationError
-      resp = {'detail':'Unit is referenced as a foreign key?.'}
-
-    if 'detail' not in resp.keys(): # detail means error
-      # after successful submission, redirect back to CRUD_Home
+      self.label_validation_errors.text = ''
       self.router.nav_to_route_view(self, model_name, 'crud')
-    else:
-      validation_msg = ""
-      for d in resp['detail']: 
-        validation_msg += f"{d['loc'][1]}: {d['msg']}\n"
-      
-      self.label_validation_errors.text = validation_msg
+    except anvil.http.HttpError as e:
+      self.label_validation_errors.text = f'{e.status}'
       
   def form_show(self, **event_args):
     _id = anvil.server.call('get_selected_entity_id')

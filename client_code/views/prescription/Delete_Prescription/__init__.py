@@ -24,10 +24,10 @@ class Delete_Prescription(Delete_PrescriptionTemplate):
     
     try:
       resp = anvil.http.request(url, method='DELETE', json=True)
-    except: # 404 error, this is a main.py endpoint error, not schemas.py ValidationError
-      self.label_validation_errors.text = "unsuccessful delete"
-      return
-    self.router.nav_to_route_view(self, model_name, 'crud')
+      self.label_validation_errors.text = ''
+      self.router.nav_to_route_view(self, model_name, 'crud')
+    except anvil.http.HttpError as e:
+      self.label_validation_errors.text = f'{e.status}'
 
   def form_show(self, **event_args):
     current_id = anvil.server.call('get_selected_entity_id')

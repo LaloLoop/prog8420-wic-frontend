@@ -6,6 +6,8 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
+from form_checker import validation
+
 model_name = 'employee'
 
 class Update_Employee(Update_EmployeeTemplate):
@@ -32,25 +34,13 @@ class Update_Employee(Update_EmployeeTemplate):
       #'is_active': False,
       #'is_verified': False,
     }
-    successful_request = False
+
     try:
       resp = self.http.request(url, method='PUT', data=data_dict, json=True)
-      successful_request = True
-    except: # 404 error, this is a main.py endpoint error, not schemas.py ValidationError
-      resp = {'detail': 'Unable to update employee.'}
-
-    if 'detail' not in resp.keys(): # detail means error
-      # after successful submission, redirect back to CRUD_Home
+      self.label_validation_errors.text = ''
       self.router.nav_to_route_view(self, model_name, 'crud')
-      return
-    elif not successful_request:
-      validation_msg = f"{resp['detail']}"    
-    else:
-      validation_msg = ""
-      for d in resp['detail']: 
-        validation_msg += f"{d['loc'][1]}: {d['msg']}\n"
-      
-    self.label_validation_errors.text = validation_msg
+    except anvil.http.HttpError as e:
+      self.label_validation_errors.text = f'{e.status}'
 
   def button_submit_click(self, **event_args):
     current_id = anvil.server.call('get_selected_entity_id')

@@ -6,6 +6,8 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
+from form_checker import validation
+
 model_name = 'patient'
 
 class Create_Patient(Create_PatientTemplate):
@@ -27,25 +29,12 @@ class Create_Patient(Create_PatientTemplate):
       'ohip': self.text_box_ohip_value.text
     }
     
-    successful_request = False
     try:
       resp = anvil.http.request(url, method='POST', data=data_dict, json=True)
-      successful_request = True
-    except: # 404 error, this is a main.py endpoint error, not schemas.py ValidationError
-      resp = {'detail': 'Unable to create Patient'}
-
-    if 'detail' not in resp.keys(): # detail means error
-      # after successful submission, redirect back to CRUD_Home
+      self.label_validation_errors.text = ''
       self.router.nav_to_route_view(self, model_name, 'crud')
-      return
-    elif not successful_request:
-      validation_msg = f"{resp['detail']}"    
-    else:
-      validation_msg = ""
-      for d in resp['detail']: 
-        validation_msg += f"{d['loc'][1]}: {d['msg']}\n"
-      
-    self.label_validation_errors.text = validation_msg
+    except anvil.http.HttpError as e:
+      self.label_validation_errors.text = f'{e.status}'
 
   def form_show(self, **event_args):
     # use GET requests for list of unassigned persons

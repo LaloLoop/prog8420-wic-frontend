@@ -25,11 +25,10 @@ class Delete_Employee(Delete_EmployeeTemplate):
     
     try:
       resp = self.http.request(url, method='DELETE', json=True)
-    except anvil.http.HttpError as e: # 404 error, this is a main.py endpoint error, not schemas.py ValidationError
-      resp = {'detail': f'{e.status}'}
-      self.label_validation_errors.text = resp
-      return
-    self.router.nav_to_route_view(self, model_name, 'crud')
+      self.label_validation_errors.text = ''
+      self.router.nav_to_route_view(self, model_name, 'crud')
+    except anvil.http.HttpError as e:
+      self.label_validation_errors.text = f'{e.status}'
 
 
   def form_show(self, **event_args):
