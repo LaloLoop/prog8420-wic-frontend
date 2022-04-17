@@ -17,7 +17,7 @@ class AvailabilityReport(AvailabilityReportTemplate):
 
   def gen_report_click(self, **event_args):
     """This method is called when the button is clicked"""
-    data = anvil.http.request(f"{self.router.base_url}appointments-with-id-display-name/?skip=0&limit=1000")
+    data = anvil.http.request(f"{self.router.base_url}reports/availability", json=True)
     
     self.text_area_1.text = data
 
