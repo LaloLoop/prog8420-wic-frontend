@@ -9,7 +9,7 @@ components:
   components:
   - type: Label
     properties: {role: headline, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: Availability report, font_size: null, font: '', spacing_above: small,
+      visible: true, text: Availability by physician, font_size: null, font: '', spacing_above: small,
       icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
       underline: false, icon: ''}
     name: headline_1
