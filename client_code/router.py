@@ -49,6 +49,8 @@ from .views.appointment.Delete_Appointment import Delete_Appointment
 
 from .http import HttpClient
 
+from validation import Validator
+
 FAST_API_BACKEND_BASE_URL = r'https://wic-backend.herokuapp.com/'
 
 class Router:
