@@ -6,8 +6,6 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
-from form_checker import validation
-
 model_name = 'appointment'
 
 class Update_Appointment(Update_AppointmentTemplate):

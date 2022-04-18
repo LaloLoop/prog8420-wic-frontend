@@ -6,8 +6,6 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
-from form_checker import validation
-
 model_name = 'person'
 
 class Create_Person(Create_PersonTemplate):

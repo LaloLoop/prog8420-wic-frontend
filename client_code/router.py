@@ -138,9 +138,9 @@ unit_views = {
 
 prescription_views = {
                       'crud':CRUD_Prescription(router=AuthRouter()),
-                      'create':Create_Prescription(router=Router()),
+                      'create':Create_Prescription(router=Router(), validator=Validator()),
                       'read':Read_Prescription(router=Router()),
-                      'update':Update_Prescription(router=Router()),
+                      'update':Update_Prescription(router=Router(), validator=Validator()),
                       'delete':Delete_Prescription(router=Router()),
                       }
 
