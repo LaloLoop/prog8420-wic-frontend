@@ -9,7 +9,7 @@ from anvil.tables import app_tables
 model_name = 'employee'
 
 class Create_Employee(Create_EmployeeTemplate):
-  def __init__(self, router, httpc, validation, **properties):
+  def __init__(self, router, httpc, validator, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.router = router
