@@ -14,6 +14,25 @@ class Create_Person(Create_PersonTemplate):
     self.init_components(**properties)
     self.router = router
     self.validator = validator
+    self.validator.require(self.text_box_first_name_value,
+                           ['change','lost_focus'],
+                           lambda tb: tb.text != '',
+                           self.label_first_name_value_invalid
+                          )
+    self.validator.require(self.text_box_last_name_value,
+                           ['change','lost_focus'],
+                           lambda tb: tb.text != '',
+                           self.label_last_name_value_invalid
+                          )
+    self.validator.require(self.text_box_quantity_value,
+                           ['change'],
+                           lambda tb: tb.text.isnumeric() and  
+                                      float(tb.text) > 0 and
+                                      tb.text != '',
+                           self.label_quantity_value_invalid
+                          )
+    self.validator.enable_when_valid(self.button_submit)        
+  
     # Any code you write here will run when the form opens.
     
   def button_back_click(self, **event_args):
@@ -64,3 +83,5 @@ class Create_Person(Create_PersonTemplate):
     self.text_box_postal_code_value.text = ""
     self.text_box_email_value.text = ""
     self.text_box_phonenumber_value.text = ""
+    
+    self.validator.show_all_errors()
