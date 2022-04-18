@@ -130,9 +130,9 @@ patient_views = {
 
 unit_views = {
               'crud':CRUD_Unit(router=AuthRouter()),
-              'create': Create_Unit(router=Router()),
+              'create': Create_Unit(router=Router(), validator=Validator()),
               'read':Read_Unit(router=Router()),
-              'update':Update_Unit(router=Router()),
+              'update':Update_Unit(router=Router(), validator=Validator()),
               'delete':Delete_Unit(router=Router()),
               }
 
@@ -146,9 +146,9 @@ prescription_views = {
 
 appointment_views = {
                      'crud':CRUD_Appointment(router=AuthRouter()),
-                     'create':Create_Appointment(router=Router()),
+                     'create':Create_Appointment(router=Router(), validator=Validator()),
                      'read':Read_Appointment(router=Router()),
-                     'update':Update_Appointment(router=Router()),
+                     'update':Update_Appointment(router=Router(), validator=Validator()),
                      'delete':Delete_Appointment(router=Router()),
                     }
 

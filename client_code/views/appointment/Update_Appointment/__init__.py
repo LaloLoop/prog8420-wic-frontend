@@ -11,10 +11,11 @@ from form_checker import validation
 model_name = 'appointment'
 
 class Update_Appointment(Update_AppointmentTemplate):
-  def __init__(self, router=None, **properties):
+  def __init__(self, router, validator, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.router = router
+    self.validator = validator
     # Any code you write here will run when the form opens.
 
   def drop_down_doctor_id_value_change(self, **event_args):

@@ -9,7 +9,7 @@ from anvil.tables import app_tables
 model_name = 'appointment'
 
 class Read_Appointment(Read_AppointmentTemplate):
-  def __init__(self, router=None, **properties):
+  def __init__(self, router, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.router = router
