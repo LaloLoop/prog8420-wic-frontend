@@ -35,7 +35,7 @@ class Staff_Home(Staff_HomeTemplate):
     self.router.nav_to_route_view(self, 'appointment', 'crud')
 
   def button_reports_click(self, **event_args):
-    pass
+    self.router.nav_to_route_view(self, 'report', 'availability')
 
   def button_logout_click(self, **event_args):
     self.router.logout(self)
