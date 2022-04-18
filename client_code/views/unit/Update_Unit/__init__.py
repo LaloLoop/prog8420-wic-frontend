@@ -21,7 +21,6 @@ class Update_Unit(Update_UnitTemplate):
                           )
     
     self.validator.enable_when_valid(self.button_submit)
-   
     # Any code you write here will run when the form opens.
 
   def button_back_click(self, **event_args):

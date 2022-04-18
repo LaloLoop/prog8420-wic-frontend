@@ -98,33 +98,33 @@ home_views = {
 
 person_views = {
                 'crud':CRUD_Person(router=AuthRouter()),
-                'create':Create_Person(router=Router()),
+                'create':Create_Person(router=Router(), validator=Validator()),
                 'read':Read_Person(router=Router()),
-                'update':Update_Person(router=Router()),
+                'update':Update_Person(router=Router(), validator=Validator()),
                 'delete':Delete_Person(router=Router())
                 }
 
 job_views = {
              'crud':CRUD_Job(router=AuthRouter()),
-             'create':Create_Job(router=Router()),
+             'create':Create_Job(router=Router(), validator=Validator()),
              'read':Read_Job(router=Router()),
-             'update':Update_Job(router=Router()),
+             'update':Update_Job(router=Router(), validator=Validator()),
              'delete':Delete_Job(router=Router()),
             }
 
 employee_views = {
                   'crud':CRUD_Employee(router=AuthRouter()),
-                  'create': Create_Employee(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL)),
+                  'create': Create_Employee(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL), validator=Validator()),
                   'read': Read_Employee(router=Router()),
-                  'update':Update_Employee(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL)),
+                  'update':Update_Employee(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL), validator=Validator()),
                   'delete':Delete_Employee(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL)),
                   }
 
 patient_views = {
                  'crud':CRUD_Patient(router=AuthRouter()),
-                 'create':Create_Patient(router=Router()),
+                 'create':Create_Patient(router=Router(), validator=Validator()),
                  'read':Read_Patient(router=Router()),
-                 'update':Update_Patient(router=Router()),
+                 'update':Update_Patient(router=Router(), validator=Validator()),
                  'delete':Delete_Patient(router=Router()),
                 }
 
