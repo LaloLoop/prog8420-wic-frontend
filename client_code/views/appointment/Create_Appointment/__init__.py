@@ -14,6 +14,8 @@ class Create_Appointment(Create_AppointmentTemplate):
     self.init_components(**properties)
     self.router = router
     self.validator = validator
+    
+    self.validator.enable_when_valid(self.button_submit)  
     # Any code you write here will run when the form opens.
 
   def button_back_click(self, **event_args):
@@ -158,3 +160,6 @@ class Create_Appointment(Create_AppointmentTemplate):
                           )
     
     self.text_area_comments_value.text = ""
+    
+    self.validator.enable_when_valid(self.button_submit)
+    self.validator.show_all_errors()

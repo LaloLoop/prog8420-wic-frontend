@@ -16,6 +16,12 @@ class Create_Employee(Create_EmployeeTemplate):
     self.http = httpc
     self.validator = validator  
 
+    self.validator.require(self.text_box_password_value,
+                        ['change','lost_focus'],
+                        lambda tb: tb.text != "",
+                        self.label_password_value_invalid
+                      )
+    self.validator.enable_when_valid(self.button_submit)  
     # Any code you write here will run when the form opens.
 
   def button_back_click(self, **event_args):
@@ -62,27 +68,45 @@ class Create_Employee(Create_EmployeeTemplate):
     resp = anvil.http.request(url, method='GET', json=True)
     entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp)
 
-    self.label_validation_errors.text = ""    
+    if not entity_id_to_fields:
+      self.drop_down_person_id_value.include_placeholder = True
+      self.drop_down_person_id_value.placeholder = self.router.crud_dropdown_placeholder
+      self.drop_down_person_id_value.items = []
+    else:
+      self.drop_down_person_id_value.include_placeholder = False
+      _ids = entity_id_to_fields.keys()
+      self.drop_down_person_id_value.items = sorted( \
+        [(entity_id_to_fields[_id]['email'], _id) for _id in _ids], key = lambda x: x[0])
+      self.drop_down_person_id_value.selected_value = self.drop_down_person_id_value.items[0][1]
     
-    self.drop_down_person_id_value.include_placeholder = True
-    self.drop_down_person_id_value.placeholder = self.router.crud_dropdown_placeholder
-    self.drop_down_person_id_value.selected_value = self.router.crud_dropdown_placeholder
-    
-    _ids = entity_id_to_fields.keys()
-    self.drop_down_person_id_value.items = sorted( \
-      [(entity_id_to_fields[_id]['email'], _id) for _id in _ids], key = lambda x: x[0])
-    
+    self.validator.require(self.drop_down_person_id_value,
+                      ['change'],
+                      lambda dd: bool(dd.items),
+                      self.label_person_id_value_invalid
+                      )
+
     url = f'{self.router.base_url}jobs'
     resp = anvil.http.request(url, method='GET', json=True)
     entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp)
-    
-    self.drop_down_job_id_value.include_placeholder = True
-    self.drop_down_job_id_value.placeholder = self.router.crud_dropdown_placeholder
-    self.drop_down_job_id_value.selected_value = self.router.crud_dropdown_placeholder
-    
-    _ids = entity_id_to_fields.keys()
-    self.drop_down_job_id_value.items = sorted( \
-      [(entity_id_to_fields[_id]['title'] + ", " + entity_id_to_fields[_id]['speciality'], 
+
+    if not entity_id_to_fields:
+      self.drop_down_job_id_value.include_placeholder = True
+      self.drop_down_job_id_value.placeholder = self.router.crud_dropdown_placeholder
+      self.drop_down_job_id_value.items = []
+    else:
+      self.drop_down_job_id_value.include_placeholder = False
+      _ids = entity_id_to_fields.keys()
+      self.drop_down_job_id_value.items = sorted( \
+        [(entity_id_to_fields[_id]['title'] + ", " + entity_id_to_fields[_id]['speciality'], 
         _id) for _id in _ids], key = lambda x: x[0])
+      self.drop_down_job_id_value.selected_value = self.drop_down_job_id_value.items[0][1]
+    
+    self.validator.require(self.drop_down_job_id_value,
+                      ['change'],
+                      lambda dd: bool(dd.items),
+                      self.label_job_id_value_invalid
+                      )
     
     self.text_box_password_value.text = ""
+    
+    self.validator.show_all_errors()
