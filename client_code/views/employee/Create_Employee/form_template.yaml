@@ -38,7 +38,7 @@ components:
   layout_properties: {grid_position: 'GPHUCT,GSFWEQ'}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: red,
-    visible: true, text: Unable to find unassigned job to make new employee, font_size: null,
+    visible: true, text: No available job/speciality to make new employee, font_size: null,
     font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
     background: '', bold: false, underline: false, icon: ''}
   name: label_job_id_value_invalid

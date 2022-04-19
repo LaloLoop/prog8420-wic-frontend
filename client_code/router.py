@@ -130,7 +130,7 @@ patient_views = {
 
 unit_views = {
               'crud':CRUD_Unit(router=AuthRouter()),
-              'create': Create_Unit(router=Router(), validator=Validator()),
+              'create': Create_Unit(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL), validator=Validator()),
               'read':Read_Unit(router=Router()),
               'update':Update_Unit(router=Router(), validator=Validator()),
               'delete':Delete_Unit(router=Router()),

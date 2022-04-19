@@ -8,14 +8,16 @@ components:
   name: label_validation_errors
   layout_properties: {grid_position: 'YEYNVS,OJWHOW'}
 - type: Label
-  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: false,
     text: 'Id:', font_size: null, font: '', spacing_above: small, icon_align: left,
     spacing_below: small, italic: false, background: '', bold: false, underline: false,
     icon: ''}
   name: label_id
   layout_properties: {grid_position: 'PGVGEL,ZDUCKR'}
 - type: Label
-  properties: {}
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: false,
+    text: '', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
+    italic: false, background: '', bold: false, underline: false, icon: ''}
   name: label_id_value
   layout_properties: {grid_position: 'PGVGEL,JEQIXL'}
 - type: Label

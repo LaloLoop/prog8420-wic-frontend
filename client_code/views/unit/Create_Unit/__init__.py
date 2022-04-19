@@ -9,10 +9,11 @@ from anvil.tables import app_tables
 model_name = 'unit'
 
 class Create_Unit(Create_UnitTemplate):
-  def __init__(self, router, validator, **properties):
+  def __init__(self, router, httpc, validator, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.router = router
+    self.http = httpc
     self.validator = validator
     self.validator.require(self.text_box_name_value,
                            ['change','lost_focus'],
@@ -34,11 +35,12 @@ class Create_Unit(Create_UnitTemplate):
     data_dict = {'name':self.text_box_name_value.text}
     
     try:
-      resp = anvil.http.request(url, method='POST', data=data_dict, json=True)
+      #resp = anvil.http.request(url, method='POST', data=data_dict, json=True)
+      resp = self.http.request(url, method='POST', data=data_dict, json=True)
       self.label_validation_errors.text = ''
       self.router.nav_to_route_view(self, model_name, 'crud')
     except anvil.http.HttpError as e:
-      self.label_validation_errors.text = f'{e.status}'
+      self.label_validation_errors.text = f'{e.status} {e.content}'
       
   def form_show(self, **event_args):
     self.label_validation_errors.text = ""
