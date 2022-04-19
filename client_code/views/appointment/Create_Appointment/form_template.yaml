@@ -19,6 +19,13 @@ components:
   name: drop_down_patient_id_value
   layout_properties: {grid_position: 'DRGYNE,UYWIMH'}
 - type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: red,
+    visible: true, text: Not able to find any unassigned patients, font_size: null,
+    font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+    background: '', bold: false, underline: false, icon: ''}
+  name: label_patient_id_value_invalid
+  layout_properties: {grid_position: 'PXLBYS,PRDQDW'}
+- type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: 'Staff:', font_size: null, font: '', spacing_above: small, icon_align: left,
     spacing_below: small, italic: false, background: '', bold: false, underline: false,
@@ -29,6 +36,13 @@ components:
   properties: {}
   name: drop_down_staff_id_value
   layout_properties: {grid_position: 'BTKDKG,DVYLCH'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: red,
+    visible: true, text: Not able to find any staff members, font_size: null, font: '',
+    spacing_above: small, icon_align: left, spacing_below: small, italic: false, background: '',
+    bold: false, underline: false, icon: ''}
+  name: label_staff_id_value_invalid
+  layout_properties: {grid_position: 'LPYMPV,KLRDZV'}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: 'Doctor:', font_size: null, font: '', spacing_above: small, icon_align: left,
@@ -42,38 +56,59 @@ components:
   layout_properties: {grid_position: 'GPHUCT,GISBFB'}
   event_bindings: {change: drop_down_doctor_id_value_change}
 - type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: red,
+    visible: true, text: Not able to find any available doctors, font_size: null,
+    font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+    background: '', bold: false, underline: false, icon: ''}
+  name: label_doctor_id_value_invalid
+  layout_properties: {grid_position: 'GLSHDS,HLILAH'}
+- type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
-    text: 'Date and Time:', font_size: null, font: '', spacing_above: small, icon_align: left,
-    spacing_below: small, italic: false, background: '', bold: false, underline: false,
-    icon: ''}
+    text: 'Date and Time (Available Today):', font_size: null, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+    underline: false, icon: ''}
   name: label_date_and_time
-  layout_properties: {grid_position: 'CJONWC,UQOMBN COQFMD,SNCUQH'}
+  layout_properties: {grid_position: 'COQFMD,SNCUQH'}
+- type: DropDown
+  properties: {}
+  name: drop_down_date_and_time_value
+  layout_properties: {grid_position: 'COQFMD,VUQDFT'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: red,
+    visible: true, text: Not able to find any free appointments slots for doctor,
+    font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
+    italic: false, background: '', bold: false, underline: false, icon: ''}
+  name: label_date_and_time_value_invalid
+  layout_properties: {grid_position: 'MWGUDP,YDOQEZ'}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: 'Prescription:', font_size: null, font: '', spacing_above: small, icon_align: left,
     spacing_below: small, italic: false, background: '', bold: false, underline: false,
     icon: ''}
   name: label_prescription_id
-  layout_properties: {grid_position: 'CJONWC,UQOMBN TJFONO,SEJEHN'}
+  layout_properties: {grid_position: 'TJFONO,SEJEHN'}
+- type: DropDown
+  properties: {}
+  name: drop_down_prescription_id_value
+  layout_properties: {grid_position: 'TJFONO,LBNPUD'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: red,
+    visible: true, text: Not able to find any available prescriptions, font_size: null,
+    font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+    background: '', bold: false, underline: false, icon: ''}
+  name: label_prescription_id_value_invalid
+  layout_properties: {grid_position: 'VCLOEL,WFPBHC'}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: 'Comments:', font_size: null, font: '', spacing_above: small, icon_align: left,
     spacing_below: small, italic: false, background: '', bold: false, underline: false,
     icon: ''}
   name: label_comments
-  layout_properties: {grid_position: 'CJONWC,UQOMBN GGIXES,ZKCYRU'}
-- type: DropDown
-  properties: {}
-  name: drop_down_date_and_time_value
-  layout_properties: {grid_position: 'CJONWC,SKUBPO GDIQYE,CXBDEI'}
-- type: DropDown
-  properties: {}
-  name: drop_down_prescription_id_value
-  layout_properties: {grid_position: 'CJONWC,SKUBPO HNXXDD,NCAHZW'}
+  layout_properties: {grid_position: 'GGIXES,ZKCYRU'}
 - type: TextArea
   properties: {}
   name: text_area_comments_value
-  layout_properties: {grid_position: 'CJONWC,SKUBPO IHUVHM,FHRUMY'}
+  layout_properties: {grid_position: 'GGIXES,MWSPDJ'}
 - type: Button
   properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
     foreground: '', visible: true, text: Back, font_size: null, font: '', spacing_above: small,

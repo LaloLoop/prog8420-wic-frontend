@@ -63,7 +63,7 @@ class CRUD_Person(CRUD_PersonTemplate):
       fields_dict = entity_id_to_fields[str(_id)]
       table_rows.append({col:fields_dict[f] for col,f in zip(table_columns,display_fields)})
   
-    grid_col_widths = [200,100,100,80,80,100,50,100,150,170] 
+    grid_col_widths = [200,70,70,80,80,100,50,100,130,120] 
     grid_cols=[{'id':col,
                 'width':grid_col_widths[i], 
                 'title':col,
@@ -72,7 +72,7 @@ class CRUD_Person(CRUD_PersonTemplate):
     # set the data grid width to the entire screen width
     self.data_grid_of_entities.rows_per_page = 5
     self.data_grid_of_entities.show_page_controls = True
-    self.data_grid_of_entities.width = sum(grid_col_widths)
+    self.data_grid_of_entities.width = sum(grid_col_widths)-100
     self.data_grid_of_entities.columns = grid_cols
     self.repeating_panel_of_entities.items = table_rows
   

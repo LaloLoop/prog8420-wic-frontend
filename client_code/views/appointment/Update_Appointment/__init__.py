@@ -16,6 +16,9 @@ class Update_Appointment(Update_AppointmentTemplate):
     self.validator = validator
     # Any code you write here will run when the form opens.
 
+  def button_back_click(self, **event_args):
+    self.router.nav_to_route_view(self, model_name, 'crud')
+    
   def drop_down_doctor_id_value_change(self, **event_args):
     doctor_id = self.drop_down_doctor_id_value.selected_value
 
@@ -88,7 +91,7 @@ class Update_Appointment(Update_AppointmentTemplate):
 
     self.drop_down_doctor_id_value.selected_value = current_entity_id_to_fields[current_id]['doctor_id']
     
-    initial_doctor_id = _ids[0]
+    initial_doctor_id = list(_ids)[0]
 
     url = f'{self.router.base_url}prescriptions-with-id-display-name'
     resp = anvil.http.request(url, method='GET', json=True)
