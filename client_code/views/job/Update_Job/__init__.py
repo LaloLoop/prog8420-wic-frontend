@@ -14,8 +14,19 @@ class Update_Job(Update_JobTemplate):
     self.init_components(**properties)
     self.router = router
     self.validator = validator
-    # Any code you write here will run when the form opens.
-
+    
+    self.validator.require(self.text_box_speciality_value,
+                           ['change','lost_focus'],
+                           lambda tb: 0 < len(tb.text) <= 50,
+                           self.label_speciality_value_invalid
+                          )
+    
+    self.validator.enable_when_valid(self.button_submit)
+    
+    self.validator.show_all_errors()
+    # Any code you write here will run when the form opens
+    
+    
   def button_back_click(self, **event_args):
     self.router.nav_to_route_view(self, model_name, 'crud')
   def drop_down_doctor_id_value_change(self, **event_args):
@@ -60,3 +71,5 @@ class Update_Job(Update_JobTemplate):
     
     self.label_title_value.text = current_entity_id_to_fields[current_id]['title']
     self.text_box_speciality_value.text = current_entity_id_to_fields[current_id]['speciality']
+  
+    self.validator.show_all_errors()

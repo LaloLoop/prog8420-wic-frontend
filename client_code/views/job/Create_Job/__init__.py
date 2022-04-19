@@ -14,17 +14,12 @@ class Create_Job(Create_JobTemplate):
     self.init_components(**properties)
     self.router = router
     self.validator = validator
-    self.validator.require(self.text_box_name_value,
+    self.validator.require(self.text_box_speciality_value,
                            ['change','lost_focus'],
-                           lambda tb: 2 <= len(tb.text) <= 100,
-                           self.label_name_value_invalid
+                           lambda tb: 0 < len(tb.text) <= 50,
+                           self.label_speciality_value_invalid
                           )
-    # TODO: allow adding new/different specialties 
-    @validator('speciality')
-    def speciality_must_be_no_more_than_50_characters(cls, v):
-        if len(v) > 50:
-            raise ValueError(f'{v} must be no more than 50 characters')
-        return     
+    
     self.validator.enable_when_valid(self.button_submit)
     
     self.validator.show_all_errors()
@@ -56,11 +51,11 @@ class Create_Job(Create_JobTemplate):
     job_titles = anvil.http.request(url, method='GET', json=True)
 
     self.label_validation_errors.text = ""
-    
-    self.drop_down_title_value.include_placeholder = True
-    self.drop_down_title_value.placeholder = self.router.crud_dropdown_placeholder
-    self.drop_down_title_value.selected_value = self.router.crud_dropdown_placeholder    
-    
+
     self.drop_down_title_value.items = sorted([(jt,jt) for jt in job_titles], key = lambda x: x[0])
-    
+   
+    self.drop_down_title_value.selected_value =  self.drop_down_title_value.items[0][1]  
+        
     self.text_box_speciality_value.text = ""
+    
+    self.validator.show_all_errors()
