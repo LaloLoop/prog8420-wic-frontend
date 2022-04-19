@@ -24,8 +24,7 @@ class Read_Unit(Read_UnitTemplate):
     resp = anvil.http.request(url, method='GET', json=True)
     entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp)
   
-    # populate form with current values of entity
-    self.label_validation_errors.text = ""    
+    # populate form with current values of entity  
     self.label_id_value.text = _id
     self.label_name_value.text = entity_id_to_fields[_id]['name']
 

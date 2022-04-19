@@ -9,12 +9,16 @@ from anvil.tables import app_tables
 model_name = 'appointment'
 
 class Update_Appointment(Update_AppointmentTemplate):
-  def __init__(self, router=None, **properties):
+  def __init__(self, router, validator, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.router = router
+    self.validator = validator
     # Any code you write here will run when the form opens.
 
+  def button_back_click(self, **event_args):
+    self.router.nav_to_route_view(self, model_name, 'crud')
+    
   def drop_down_doctor_id_value_change(self, **event_args):
     doctor_id = self.drop_down_doctor_id_value.selected_value
 
@@ -37,25 +41,12 @@ class Update_Appointment(Update_AppointmentTemplate):
       'comments': self.text_area_comments_value.text
     }
     
-    successful_request = False
     try:
       resp = anvil.http.request(url, method='PUT', data=data_dict, json=True)
-      successful_request = True
-    except: # 404 error, this is a main.py endpoint error, not schemas.py ValidationError
-      resp = {'detail': 'Appointment with this patient, or doctor and time, already exists.'}
-
-    if 'detail' not in resp.keys(): # detail means error
-      # after successful submission, redirect back to CRUD_Home
+      self.label_validation_errors.text = ''
       self.router.nav_to_route_view(self, model_name, 'crud')
-      return
-    elif not successful_request:
-      validation_msg = f"{resp['detail']}"    
-    else:
-      validation_msg = ""
-      for d in resp['detail']: 
-        validation_msg += f"{d['loc'][1]}: {d['msg']}\n"
-      
-    self.label_validation_errors.text = validation_msg
+    except anvil.http.HttpError as e:
+      self.label_validation_errors.text = f'{e.status}'
 
   def form_show(self, **event_args):
     current_id = anvil.server.call('get_selected_entity_id')
@@ -100,7 +91,7 @@ class Update_Appointment(Update_AppointmentTemplate):
 
     self.drop_down_doctor_id_value.selected_value = current_entity_id_to_fields[current_id]['doctor_id']
     
-    initial_doctor_id = _ids[0]
+    initial_doctor_id = list(_ids)[0]
 
     url = f'{self.router.base_url}prescriptions-with-id-display-name'
     resp = anvil.http.request(url, method='GET', json=True)

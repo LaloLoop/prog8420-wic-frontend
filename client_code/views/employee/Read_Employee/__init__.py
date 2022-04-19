@@ -19,7 +19,15 @@ class Read_Employee(Read_EmployeeTemplate):
     self.router.nav_to_route_view(self, model_name, 'crud')
 
   def form_show(self, **event_args):
-    """This method is called when the column panel is shown on the screen"""
-    pass
-
-
+    current_id = anvil.server.call('get_selected_entity_id')
+    url = f"{self.router.base_url}{model_name}-with-id-display-name/{current_id}"
+    resp = anvil.http.request(url, method='GET', json=True)
+    current_entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp) 
+  
+    self.label_id_value.text = current_id
+    self.label_person_id_value.text = current_entity_id_to_fields[current_id]['person_display_name']
+    self.label_job_id_value.text = current_entity_id_to_fields[current_id]['job_display_name']
+    self.label_password_value.text =  '*************'
+    self.label_is_active_value.text = str(current_entity_id_to_fields[current_id]['is_active'])
+    self.label_is_verified_value.text = str(current_entity_id_to_fields[current_id]['is_verified'])
+    self.label_is_superuser_value.text = str(current_entity_id_to_fields[current_id]['is_superuser'])

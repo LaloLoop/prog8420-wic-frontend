@@ -30,6 +30,13 @@ components:
   properties: {}
   name: text_box_speciality_value
   layout_properties: {grid_position: 'GPHUCT,SSIUXO'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: red,
+    visible: true, text: Speciality must be between 1-50 characters, font_size: null,
+    font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+    background: '', bold: false, underline: false, icon: ''}
+  name: label_speciality_value_invalid
+  layout_properties: {grid_position: 'ZNVARF,TNTDJV'}
 - type: Button
   properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
     foreground: '', visible: true, text: Back, font_size: null, font: '', spacing_above: small,

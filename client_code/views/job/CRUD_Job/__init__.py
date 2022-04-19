@@ -44,7 +44,7 @@ class CRUD_Job(CRUD_JobTemplate):
       self.button_update_view.enabled = False
     
   def form_show(self, **event_args):
-    url = f'{self.router.base_url}{model_name}s'
+    url = f'{self.router.base_url}{model_name}s/'
     resp = anvil.http.request(url, method='GET', json=True)
     
     # convert resp (list of dicts) into dict[id] = dict of fields (not including id)

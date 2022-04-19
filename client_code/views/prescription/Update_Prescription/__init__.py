@@ -9,10 +9,24 @@ from anvil.tables import app_tables
 model_name = 'prescription'
 
 class Update_Prescription(Update_PrescriptionTemplate):
-  def __init__(self, router=None, **properties):
+  def __init__(self, router, validator, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.router = router
+    self.validator = validator
+    self.validator.require(self.text_box_medication_value,
+                           ['change'],
+                           lambda tb: 2 <= len(tb.text) <= 100,
+                           self.label_medication_value_invalid
+                          )
+    self.validator.require(self.text_box_quantity_value,
+                           ['change'],
+                           lambda tb: tb.text.isnumeric() and  
+                                      float(tb.text) > 0 and
+                                      tb.text != '',
+                           self.label_quantity_value_invalid
+                          )
+    self.validator.enable_when_valid(self.button_submit)      
     # Any code you write here will run when the form opens.
 
   def button_back_click(self, **event_args):
@@ -28,25 +42,12 @@ class Update_Prescription(Update_PrescriptionTemplate):
       'unit_id': self.drop_down_unit_id_value.selected_value
     }
     
-    successful_request = False
     try:
       resp = anvil.http.request(url, method='PUT', data=data_dict, json=True)
-      successful_request = True
-    except: # 404 error, this is a main.py endpoint error, not schemas.py ValidationError
-      resp = {'detail': 'Prescription wasn''t updated'}
-
-    if 'detail' not in resp.keys(): # detail means error
-      # after successful submission, redirect back to CRUD_Home
+      self.label_validation_errors.text = ''
       self.router.nav_to_route_view(self, model_name, 'crud')
-      return
-    elif not successful_request:
-      validation_msg = f"{resp['detail']}"    
-    else:
-      validation_msg = ""
-      for d in resp['detail']: 
-        validation_msg += f"{d['loc'][1]}: {d['msg']}\n"
-      
-    self.label_validation_errors.text = validation_msg
+    except anvil.http.HttpError as e:
+      self.label_validation_errors.text = f'{e.status}'
 
   def form_show(self, **event_args):
     current_id = anvil.server.call('get_selected_entity_id')
@@ -71,3 +72,5 @@ class Update_Prescription(Update_PrescriptionTemplate):
       [(entity_id_to_fields[_id]['name'], _id) for _id in _ids], key = lambda x: x[0])
     
     self.drop_down_unit_id_value.selected_value = str(current_entity_id_to_fields[current_id]['unit_id'])
+    
+    self.validator.show_all_errors()

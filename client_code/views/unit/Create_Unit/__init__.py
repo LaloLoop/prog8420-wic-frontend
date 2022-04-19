@@ -9,10 +9,21 @@ from anvil.tables import app_tables
 model_name = 'unit'
 
 class Create_Unit(Create_UnitTemplate):
-  def __init__(self, router=None, **properties):
+  def __init__(self, router, httpc, validator, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.router = router
+    self.http = httpc
+    self.validator = validator
+    self.validator.require(self.text_box_name_value,
+                           ['change','lost_focus'],
+                           lambda tb: 2 <= len(tb.text) <= 100,
+                           self.label_name_value_invalid
+                          )
+    
+    self.validator.enable_when_valid(self.button_submit)
+    
+    self.validator.show_all_errors()
     # Any code you write here will run when the form opens.
 
   def button_back_click(self, **event_args):
@@ -20,29 +31,19 @@ class Create_Unit(Create_UnitTemplate):
 
   def button_submit_click(self, **event_args):
     # use POST request to web api
-    url = f'{self.router.base_url}{model_name}'
+    url = f'{self.router.base_url}{model_name}/'
     data_dict = {'name':self.text_box_name_value.text}
     
-    successful_request = False
     try:
-      resp = anvil.http.request(url, method='POST', data=data_dict, json=True)
-      successful_request = True
-    except: # 404 error, this is a main.py endpoint error, not schemas.py ValidationError
-      resp = {'detail':'Name: Unit with this name already exists.'}
-    
-    if 'detail' not in resp.keys(): # detail means error
-      # after successful submission, redirect back to CRUD_Home
+      #resp = anvil.http.request(url, method='POST', data=data_dict, json=True)
+      resp = self.http.request(url, method='POST', data=data_dict, json=True)
+      self.label_validation_errors.text = ''
       self.router.nav_to_route_view(self, model_name, 'crud')
-      return
-    elif not successful_request:
-      validation_msg = f"{resp['detail']}"    
-    else:
-      validation_msg = ""
-      for d in resp['detail']: 
-        validation_msg += f"{d['loc'][1]}: {d['msg']}\n"
-      
-    self.label_validation_errors.text = validation_msg
+    except anvil.http.HttpError as e:
+      self.label_validation_errors.text = f'{e.status} {e.content}'
       
   def form_show(self, **event_args):
     self.label_validation_errors.text = ""
     self.text_box_name_value.text = ""
+    
+    self.validator.show_all_errors()

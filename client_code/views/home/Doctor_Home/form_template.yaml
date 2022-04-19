@@ -11,36 +11,36 @@ components:
   layout_properties: {grid_position: 'YKTYCQ,ZIQMBL'}
 - type: Button
   properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-    foreground: '', visible: true, text: Go To CRUD Unit Page, font_size: null, font: '',
+    foreground: '', visible: true, text: Go To Reports Page, font_size: null, font: '',
     spacing_above: small, icon_align: left, spacing_below: small, italic: false, background: '',
     bold: false, underline: false, icon: ''}
-  name: button_crud_unit
-  layout_properties: {grid_position: 'GRWAKJ,YTUSTY'}
-  event_bindings: {click: button_crud_unit_click}
-- type: Button
-  properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-    foreground: '', visible: true, text: Go To CRUD Prescription Page, font_size: null,
-    font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
-    background: '', bold: false, underline: false, icon: ''}
-  name: button_crud_prescription
-  layout_properties: {grid_position: 'GBPIDF,KEWFLT'}
-  event_bindings: {click: button_crud_prescription_click}
+  name: button_reports
+  layout_properties: {grid_position: 'HVUFZC,MBLQBS'}
+  event_bindings: {click: button_reports_click}
 - type: Button
   properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
     foreground: '', visible: true, text: Go To CRUD Appointment Page, font_size: null,
     font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
     background: '', bold: false, underline: false, icon: ''}
   name: button_crud_appointment
-  layout_properties: {grid_position: 'GXSVZO,TJTOXZ'}
+  layout_properties: {grid_position: 'GAPVXL,PZMPCU'}
   event_bindings: {click: button_crud_appointment_click}
 - type: Button
   properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-    foreground: '', visible: true, text: Go To Reports Page, font_size: null, font: '',
+    foreground: '', visible: true, text: Go To CRUD Prescription Page, font_size: null,
+    font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+    background: '', bold: false, underline: false, icon: ''}
+  name: button_crud_prescription
+  layout_properties: {grid_position: 'VFAHCD,MSTMBK'}
+  event_bindings: {click: button_crud_prescription_click}
+- type: Button
+  properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+    foreground: '', visible: true, text: Go To CRUD Unit Page, font_size: null, font: '',
     spacing_above: small, icon_align: left, spacing_below: small, italic: false, background: '',
     bold: false, underline: false, icon: ''}
-  name: button_reports
-  layout_properties: {grid_position: 'OHONBH,VZLXOE'}
-  event_bindings: {click: button_reports_click}
+  name: button_crud_unit
+  layout_properties: {grid_position: 'GRWAKJ,YTUSTY'}
+  event_bindings: {click: button_crud_unit_click}
 - type: Button
   properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
     foreground: '', visible: true, text: Logout, font_size: null, font: '', spacing_above: small,

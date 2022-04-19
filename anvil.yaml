@@ -1,3 +1,4 @@
+dependencies: []
 services:
 - source: /runtime/services/tables.yml
   client_config: {}

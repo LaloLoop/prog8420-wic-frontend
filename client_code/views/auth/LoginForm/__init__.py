@@ -20,9 +20,11 @@ class LoginForm(LoginFormTemplate):
     self.feedback_banner.text = ''
     
   def reset_login_input(self):
-    self.user_box.text = ""
-    self.password_box.text = ""
-    
+    #self.user_box.text = ""
+    #self.password_box.text = ""
+    self.user_box.text = "gbuchanan@example.net"
+    self.password_box.text = "admin"
+  
   def signin_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     username = self.user_box.text

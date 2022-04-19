@@ -8,14 +8,16 @@ components:
   name: label_validation_errors
   layout_properties: {grid_position: 'SKLJYS,LGMEEE'}
 - type: Label
-  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: false,
     text: 'Id:', font_size: null, font: '', spacing_above: small, icon_align: left,
     spacing_below: small, italic: false, background: '', bold: false, underline: false,
     icon: ''}
   name: label_id
   layout_properties: {grid_position: 'XBVRNM,OZIEUX'}
 - type: Label
-  properties: {}
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: false,
+    text: '', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
+    italic: false, background: '', bold: false, underline: false, icon: ''}
   name: label_id_value
   layout_properties: {grid_position: 'XBVRNM,ZJRQDU'}
 - type: Label
@@ -30,6 +32,13 @@ components:
   name: text_box_first_name_value
   layout_properties: {grid_position: 'CBIFDM,TGSOFH'}
 - type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: red,
+    visible: true, text: First name must be between 2-100 alphabetic (spaces allowed) characters,
+    font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
+    italic: false, background: '', bold: false, underline: false, icon: ''}
+  name: label_first_name_value_invalid
+  layout_properties: {grid_position: 'ANFKXP,PMYJFX'}
+- type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: 'Last Name:', font_size: null, font: '', spacing_above: small, icon_align: left,
     spacing_below: small, italic: false, background: '', bold: false, underline: false,
@@ -40,6 +49,13 @@ components:
   properties: {}
   name: text_box_last_name_value
   layout_properties: {grid_position: 'DKLHLH,OODXDG'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: red,
+    visible: true, text: Last name must be between 2-100 alphabetic (spaces allowed) characters,
+    font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
+    italic: false, background: '', bold: false, underline: false, icon: ''}
+  name: label_last_name_value_invalid
+  layout_properties: {grid_position: 'UZAEKS,TCEPNP'}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: 'Birthdate:', font_size: null, font: '', spacing_above: small, icon_align: left,
@@ -52,6 +68,13 @@ components:
   name: date_picker_birthdate_value
   layout_properties: {grid_position: 'TNXJSD,DVVGIG'}
 - type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: red,
+    visible: true, text: Birthdate must be in the past but less than 150 years ago,
+    font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
+    italic: false, background: '', bold: false, underline: false, icon: ''}
+  name: label_birthdate_value_invalid
+  layout_properties: {grid_position: 'KLHZYJ,WZGJGQ'}
+- type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: 'Street:', font_size: null, font: '', spacing_above: small, icon_align: left,
     spacing_below: small, italic: false, background: '', bold: false, underline: false,
@@ -63,6 +86,13 @@ components:
   name: text_box_street_value
   layout_properties: {grid_position: 'RFJJIW,HNWDKS'}
 - type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: red,
+    visible: true, text: Street must be between 2-100 alphanumeric (periods and spaces allowed) characters,
+    font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
+    italic: false, background: '', bold: false, underline: false, icon: ''}
+  name: label_street_value_invalid
+  layout_properties: {grid_position: 'YANKOQ,XMQICZ'}
+- type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: 'City:', font_size: null, font: '', spacing_above: small, icon_align: left,
     spacing_below: small, italic: false, background: '', bold: false, underline: false,
@@ -73,6 +103,13 @@ components:
   properties: {}
   name: text_box_city_value
   layout_properties: {grid_position: 'LRDKSK,DCRGDA'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: red,
+    visible: true, text: City must be between 2-100 alphanumeric (periods and spaces allowed) characters,
+    font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
+    italic: false, background: '', bold: false, underline: false, icon: ''}
+  name: label_city_value_invalid
+  layout_properties: {grid_position: 'PYXASV,FCOVEV'}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: 'Province:', font_size: null, font: '', spacing_above: small, icon_align: left,
@@ -96,6 +133,13 @@ components:
   name: text_box_postal_code_value
   layout_properties: {grid_position: 'WDINZC,LZUCYP'}
 - type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: red,
+    visible: true, text: 'Postal Code must be valid format, i.e. ''ADA DAD''', font_size: null,
+    font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+    background: '', bold: false, underline: false, icon: ''}
+  name: label_postalcode_value_invalid
+  layout_properties: {grid_position: 'NKQRSH,SZMWWQ'}
+- type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: 'Email:', font_size: null, font: '', spacing_above: small, icon_align: left,
     spacing_below: small, italic: false, background: '', bold: false, underline: false,
@@ -107,6 +151,13 @@ components:
   name: text_box_email_value
   layout_properties: {grid_position: 'LKTXIF,TBJBJR'}
 - type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: red,
+    visible: true, text: 'Email must be valid format, i.e. ''aa@b.cc''', font_size: null,
+    font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+    background: '', bold: false, underline: false, icon: ''}
+  name: label_email_value_invalid
+  layout_properties: {grid_position: 'YLGXLT,NCTLLS'}
+- type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: 'Phone Number:', font_size: null, font: '', spacing_above: small, icon_align: left,
     spacing_below: small, italic: false, background: '', bold: false, underline: false,
@@ -117,6 +168,13 @@ components:
   properties: {}
   name: text_box_phonenumber_value
   layout_properties: {grid_position: 'YJBCRG,BVCVMY'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: red,
+    visible: true, text: Phone number must contain at least 7 digits, font_size: null,
+    font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+    background: '', bold: false, underline: false, icon: ''}
+  name: label_phonenumber_value_invalid
+  layout_properties: {grid_position: 'ZGGQGP,OFAGHR'}
 - type: Button
   properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
     foreground: '', visible: true, text: Back, font_size: null, font: '', spacing_above: small,
