@@ -14,6 +14,12 @@ class Update_Patient(Update_PatientTemplate):
     self.init_components(**properties)
     self.router = router
     self.validator = validator
+    self.validator.require(self.text_box_ohip_value,
+                           ['change','lost_focus'],
+                           lambda tb: self.validator.check_valid_ohip_number(tb.text),
+                           self.label_ohip_value_invalid
+                           )
+    self.validator.enable_when_valid(self.button_submit) 
     # Any code you write here will run when the form opens.
 
   def button_back_click(self, **event_args):
@@ -61,3 +67,5 @@ class Update_Patient(Update_PatientTemplate):
     self.drop_down_person_id_value.selected_value = current_entity_id_to_fields[current_id]['person_id']
     
     self.text_box_ohip_value.text =  current_entity_id_to_fields[current_id]['ohip']
+    
+    self.validator.show_all_errors()

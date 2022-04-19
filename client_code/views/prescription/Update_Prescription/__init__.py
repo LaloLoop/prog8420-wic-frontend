@@ -16,7 +16,7 @@ class Update_Prescription(Update_PrescriptionTemplate):
     self.validator = validator
     self.validator.require(self.text_box_medication_value,
                            ['change'],
-                           lambda tb: tb.text != '',
+                           lambda tb: 2 <= len(tb.text) <= 100,
                            self.label_medication_value_invalid
                           )
     self.validator.require(self.text_box_quantity_value,

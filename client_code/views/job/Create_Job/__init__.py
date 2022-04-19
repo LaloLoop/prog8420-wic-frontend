@@ -14,6 +14,20 @@ class Create_Job(Create_JobTemplate):
     self.init_components(**properties)
     self.router = router
     self.validator = validator
+    self.validator.require(self.text_box_name_value,
+                           ['change','lost_focus'],
+                           lambda tb: 2 <= len(tb.text) <= 100,
+                           self.label_name_value_invalid
+                          )
+    # TODO: allow adding new/different specialties 
+    @validator('speciality')
+    def speciality_must_be_no_more_than_50_characters(cls, v):
+        if len(v) > 50:
+            raise ValueError(f'{v} must be no more than 50 characters')
+        return     
+    self.validator.enable_when_valid(self.button_submit)
+    
+    self.validator.show_all_errors()
     # Any code you write here will run when the form opens.
 
   def button_back_click(self, **event_args):

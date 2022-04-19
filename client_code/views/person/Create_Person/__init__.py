@@ -6,6 +6,8 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
+from datetime import date
+
 model_name = 'person'
 
 class Create_Person(Create_PersonTemplate):
@@ -16,23 +18,46 @@ class Create_Person(Create_PersonTemplate):
     self.validator = validator
     self.validator.require(self.text_box_first_name_value,
                            ['change','lost_focus'],
-                           lambda tb: tb.text != '',
+                           lambda tb: self.validator.check_valid_first_or_last_name(tb.text),
                            self.label_first_name_value_invalid
                           )
     self.validator.require(self.text_box_last_name_value,
                            ['change','lost_focus'],
-                           lambda tb: tb.text != '',
+                           lambda tb: self.validator.check_valid_first_or_last_name(tb.text),
                            self.label_last_name_value_invalid
                           )
-    self.validator.require(self.text_box_quantity_value,
+    self.date_picker_birthdate_value.date = date.today()
+    self.validator.require(self.date_picker_birthdate_value,
                            ['change'],
-                           lambda tb: tb.text.isnumeric() and  
-                                      float(tb.text) > 0 and
-                                      tb.text != '',
-                           self.label_quantity_value_invalid
+                           lambda dp: self.validator.check_valid_birthdate(dp.date),
+                           self.label_birthdate_value_invalid
+                          )    
+    self.validator.require(self.text_box_street_value,
+                           ['change','lost_focus'],
+                           lambda tb: self.validator.check_valid_street_or_city(tb.text),
+                           self.label_street_value_invalid
                           )
+    self.validator.require(self.text_box_city_value,
+                           ['change','lost_focus'],
+                           lambda tb: self.validator.check_valid_street_or_city(tb.text),
+                           self.label_city_value_invalid
+                          )
+    self.validator.require(self.text_box_postal_code_value,
+                           ['change','lost_focus'],
+                           lambda tb: self.validator.check_valid_canadian_postalcode(tb.text, strictCapitalization=False, fixSpace=False),
+                           self.label_postalcode_value_invalid
+                          )
+    self.validator.require(self.text_box_email_value,
+                           ['change','lost_focus'],
+                           lambda tb: self.validator.check_valid_email(tb.text),
+                           self.label_email_value_invalid
+                          )
+    self.validator.require(self.text_box_phonenumber_value,
+                           ['change','lost_focus'],
+                           lambda tb: self.validator.check_valid_phonenumber(tb.text),
+                           self.label_phonenumber_value_invalid
+                          )  
     self.validator.enable_when_valid(self.button_submit)        
-  
     # Any code you write here will run when the form opens.
     
   def button_back_click(self, **event_args):
@@ -66,9 +91,7 @@ class Create_Person(Create_PersonTemplate):
     self.text_box_first_name_value.text = ""
     self.text_box_last_name_value.text = ""
     
-    import datetime
-    self.date_picker_birthdate_value.date = datetime.date.today()
-    
+    #  self.date_picker_birthdate_value.date = datetime.date.today()
     self.text_box_street_value.text = ""
     
     url = f'{self.router.base_url}person-list-of-provinces'

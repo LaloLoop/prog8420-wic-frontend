@@ -15,17 +15,18 @@ class Create_Prescription(Create_PrescriptionTemplate):
     self.router = router
     self.validator = validator
     self.validator.require(self.text_box_medication_value,
-                           ['change'],
-                           lambda tb: tb.text != '',
+                           ['change', 'lost_focus'],
+                           lambda tb: 2 <= len(tb.text) <= 100 ,
                            self.label_medication_value_invalid
                           )
     self.validator.require(self.text_box_quantity_value,
-                           ['change'],
+                           ['change', 'lost_focus'],
                            lambda tb: tb.text.isnumeric() and  
                                       float(tb.text) > 0 and
                                       tb.text != '',
                            self.label_quantity_value_invalid
                           )
+
     self.validator.enable_when_valid(self.button_submit)    
     # Any code you write here will run when the form opens.
 
@@ -58,11 +59,22 @@ class Create_Prescription(Create_PrescriptionTemplate):
     url = f'{self.router.base_url}units'
     resp = anvil.http.request(url, method='GET', json=True)
     entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp)
+
+    if not entity_id_to_fields:
+      self.drop_down_unit_id_value.include_placeholder = True
+      self.drop_down_unit_id_value.placeholder = self.router.crud_dropdown_placeholder
+      self.drop_down_unit_id_value.items = []
+    else:
+      self.drop_down_unit_id_value.include_placeholder = False
+      _ids = entity_id_to_fields.keys()
+      self.drop_down_unit_id_value.items = sorted( \
+        [(entity_id_to_fields[_id]['name'], _id) for _id in _ids], key = lambda x: x[0])
+      self.drop_down_unit_id_value.selected_value = self.drop_down_unit_id_value.items[0][1]
     
-    _ids = entity_id_to_fields.keys()
-    self.drop_down_unit_id_value.items = sorted(\
-      [(entity_id_to_fields[_id]['name'], _id) for _id in _ids], key = lambda x: x[0])
-    
-    self.drop_down_unit_id_value.selected_value = self.drop_down_unit_id_value.items[0][1]  
-    
+    self.validator.require(self.drop_down_unit_id_value,
+                      ['change'],
+                      lambda dd: bool(dd.items),
+                      self.label_unit_id_value_invalid
+                      )
+
     self.validator.show_all_errors()

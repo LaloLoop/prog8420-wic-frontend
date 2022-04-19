@@ -17,7 +17,14 @@ components:
 - type: DropDown
   properties: {}
   name: drop_down_person_id_value
-  layout_properties: {grid_position: 'DRGYNE,KJWOCB'}
+  layout_properties: {grid_position: 'DRGYNE,XZLYYG'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: red,
+    visible: true, text: Unable to find any unassigned people to create a new patient,
+    font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
+    italic: false, background: '', bold: false, underline: false, icon: ''}
+  name: label_person_id_value_invalid
+  layout_properties: {grid_position: 'VCFWRY,FVOEML'}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: 'OHIP Number:', font_size: null, font: '', spacing_above: small, icon_align: left,
@@ -29,6 +36,13 @@ components:
   properties: {}
   name: text_box_ohip_value
   layout_properties: {grid_position: 'GPHUCT,HDDDHS'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: red,
+    visible: true, text: OHIP Number must be 10 digits followed by 2 uppercase letters,
+    font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
+    italic: false, background: '', bold: false, underline: false, icon: ''}
+  name: label_ohip_value_invalid
+  layout_properties: {grid_position: 'NIUDWO,DHBBWR'}
 - type: Button
   properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
     foreground: '', visible: true, text: Back, font_size: null, font: '', spacing_above: small,

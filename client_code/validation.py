@@ -2,6 +2,10 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
+import re
+from datetime import date, timedelta
+from datetime import datetime
+
 class Validator():
   """
 A Validator instance performs form validation. You give it
@@ -85,3 +89,81 @@ to check the status of the form.
     v = self.is_valid()
     for f in self._actions:
       f(v)
+
+  # validations for forms  
+  def check_valid_first_or_last_name(self, value):
+    return 2 <= len(value) <= 100 and re.match(r"^[a-zA-Z ]*$", value)
+
+  def check_valid_birthdate(self, value: date):
+    return (date.today() - timedelta(days=150*365)) < value < date.today()
+  
+  def check_valid_street_or_city(self, value):
+    return 2 <= len(value) <= 100 and re.match(r"^[a-zA-Z0-9. ]*$", value)
+  
+  # https://www.c-sharpcorner.com/article/how-to-validate-an-email-address-in-python/
+  def check_valid_email(self, email):
+    regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'  
+    return re.search(regex ,email)
+        
+  # taken from https://stackoverflow.com/a/47802790
+  def check_valid_canadian_postalcode(self, p, strictCapitalization=False, fixSpace=False):
+    '''By default lower and upper case characters are allowed,  
+    a missing middle space will be substituted.'''
+
+    pc = p.strip()                   # copy p, strip whitespaces front/end
+    if fixSpace and len(pc) == 6:
+        pc = pc[0:3] + " " + pc[3:]    # if allowed / needed insert missing space
+
+    nums = "0123456789"              # allowed numbers
+    alph = "ABCEGHJKLMNPRSTVWXYZ"    # allowed characters (WZ handled below)
+    mustBeNums = [1,4,6]             # index of number
+    mustBeAlph = [0,2,5]             # index of character (WZ handled below)
+
+    illegalCharacters = [x for x in pc 
+                        if x not in (nums + alph.lower() + alph + " ")]
+
+    if strictCapitalization:
+        illegalCharacters = [x for x in pc
+                            if x not in (alph + nums + " ")]
+
+    if illegalCharacters:
+        return False #(False, "Illegal characters detected: " + str(illegalCharacters))
+
+    postalCode = [x.upper() for x in pc]          # copy to uppercase list
+
+    if len(postalCode) != 7:                      # length-validation
+        return False #(False, "Length not 7")
+
+    for idx in range(0,len(postalCode)):          # loop over all indexes
+        ch = postalCode[idx]
+        if ch in nums and idx not in mustBeNums:  # is is number, check index
+            return False #(False, "Format not 'ADA DAD'")     
+        elif ch in alph and idx not in mustBeAlph: # id is character, check index
+            return False #(False, "Format not 'ADA DAD'") # alpha / digit
+        elif ch == " " and idx != 3:               # is space in between
+            return False #(False, "Format not 'ADA DAD'")
+
+    if postalCode[0] in "WZ":                      # no W or Z first char
+        return False #(False, "Cant start with W or Z")
+
+    return True # (True,"".join(postalCode))    # yep - all good
+
+  def check_valid_phonenumber(self, value):
+    num_digits_found = 0
+    
+    for char in value:
+        if char.isdigit():
+            num_digits_found += 1
+            if num_digits_found == 7:
+                return True
+        
+    if num_digits_found < 7:
+        return False
+    return True
+  
+  def check_valid_ohip_number(self, value):
+    if len(value) != 12:
+        return False
+    elif not value[0:9].isdigit() or not value[-2:].isalpha():
+        return False
+    return True
