@@ -14,6 +14,7 @@ class CRUD_Appointment(CRUD_AppointmentTemplate):
     self.init_components(**properties)
     self.router = router
     self.http = httpc
+    self.data_grid_of_entities.role = 'wide'
 
   def button_nav_create_view_click(self, **event_args):
     self.router.nav_to_route_view(self, model_name, 'create')
@@ -74,7 +75,7 @@ class CRUD_Appointment(CRUD_AppointmentTemplate):
     # set the data grid width to the entire screen width
     self.data_grid_of_entities.rows_per_page = 3
     self.data_grid_of_entities.show_page_controls = True
-    self.data_grid_of_entities.width = sum(grid_col_widths)
+    #self.data_grid_of_entities.width = sum(grid_col_widths)
     self.data_grid_of_entities.columns = grid_cols
     self.repeating_panel_of_entities.items = table_rows
   

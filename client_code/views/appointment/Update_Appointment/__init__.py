@@ -28,7 +28,7 @@ class Update_Appointment(Update_AppointmentTemplate):
       resp = self.http.request(url, method='GET', json=True)
     except anvil.http.HttpError as e:
       self.label_validation_errors.text += self.http.get_error_message(e) 
-    self.drop_down_date_and_time.items = [(dt,dt) for dt in resp]
+    self.drop_down_date_and_time_value.items = [(dt,dt) for dt in resp]
     self.refresh_data_bindings()
     
   def button_submit_click(self, **event_args):
