@@ -40,10 +40,11 @@ def base_request(url, method="GET", data=None, headers=None, jsonbody = True):
 def request(*args, json=True, **kwargs):
   resp = base_request(*args, **kwargs)
   
+  content = 'Unknown'
   if resp.ok and json:
     content = resp.json()
   else:
-    content = resp.content
+    content = str(resp.content)
   
   return {'status_code': resp.status_code, 'content': content, 'ok': resp.ok}
 
