@@ -46,7 +46,7 @@ class HttpClient:
   def get_error_message(self, e: anvil.http.HttpError):
     error_message =""
     if e.status == 500:
-      error_message = f'Couldn''t perfom CRUD operation on backend; perhaps another entity depends on this entity.'
+      error_message = f"Couldn't perfom CRUD operation on backend; perhaps another entity depends on this entity."
     elif e.status == 422: # back end validation errors 
       for v_err in e.content['detail']:
         error_message += f"{v_err['loc'][1]}: {v_err['msg']}\n"
