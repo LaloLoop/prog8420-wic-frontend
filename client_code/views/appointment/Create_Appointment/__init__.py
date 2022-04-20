@@ -19,19 +19,6 @@ class Create_Appointment(Create_AppointmentTemplate):
 
   def button_back_click(self, **event_args):
     self.router.nav_to_route_view(self, model_name, 'crud')
-
-  def drop_down_doctor_id_value_change(self, **event_args):
-    self.label_validation_errors.text = ""
-    doctor_id = self.drop_down_doctor_id_value.selected_value
-
-    # use GET request for new appointments by docter id
-    url = f'{self.router.base_url}{model_name}-available-date-and-times/{doctor_id}'
-    try:
-      date_and_times = self.http.request(url, method='GET', json=True)
-    except anvil.http.HttpError as e:
-      self.label_validation_errors.text += self.http.get_error_message(e)    
-    self.drop_down_date_and_time_value.items = [(dt,dt) for dt in date_and_times]
-    self.refresh_data_bindings()
     
   def button_submit_click(self, **event_args):
     self.label_validation_errors.text = ""
@@ -181,3 +168,26 @@ class Create_Appointment(Create_AppointmentTemplate):
     
     self.validator.enable_when_valid(self.button_submit)
     self.validator.show_all_errors()
+    
+    print('form_show')
+
+  def button_refresh_appointments_for_doctor_click(self, **event_args):
+    self.refresh_data_bindings()
+    self.label_validation_errors.text = ""
+    doctor_id = self.drop_down_doctor_id_value.selected_value
+    print(doctor_id)
+    assert doctor_id == '1e445917-014a-4cc0-9f37-b34d29297241'
+
+    # use GET request for new appointments by docter id
+    url = f'{self.router.base_url}{model_name}-available-date-and-times/{doctor_id}'
+    try:
+      date_and_times = self.http.request(url, method='GET', json=True)
+    except anvil.http.HttpError as e:
+      self.label_validation_errors.text += self.http.get_error_message(e)    
+    self.drop_down_date_and_time_value.items = [(dt,dt) for dt in date_and_times]
+    self.refresh_data_bindings()
+    
+
+
+
+
