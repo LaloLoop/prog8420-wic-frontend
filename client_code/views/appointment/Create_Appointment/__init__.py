@@ -9,28 +9,32 @@ from anvil.tables import app_tables
 model_name = 'appointment'
 
 class Create_Appointment(Create_AppointmentTemplate):
-  def __init__(self, router, validator, **properties):
-    # Set Form properties and Data Bindings.
+  def __init__(self, router, httpc, validator, **properties):
     self.init_components(**properties)
     self.router = router
+    self.http = httpc
     self.validator = validator
     
     self.validator.enable_when_valid(self.button_submit)  
-    # Any code you write here will run when the form opens.
 
   def button_back_click(self, **event_args):
     self.router.nav_to_route_view(self, model_name, 'crud')
 
   def drop_down_doctor_id_value_change(self, **event_args):
+    self.label_validation_errors = ""
     doctor_id = self.drop_down_doctor_id_value.selected_value
 
     # use GET request for new appointments by docter id
     url = f'{self.router.base_url}{model_name}-available-date-and-times/{doctor_id}'
-    date_and_times = anvil.http.request(url, method='GET', json=True)
+    try:
+      date_and_times = self.http.request(url, method='GET', json=True)
+    except anvil.http.HttpError as e:
+      self.label_validation_errors.text += self.http.get_error_message(e)    
     self.drop_down_date_and_time_value.items = [(dt,dt) for dt in date_and_times]
     self.refresh_data_bindings()
     
   def button_submit_click(self, **event_args):
+    self.label_validation_errors = ""
     # use POST request to web api
     url = f'{self.router.base_url}{model_name}/'
 
@@ -44,8 +48,7 @@ class Create_Appointment(Create_AppointmentTemplate):
     }
     
     try:
-      resp = anvil.http.request(url, method='POST', data=data_dict, json=True)
-      self.label_validation_errors.text = ''
+      resp = self.http.request(url, method='POST', data=data_dict, json=True)
       self.router.nav_to_route_view(self, model_name, 'crud')
     except anvil.http.HttpError as e:
       self.label_validation_errors.text = f'{e.status}'
@@ -56,7 +59,10 @@ class Create_Appointment(Create_AppointmentTemplate):
     # use GET requests for list of patients, staff, doctor, prescriptions
     # to populate all of the drop downs
     url = f'{self.router.base_url}patients-unbooked-with-id-display-name'
-    resp = anvil.http.request(url, method='GET', json=True)
+    try:
+      resp = self.http.request(url, method='GET', json=True)
+    except anvil.http.HttpError as e:
+      self.label_validation_errors.text += self.http.get_error_message(e)     
     entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp)
 
     if not entity_id_to_fields:
@@ -77,7 +83,10 @@ class Create_Appointment(Create_AppointmentTemplate):
                           )    
 
     url = f'{self.router.base_url}employees-staff-with-id-display-name'
-    resp = anvil.http.request(url, method='GET', json=True)
+    try:
+      resp = self.http.request(url, method='GET', json=True)
+    except anvil.http.HttpError as e:
+      self.label_validation_errors.text += self.http.get_error_message(e) 
     entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp)
 
     if not entity_id_to_fields:
@@ -98,7 +107,10 @@ class Create_Appointment(Create_AppointmentTemplate):
                           )
 
     url = f'{self.router.base_url}employees-doctor-with-id-display-name'
-    resp = anvil.http.request(url, method='GET', json=True)
+    try:
+      resp = self.http.request(url, method='GET', json=True)
+    except anvil.http.HttpError as e:
+      self.label_validation_errors.text += self.http.get_error_message(e) 
     entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp)
  
     initial_doctor_id = "" # only populate date_and_time drop down if doctors available
@@ -122,7 +134,10 @@ class Create_Appointment(Create_AppointmentTemplate):
                           )
 
     url = f'{self.router.base_url}prescriptions-with-id-display-name'
-    resp = anvil.http.request(url, method='GET', json=True)
+    try:
+      resp = self.http.request(url, method='GET', json=True)
+    except anvil.http.HttpError as e:
+      self.label_validation_errors.text += self.http.get_error_message(e) 
     entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp)
     
     if not entity_id_to_fields:
@@ -144,7 +159,10 @@ class Create_Appointment(Create_AppointmentTemplate):
  
     if initial_doctor_id != "":
       url = f'{self.router.base_url}appointment-available-date-and-times/{initial_doctor_id}'
-      date_and_times = anvil.http.request(url, method='GET', json=True)
+      try:
+        date_and_times = self.http.request(url, method='GET', json=True)
+      except anvil.http.HttpError as e:
+        self.label_validation_errors.text += self.http.get_error_message(e) 
       self.drop_down_date_and_time_value.include_placeholder = False
       self.drop_down_date_and_time_value.items = sorted([(dt,dt) for dt in date_and_times], key = lambda x: x[0])
       self.drop_down_date_and_time_value.selected_value = self.drop_down_date_and_time_value.items[0][1]

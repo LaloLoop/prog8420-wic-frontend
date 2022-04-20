@@ -92,65 +92,65 @@ auth_views = {
 }
   
 home_views = {
-              'admin':Admin_Home(router=Router()),
-              'staff':Staff_Home(router=Router()),
-              'doctor': Doctor_Home(router=Router())
+              'admin':Admin_Home(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL)),
+              'staff':Staff_Home(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL)),
+              'doctor': Doctor_Home(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL))
              }
 
 person_views = {
-                'crud':CRUD_Person(router=AuthRouter()),
-                'create':Create_Person(router=Router(), validator=Validator()),
-                'read':Read_Person(router=Router()),
+                'crud':CRUD_Person(router=AuthRouter(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL)),
+                'create':Create_Person(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL), validator=Validator()),
+                'read':Read_Person(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL)),
                 'update':Update_Person(router=Router(), validator=Validator()),
-                'delete':Delete_Person(router=Router())
+                'delete':Delete_Person(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL))
                 }
 
 job_views = {
-             'crud':CRUD_Job(router=AuthRouter()),
-             'create':Create_Job(router=Router(), validator=Validator()),
-             'read':Read_Job(router=Router()),
-             'update':Update_Job(router=Router(), validator=Validator()),
-             'delete':Delete_Job(router=Router()),
+             'crud':CRUD_Job(router=AuthRouter(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL)),
+             'create':Create_Job(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL), validator=Validator()),
+             'read':Read_Job(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL)),
+             'update':Update_Job(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL), validator=Validator()),
+             'delete':Delete_Job(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL)),
             }
 
 employee_views = {
-                  'crud':CRUD_Employee(router=AuthRouter()),
+                  'crud':CRUD_Employee(router=AuthRouter(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL)),
                   'create': Create_Employee(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL), validator=Validator()),
-                  'read': Read_Employee(router=Router()),
+                  'read': Read_Employee(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL)),
                   'update':Update_Employee(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL), validator=Validator()),
                   'delete':Delete_Employee(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL)),
                   }
 
 patient_views = {
-                 'crud':CRUD_Patient(router=AuthRouter()),
-                 'create':Create_Patient(router=Router(), validator=Validator()),
-                 'read':Read_Patient(router=Router()),
-                 'update':Update_Patient(router=Router(), validator=Validator()),
-                 'delete':Delete_Patient(router=Router()),
+                 'crud':CRUD_Patient(router=AuthRouter(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL)),
+                 'create':Create_Patient(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL), validator=Validator()),
+                 'read':Read_Patient(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL)),
+                 'update':Update_Patient(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL), validator=Validator()),
+                 'delete':Delete_Patient(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL)),
                 }
 
 unit_views = {
-              'crud':CRUD_Unit(router=AuthRouter()),
+              'crud':CRUD_Unit(router=AuthRouter(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL)),
               'create': Create_Unit(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL), validator=Validator()),
-              'read':Read_Unit(router=Router()),
-              'update':Update_Unit(router=Router(), validator=Validator()),
+              'read':Read_Unit(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL)),
+              'update':Update_Unit(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL), validator=Validator()),
               'delete':Delete_Unit(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL)),
               }
 
 prescription_views = {
-                      'crud':CRUD_Prescription(router=AuthRouter()),
-                      'create':Create_Prescription(router=Router(), validator=Validator()),
-                      'read':Read_Prescription(router=Router()),
-                      'update':Update_Prescription(router=Router(), validator=Validator()),
-                      'delete':Delete_Prescription(router=Router()),
+                      'crud':CRUD_Prescription(router=AuthRouter(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL)),
+                      'create':Create_Prescription(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL), validator=Validator()),
+                      'read':Read_Prescription(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL)),
+                      'update':Update_Prescription(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL), validator=Validator()),
+                      'delete':Delete_Prescription(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL)),
                       }
 
 appointment_views = {
-                     'crud':CRUD_Appointment(router=AuthRouter()),
-                     'create':Create_Appointment(router=Router(), validator=Validator()),
-                     'read':Read_Appointment(router=Router()),
-                     'update':Update_Appointment(router=Router(), validator=Validator()),
-                     'delete':Delete_Appointment(router=Router()),
+                     'crud':CRUD_Appointment(router=AuthRouter(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL)),
+                     'create':Create_Appointment(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL), validator=Validator()),
+                     'read':Read_Appointment(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL)),
+                     'update':Update_Appointment(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL), validator=Validator()),
+                     'delete':Delete_Appointment(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL)),
                     }
 
 report_views = {

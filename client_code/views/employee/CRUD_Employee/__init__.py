@@ -9,12 +9,10 @@ from anvil.tables import app_tables
 model_name = 'employee'
 
 class CRUD_Employee(CRUD_EmployeeTemplate):
-  def __init__(self, router, **properties):
-    # Set Form properties and Data Bindings.
+  def __init__(self, router, httpc, **properties):
     self.init_components(**properties)
     self.router = router
-    
-    # Any code you write here will run when the form opens.
+    self.http = httpc
 
   def button_nav_create_view_click(self, **event_args):
     self.router.nav_to_route_view(self, model_name, 'create')
@@ -45,8 +43,12 @@ class CRUD_Employee(CRUD_EmployeeTemplate):
       self.button_update_view.enabled = False
     
   def form_show(self, **event_args):
+    self.label_validation_errors = ""
     url = f'{self.router.base_url}{model_name}s-with-id-display-name/'
-    resp = anvil.http.request(url, method='GET', json=True)
+    try:
+      resp = self.http.request(url, method='GET', json=True)
+    except anvil.http.HttpError as e:
+      self.label_validation_errors.text += self.http.get_error_message(e) 
     
     # convert resp (list of dicts) into dict[id] = dict of fields (not including id)
     entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp)

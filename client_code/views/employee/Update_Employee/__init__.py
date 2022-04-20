@@ -10,42 +10,23 @@ model_name = 'employee'
 
 class Update_Employee(Update_EmployeeTemplate):
   def __init__(self, router, httpc, validator, **properties):
-    # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.router = router
     self.http = httpc
     self.validator = validator
-    # Any code you write here will run when the form opens.
 
   def button_back_click(self, **event_args):
     self.router.nav_to_route_view(self, model_name, 'crud')
 
   def button_submit_click(self, **event_args):
-    # use PUT request to web api
-    url = f'{self.router.base_url}users/{self.label_id_value.text}'
-
-    data_dict = { 
-      'person_id': int(self.drop_down_person_id_value.selected_value),
-      'job_id': int(self.drop_down_job_id_value.selected_value),
-      'email': email,
-      'password': self.text_box_password_value.text,
-      #'is_superuser': is_superuser,
-      #'is_active': False,
-      #'is_verified': False,
-    }
-
-    try:
-      resp = self.http.request(url, method='PUT', data=data_dict, json=True)
-      self.label_validation_errors.text = ''
-      self.router.nav_to_route_view(self, model_name, 'crud')
-    except anvil.http.HttpError as e:
-      self.label_validation_errors.text = f'{e.status}'
-
-  def button_submit_click(self, **event_args):
+    self.label_validation_errors = ""
     current_id = anvil.server.call('get_selected_entity_id')
     
     url = f"{self.router.base_url}{model_name}-with-id-display-name/{current_id}"
-    resp = anvil.http.request(url, method='GET', json=True)
+    try:
+      resp = self.http.request(url, method='GET', json=True)
+    except anvil.http.HttpError as e:
+      self.label_validation_errors.text += self.http.get_error_message(e)  
     current_entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp) 
   
     data_dict = { 
@@ -56,42 +37,32 @@ class Update_Employee(Update_EmployeeTemplate):
     if self.text_box_password_value.text != "":
       data_dict['password'] = self.text_box_password_value.text,
 
-    successful_request = False
+    url = f'{self.router.base_url}users/{current_id}'
     try:
-      # use PATCH request to web api
-      url = f'{self.router.base_url}users/{current_id}'
       resp = self.http.request(url, method='PATCH', data=data_dict, json=True)
-      successful_request = True
-    except anvil.http.HttpError as e: # 404 error, this is a main.py endpoint error, not schemas.py ValidationError
-      resp = {'detail': f'{e.status}'}
-
-    if 'detail' not in resp.keys(): # detail means error
-      # after successful submission, redirect back to CRUD_Home
       self.router.nav_to_route_view(self, model_name, 'crud')
-      return
-    elif not successful_request:
-      validation_msg = f"{resp['detail']}"    
-    else:
-      validation_msg = ""
-      for d in resp['detail']: 
-        validation_msg += f"{d['loc'][1]}: {d['msg']}\n"
-      
-    self.label_validation_errors.text = validation_msg
+    except anvil.http.HttpError as e:
+      self.label_validation_errors.text += self.http.get_error_message(e)  
 
   def form_show(self, **event_args):
+    self.label_validation_errors.text = "" 
     current_id = anvil.server.call('get_selected_entity_id')
     
     url = f"{self.router.base_url}{model_name}-with-id-display-name/{current_id}"
-    resp = anvil.http.request(url, method='GET', json=True)
+    try:
+      resp = self.http.request(url, method='GET', json=True)
+    except anvil.http.HttpError as e:
+      self.label_validation_errors.text += self.http.get_error_message(e)     
     current_entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp) 
-    
 
-    self.label_validation_errors.text = ""   
     self.label_id_value.text = current_id
     self.label_person_id_value.text = current_entity_id_to_fields[current_id]['person_display_name']
     
     url = f'{self.router.base_url}jobs'
-    resp = anvil.http.request(url, method='GET', json=True)
+    try:
+      resp = self.http.request(url, method='GET', json=True)
+    except anvil.http.HttpError as e:
+      self.label_validation_errors.text += self.http.get_error_message(e)  
     entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp)
     
     _ids = entity_id_to_fields.keys()

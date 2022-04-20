@@ -10,45 +10,33 @@ model_name = 'unit'
 
 class Delete_Unit(Delete_UnitTemplate):
   def __init__(self, router, httpc,  **properties):
-    # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.router = router
     self.http = httpc
-    # Any code you write here will run when the form opens.
 
   def button_back_click(self, **event_args):
     self.router.nav_to_route_view(self, model_name, 'crud')
 
   def button_submit_click(self, **event_args):
-    # use DELETE request to web api
+    self.label_validation_errors.text = ""
     url = f'{self.router.base_url}{model_name}/{self.label_id_value.text}'
     data_dict = {'name':self.label_name_value.text}
-    
     try:
-      #resp = anvil.http.request(url, method='DELETE', data=data_dict, json=True)
       resp = self.http.request(url, method='DELETE', data=data_dict, json=True)
-      self.label_validation_errors.text = ''
       self.router.nav_to_route_view(self, model_name, 'crud')
     except anvil.http.HttpError as e:
-      if e.status == 500:
-        self.label_validation_errors.text = f'Couldn''t perfom CRUD operation on backend, ' + \
-                                            f'Perhaps another entity depends on this entity.'
-      elif e.status == 422:
-        err_msg = ""
-        
-        for v_err in e.content['detail']:
-          err_msg += f"{v_err['loc'][1]}: {v_err['msg']}\n"
-        self.label_validation_errors.text = msg
-      else:
-        self.label_validation_errors.text = f'{e.status}\n{e.content}'
+      self.label_validation_errors.text += self.http.get_error_message(e)
       
   def form_show(self, **event_args):
+    self.label_validation_errors.text = ""
     _id = anvil.server.call('get_selected_entity_id')
     url = f"{self.router.base_url}{model_name}/{_id}"
-    resp = anvil.http.request(url, method='GET', json=True)
+    try:
+      resp = self.http.request(url, method='GET', json=True)
+    except anvil.http.HttpError as e:
+      self.label_validation_errors.text += self.http.get_error_message(e)
+    
     entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp)
-  
     # populate form with current values of entity
-    self.label_validation_errors.text = ""
     self.label_id_value.text = _id
     self.label_name_value.text = entity_id_to_fields[_id]['name']
