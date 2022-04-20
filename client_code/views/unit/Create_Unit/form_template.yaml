@@ -25,7 +25,7 @@ components:
   data_bindings: []
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: red,
-    visible: true, text: Unit name must be between 2-100 characters, font_size: null,
+    visible: true, text: Unit name must be between 1-10 characters, font_size: null,
     font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
     background: '', bold: false, underline: false, icon: ''}
   name: label_name_value_invalid

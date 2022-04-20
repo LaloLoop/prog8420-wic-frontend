@@ -16,7 +16,7 @@ class Update_Unit(Update_UnitTemplate):
     self.validator = validator
     self.validator.require(self.text_box_name_value,
                            ['change','lost_focus'],
-                           lambda tb: 2 <= len(tb.text) <= 100,
+                           lambda tb: 1 <= len(tb.text) <= 10,
                            self.label_name_value_invalid
                           )
     self.validator.enable_when_valid(self.button_submit)
