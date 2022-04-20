@@ -41,7 +41,7 @@ def request(*args, json=True, **kwargs):
   resp = base_request(*args, **kwargs)
   
   content = 'Unknown'
-  if resp.ok and json:
+  if resp.ok and json and resp.content:
     content = resp.json()
   else:
     content = str(resp.content)

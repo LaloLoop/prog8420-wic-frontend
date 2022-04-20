@@ -35,7 +35,7 @@ class Update_Employee(Update_EmployeeTemplate):
     }    
     
     if self.text_box_password_value.text != "":
-      data_dict['password'] = self.text_box_password_value.text,
+      data_dict['password'] = self.text_box_password_value.text
 
     url = f'{self.router.base_url}users/{current_id}'
     try:
