@@ -70,7 +70,7 @@ class Create_Person(Create_PersonTemplate):
     data_dict = {
       'first_name': self.text_box_first_name_value.text,
       'last_name': self.text_box_last_name_value.text,
-      'birthdate': self.date_picker_birthdate_value.date,
+      'birthdate': str(self.date_picker_birthdate_value.date),
       'street': self.text_box_street_value.text,
       'city': self.text_box_city_value.text,
       'province': self.drop_down_province_value.selected_value,
@@ -80,7 +80,8 @@ class Create_Person(Create_PersonTemplate):
     }
 
     try:
-      resp = self.http.request(url, method='POST', data=data_dict, json=True)
+      resp = anvil.http.request(url, method='POST', data=data_dict, json=True)
+      #resp = self.http.request(url, method='POST', data=data_dict, json=True)   
       self.router.nav_to_route_view(self, model_name, 'crud')
     except anvil.http.HttpError as e:
       self.label_validation_errors.text += self.http.get_error_message(e)
