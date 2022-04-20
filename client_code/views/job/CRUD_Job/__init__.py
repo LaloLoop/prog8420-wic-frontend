@@ -13,7 +13,7 @@ class CRUD_Job(CRUD_JobTemplate):
     self.init_components(**properties)
     self.router = router
     self.http = httpc
-
+    
   def button_nav_create_view_click(self, **event_args):
     self.router.nav_to_route_view(self, model_name, 'create')
     
