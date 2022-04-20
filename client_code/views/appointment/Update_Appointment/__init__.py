@@ -135,5 +135,3 @@ class Update_Appointment(Update_AppointmentTemplate):
     self.refresh_data_bindings()
 
 
-
-
