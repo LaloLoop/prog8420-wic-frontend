@@ -58,7 +58,7 @@ class Update_Job(Update_JobTemplate):
       self.label_validation_errors.text += self.http.get_error_message(e)    
 
   def form_show(self, **event_args):
-    self.label_validation_errors = ""
+    self.label_validation_errors.text = ""
     current_id = anvil.server.call('get_selected_entity_id')
     
     url = f"{self.router.base_url}{model_name}/{current_id}"
