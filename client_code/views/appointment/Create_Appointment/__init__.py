@@ -172,12 +172,8 @@ class Create_Appointment(Create_AppointmentTemplate):
     print('form_show')
 
   def button_refresh_appointments_for_doctor_click(self, **event_args):
-    self.refresh_data_bindings()
     self.label_validation_errors.text = ""
     doctor_id = self.drop_down_doctor_id_value.selected_value
-    print(doctor_id)
-    assert doctor_id == '1e445917-014a-4cc0-9f37-b34d29297241'
-
     # use GET request for new appointments by docter id
     url = f'{self.router.base_url}{model_name}-available-date-and-times/{doctor_id}'
     try:
