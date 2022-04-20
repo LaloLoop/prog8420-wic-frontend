@@ -43,7 +43,7 @@ class CRUD_Employee(CRUD_EmployeeTemplate):
       self.button_update_view.enabled = False
     
   def form_show(self, **event_args):
-    self.label_validation_errors = ""
+    self.label_validation_errors.text = ""
     url = f'{self.router.base_url}{model_name}s-with-id-display-name/'
     try:
       resp = self.http.request(url, method='GET', json=True)

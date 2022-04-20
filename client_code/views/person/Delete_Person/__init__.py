@@ -19,7 +19,7 @@ class Delete_Person(Delete_PersonTemplate):
     self.router.nav_to_route_view(self, model_name, 'crud')
   
   def button_submit_click(self, **event_args):
-    self.label_validation_errors = ""
+    self.label_validation_errors.text = ""
     # use DELETE request to web api
     url = f"{self.router.base_url}{model_name}/{self.label_id_value.text}"
     
@@ -30,7 +30,7 @@ class Delete_Person(Delete_PersonTemplate):
       self.label_validation_errors.text += self.http.get_error_message(e)
 
   def form_show(self, **event_args):
-    self.label_validation_errors = ""
+    self.label_validation_errors.text = ""
     _id = anvil.server.call('get_selected_entity_id')
     url = f"{self.router.base_url}{model_name}/{_id}"
     try:
@@ -39,7 +39,6 @@ class Delete_Person(Delete_PersonTemplate):
       self.label_validation_errors.text += self.http.get_error_message(e)
     entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp)
 
-    self.label_validation_errors.text = ""    
     self.label_id_value.text = _id
     self.label_first_name_value.text = entity_id_to_fields[_id]['first_name']
     self.label_last_name_value.text = entity_id_to_fields[_id]['last_name']

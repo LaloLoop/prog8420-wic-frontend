@@ -18,7 +18,7 @@ class Read_Job(Read_JobTemplate):
     self.router.nav_to_route_view(self, model_name, 'crud')
 
   def form_show(self, **event_args):
-    self.label_validation_errors = ""
+    self.label_validation_errors.text = ""
     _id = anvil.server.call('get_selected_entity_id')
     url = f"{self.router.base_url}{model_name}/{_id}"
     try:

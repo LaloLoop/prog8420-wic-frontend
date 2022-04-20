@@ -101,7 +101,7 @@ person_views = {
                 'crud':CRUD_Person(router=AuthRouter(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL)),
                 'create':Create_Person(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL), validator=Validator()),
                 'read':Read_Person(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL)),
-                'update':Update_Person(router=Router(), validator=Validator()),
+                'update':Update_Person(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL), validator=Validator()),
                 'delete':Delete_Person(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL))
                 }
 

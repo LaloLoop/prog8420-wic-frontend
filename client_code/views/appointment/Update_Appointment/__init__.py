@@ -19,7 +19,7 @@ class Update_Appointment(Update_AppointmentTemplate):
     self.router.nav_to_route_view(self, model_name, 'crud')
     
   def drop_down_doctor_id_value_change(self, **event_args):
-    self.label_validation_errors = ""
+    self.label_validation_errors.text = ""
     doctor_id = self.drop_down_doctor_id_value.selected_value
 
     # use GET request for new appointments by docter id
@@ -32,7 +32,7 @@ class Update_Appointment(Update_AppointmentTemplate):
     self.refresh_data_bindings()
     
   def button_submit_click(self, **event_args):
-    self.label_validation_errors = ""
+    self.label_validation_errors.text = ""
     # use PUT request to web api
     url = f'{self.router.base_url}{model_name}/{self.label_id_value.text}'
 
@@ -52,7 +52,7 @@ class Update_Appointment(Update_AppointmentTemplate):
       self.label_validation_errors.text += self.http.get_error_message(e) 
 
   def form_show(self, **event_args):
-    self.label_validation_errors = ""
+    self.label_validation_errors.text = ""
     
     current_id = anvil.server.call('get_selected_entity_id')
     

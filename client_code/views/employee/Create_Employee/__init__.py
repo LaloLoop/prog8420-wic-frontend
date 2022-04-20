@@ -26,7 +26,7 @@ class Create_Employee(Create_EmployeeTemplate):
     self.router.nav_to_route_view(self, model_name, 'crud')
 
   def button_submit_click(self, **event_args):
-    self.label_validation_errors = ""
+    self.label_validation_errors.text = ""
     url = f'{self.router.base_url}persons-unassigned'
     try:
       resp = self.http.request(url, method='GET', json=True)
@@ -61,7 +61,7 @@ class Create_Employee(Create_EmployeeTemplate):
       self.label_validation_errors.text += self.http.get_error_message(e) 
 
   def form_show(self, **event_args):
-    self.label_validation_errors = ""
+    self.label_validation_errors.text = ""
     # use GET requests for list of persons and jobs_ids to populate all of the drop downs
     url = f'{self.router.base_url}persons-unassigned/'
     try:

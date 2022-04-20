@@ -9,7 +9,7 @@ from anvil.tables import app_tables
 model_name = 'unit'
 
 class Read_Unit(Read_UnitTemplate):
-  def __init__(self, router, http, **properties):
+  def __init__(self, router, httpc, **properties):
     self.init_components(**properties)
     self.router = router
     self.http = httpc

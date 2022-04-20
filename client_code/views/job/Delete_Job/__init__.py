@@ -18,7 +18,7 @@ class Delete_Job(Delete_JobTemplate):
     self.router.nav_to_route_view(self, model_name, 'crud')
 
   def button_submit_click(self, **event_args):
-    self.label_validation_errors = ""
+    self.label_validation_errors.text = ""
     # use DELETE request to web api
     url = f"{self.router.base_url}{model_name}/{self.label_id_value.text}"
     

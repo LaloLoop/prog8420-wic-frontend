@@ -21,7 +21,7 @@ class Create_Appointment(Create_AppointmentTemplate):
     self.router.nav_to_route_view(self, model_name, 'crud')
 
   def drop_down_doctor_id_value_change(self, **event_args):
-    self.label_validation_errors = ""
+    self.label_validation_errors.text = ""
     doctor_id = self.drop_down_doctor_id_value.selected_value
 
     # use GET request for new appointments by docter id

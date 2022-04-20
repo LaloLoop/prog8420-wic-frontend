@@ -43,7 +43,7 @@ class HttpClient:
     return anvil.server.call('is_logged_in', self.base_url)
   
       
-  def get_error_message(self, e: anvil.Http.Error):
+  def get_error_message(self, e: anvil.http.HttpError):
     error_message =""
     if e.status == 500:
       error_message = f'Couldn''t perfom CRUD operation on backend; perhaps another entity depends on this entity.'
