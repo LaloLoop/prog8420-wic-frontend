@@ -33,7 +33,7 @@ class Delete_Unit(Delete_UnitTemplate):
       if e.status == 500:
         self.label_validation_errors.text = f'Couldn''t perfom CRUD operation on backend, ' + \
                                             f'Perhaps another entity depends on this entity.'
-      if e.status == 422:
+      elif e.status == 422:
         err_msg = ""
         
         for v_err in e.content['detail']:

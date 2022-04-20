@@ -32,7 +32,7 @@ class HttpClient:
       elif status_code >= 500:
         msg = "We had problems trying to log you in, please try again later"
       else:
-        msg = "Uknown error"
+        msg = "Unknown error"
       
       raise anvil.http.HttpError(status_code, msg)
     
