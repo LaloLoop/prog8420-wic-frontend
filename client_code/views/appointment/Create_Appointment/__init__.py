@@ -34,7 +34,7 @@ class Create_Appointment(Create_AppointmentTemplate):
     self.refresh_data_bindings()
     
   def button_submit_click(self, **event_args):
-    self.label_validation_errors = ""
+    self.label_validation_errors.text = ""
     # use POST request to web api
     url = f'{self.router.base_url}{model_name}/'
 
