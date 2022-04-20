@@ -40,7 +40,7 @@ def base_request(url, method="GET", data=None, headers=None, jsonbody = True):
 def request(*args, json=True, **kwargs):
   resp = base_request(*args, **kwargs)
   
-  if json:
+  if resp.ok and json:
     content = resp.json()
   else:
     content = resp.content

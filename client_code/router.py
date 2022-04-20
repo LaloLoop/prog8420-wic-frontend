@@ -134,7 +134,7 @@ unit_views = {
               'create': Create_Unit(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL), validator=Validator()),
               'read':Read_Unit(router=Router()),
               'update':Update_Unit(router=Router(), validator=Validator()),
-              'delete':Delete_Unit(router=Router()),
+              'delete':Delete_Unit(router=Router(), httpc=HttpClient(FAST_API_BACKEND_BASE_URL)),
               }
 
 prescription_views = {

@@ -9,10 +9,11 @@ from anvil.tables import app_tables
 model_name = 'unit'
 
 class Delete_Unit(Delete_UnitTemplate):
-  def __init__(self, router=None, **properties):
+  def __init__(self, router, httpc,  **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.router = router
+    self.http = httpc
     # Any code you write here will run when the form opens.
 
   def button_back_click(self, **event_args):
@@ -24,11 +25,22 @@ class Delete_Unit(Delete_UnitTemplate):
     data_dict = {'name':self.label_name_value.text}
     
     try:
-      resp = anvil.http.request(url, method='DELETE', data=data_dict, json=True)
+      #resp = anvil.http.request(url, method='DELETE', data=data_dict, json=True)
+      resp = self.http.request(url, method='DELETE', data=data_dict, json=True)
       self.label_validation_errors.text = ''
       self.router.nav_to_route_view(self, model_name, 'crud')
     except anvil.http.HttpError as e:
-      self.label_validation_errors.text = f'{e.status}'
+      if e.status == 500:
+        self.label_validation_errors.text = f'Couldn''t perfom CRUD operation on backend, ' + \
+                                            f'Perhaps another entity depends on this entity.'
+      if e.status == 422:
+        err_msg = ""
+        
+        for v_err in e.content['detail']:
+          err_msg += f"{v_err['loc'][1]}: {v_err['msg']}\n"
+        self.label_validation_errors.text = msg
+      else:
+        self.label_validation_errors.text = f'{e.status}\n{e.content}'
       
   def form_show(self, **event_args):
     _id = anvil.server.call('get_selected_entity_id')
