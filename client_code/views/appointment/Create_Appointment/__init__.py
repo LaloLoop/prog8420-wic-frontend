@@ -169,7 +169,6 @@ class Create_Appointment(Create_AppointmentTemplate):
     self.validator.enable_when_valid(self.button_submit)
     self.validator.show_all_errors()
     
-    print('form_show')
 
   def button_refresh_appointments_for_doctor_click(self, **event_args):
     self.label_validation_errors.text = ""
@@ -180,10 +179,7 @@ class Create_Appointment(Create_AppointmentTemplate):
       date_and_times = self.http.request(url, method='GET', json=True)
     except anvil.http.HttpError as e:
       self.label_validation_errors.text += self.http.get_error_message(e)    
-    self.drop_down_date_and_time_value.items = [(dt,dt) for dt in date_and_times]
+    self.drop_down_date_and_time_value.items = sorted([(dt,dt) for dt in date_and_times], key = lambda x: x[0])
+    self.drop_down_date_and_time_value.selected_value = self.drop_down_date_and_time_value.items[0][1]
     self.refresh_data_bindings()
     
-
-
-
-

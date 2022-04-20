@@ -18,19 +18,6 @@ class Update_Appointment(Update_AppointmentTemplate):
   def button_back_click(self, **event_args):
     self.router.nav_to_route_view(self, model_name, 'crud')
     
-  def drop_down_doctor_id_value_change(self, **event_args):
-    self.label_validation_errors.text = ""
-    doctor_id = self.drop_down_doctor_id_value.selected_value
-
-    # use GET request for new appointments by docter id
-    url = f'{self.router.base_url}{model_name}-available-date-and-times/{doctor_id}'
-    try:
-      resp = self.http.request(url, method='GET', json=True)
-    except anvil.http.HttpError as e:
-      self.label_validation_errors.text += self.http.get_error_message(e) 
-    self.drop_down_date_and_time_value.items = [(dt,dt) for dt in resp]
-    self.refresh_data_bindings()
-    
   def button_submit_click(self, **event_args):
     self.label_validation_errors.text = ""
     # use PUT request to web api
@@ -133,3 +120,20 @@ class Update_Appointment(Update_AppointmentTemplate):
     self.drop_down_date_and_time_value.selected_value = current_entity_id_to_fields[current_id]['date_and_time']
     
     self.text_area_comments_value.text =  current_entity_id_to_fields[current_id]['comments']
+
+  def button_refresh_appointments_for_doctor_click(self, **event_args):
+    self.label_validation_errors.text = ""
+    doctor_id = self.drop_down_doctor_id_value.selected_value
+    # use GET request for new appointments by docter id
+    url = f'{self.router.base_url}{model_name}-available-date-and-times/{doctor_id}'
+    try:
+      date_and_times = self.http.request(url, method='GET', json=True)
+    except anvil.http.HttpError as e:
+      self.label_validation_errors.text += self.http.get_error_message(e)    
+    self.drop_down_date_and_time_value.items = sorted([(dt,dt) for dt in date_and_times], key = lambda x: x[0])
+    self.drop_down_date_and_time_value.selected_value = self.drop_down_date_and_time_value.items[0][1]
+    self.refresh_data_bindings()
+
+
+
+
