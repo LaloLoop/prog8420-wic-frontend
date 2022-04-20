@@ -10,7 +10,6 @@ model_name = 'employee'
 
 class Create_Employee(Create_EmployeeTemplate):
   def __init__(self, router, httpc, validator, **properties):
-    # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.router = router
     self.http = httpc
@@ -22,16 +21,17 @@ class Create_Employee(Create_EmployeeTemplate):
                         self.label_password_value_invalid
                       )
     self.validator.enable_when_valid(self.button_submit)  
-    # Any code you write here will run when the form opens.
 
   def button_back_click(self, **event_args):
-    """This method is called when the button is clicked"""
     self.router.nav_to_route_view(self, model_name, 'crud')
 
   def button_submit_click(self, **event_args):
-    
+    self.label_validation_errors.text = ""
     url = f'{self.router.base_url}persons-unassigned'
-    resp = anvil.http.request(url, method='GET', json=True)
+    try:
+      resp = self.http.request(url, method='GET', json=True)
+    except anvil.http.HttpError as e:
+      self.label_validation_errors.text += self.http.get_error_message(e)    
     entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp)
     
     email = entity_id_to_fields[self.drop_down_person_id_value.selected_value]['email']
@@ -56,16 +56,18 @@ class Create_Employee(Create_EmployeeTemplate):
     url = f'{self.router.base_url}auth/register'
     try:
       resp = self.http.request(url, method='POST', data=data_dict, json=True)
-      self.label_validation_errors.text = ''
       self.router.nav_to_route_view(self, model_name, 'crud')
     except anvil.http.HttpError as e:
-      self.label_validation_errors.text = f'{e.status}'
+      self.label_validation_errors.text += self.http.get_error_message(e) 
 
   def form_show(self, **event_args):
-    # use GET requests for list of persons and jobs_ids
-    # to populate all of the drop downs
+    self.label_validation_errors.text = ""
+    # use GET requests for list of persons and jobs_ids to populate all of the drop downs
     url = f'{self.router.base_url}persons-unassigned/'
-    resp = anvil.http.request(url, method='GET', json=True)
+    try:
+      resp = self.http.request(url, method='GET', json=True)
+    except anvil.http.HttpError as e:
+      self.label_validation_errors.text += self.http.get_error_message(e)  
     entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp)
 
     if not entity_id_to_fields:
@@ -86,7 +88,10 @@ class Create_Employee(Create_EmployeeTemplate):
                       )
 
     url = f'{self.router.base_url}jobs'
-    resp = anvil.http.request(url, method='GET', json=True)
+    try:
+      resp = self.http.request(url, method='GET', json=True)
+    except anvil.http.HttpError as e:
+      self.label_validation_errors.text += self.http.get_error_message(e)      
     entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp)
 
     if not entity_id_to_fields:

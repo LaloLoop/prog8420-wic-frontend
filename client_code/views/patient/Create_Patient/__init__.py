@@ -9,24 +9,23 @@ from anvil.tables import app_tables
 model_name = 'patient'
 
 class Create_Patient(Create_PatientTemplate):
-  def __init__(self, router, validator, **properties):
-    # Set Form properties and Data Bindings.
+  def __init__(self, router, httpc, validator, **properties):
     self.init_components(**properties)
     self.router = router
     self.validator = validator
-    # do self.validator.require(drop_down_person_id_value) only at form_show, to avoid None
+    self.http = httpc
     self.validator.require(self.text_box_ohip_value,
                            ['change','lost_focus'],
                            lambda tb: self.validator.check_valid_ohip_number(tb.text),
                            self.label_ohip_value_invalid
                            )
     self.validator.enable_when_valid(self.button_submit)    
-    # Any code you write here will run when the form opens.
 
   def button_back_click(self, **event_args):
     self.router.nav_to_route_view(self, model_name, 'crud')
 
   def button_submit_click(self, **event_args):
+    self.label_validation_errors.text = ''
     # use POST request to web api
     url = f'{self.router.base_url}{model_name}/'
 
@@ -36,21 +35,22 @@ class Create_Patient(Create_PatientTemplate):
     }
     
     try:
-      resp = anvil.http.request(url, method='POST', data=data_dict, json=True)
-      self.label_validation_errors.text = ''
+      resp = self.http.request(url, method='POST', data=data_dict, json=True)
       self.router.nav_to_route_view(self, model_name, 'crud')
     except anvil.http.HttpError as e:
-      self.label_validation_errors.text = f'{e.status}'
+      self.label_validation_errors.text += self.http.get_error_message(e)    
 
   def form_show(self, **event_args):
+    self.label_validation_errors.text = ""    
     # use GET requests for list of unassigned persons
     # to populate all of the drop downs
     url = f'{self.router.base_url}persons-unassigned'
-    resp = anvil.http.request(url, method='GET', json=True)
+    try:
+      resp = self.http.request(url, method='GET', json=True)
+    except anvil.http.HttpError as e:
+      self.label_validation_errors.text += self.http.get_error_message(e)    
     entity_id_to_fields = self.router.convert_resp_to_entity_id_to_fields_dict(resp)
 
-    self.label_validation_errors.text = ""
-    
     if not entity_id_to_fields:
       self.drop_down_person_id_value.include_placeholder = True
       self.drop_down_person_id_value.placeholder = self.router.crud_dropdown_placeholder

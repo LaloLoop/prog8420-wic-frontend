@@ -9,10 +9,10 @@ from anvil.tables import app_tables
 model_name = 'job'
 
 class Create_Job(Create_JobTemplate):
-  def __init__(self, router, validator, **properties):
-    # Set Form properties and Data Bindings.
+  def __init__(self, router, httpc, validator, **properties):
     self.init_components(**properties)
     self.router = router
+    self.http = httpc
     self.validator = validator
     self.validator.require(self.text_box_speciality_value,
                            ['change','lost_focus'],
@@ -23,12 +23,12 @@ class Create_Job(Create_JobTemplate):
     self.validator.enable_when_valid(self.button_submit)
     
     self.validator.show_all_errors()
-    # Any code you write here will run when the form opens.
 
   def button_back_click(self, **event_args):
     self.router.nav_to_route_view(self, model_name, 'crud')
     
   def button_submit_click(self, **event_args):
+    self.label_validation_errors.text = ""
     # use POST request to web api
     url = f'{self.router.base_url}{model_name}/'
 
@@ -38,19 +38,20 @@ class Create_Job(Create_JobTemplate):
     }
     
     try:
-      resp = anvil.http.request(url, method='POST', data=data_dict, json=True)
-      self.label_validation_errors.text = ''
+      resp = self.http.request(url, method='POST', data=data_dict, json=True)
       self.router.nav_to_route_view(self, model_name, 'crud')
     except anvil.http.HttpError as e:
-      self.label_validation_errors.text = f'{e.status}'
+      self.label_validation_errors.text += self.http.get_error_message(e)  
 
   def form_show(self, **event_args):
+    self.label_validation_errors.text = ""
     # use GET requests for list of job titles
     # to populate all of the drop downs
     url = f'{self.router.base_url}{model_name}-list-of-job-titles'
-    job_titles = anvil.http.request(url, method='GET', json=True)
-
-    self.label_validation_errors.text = ""
+    try:
+      job_titles = self.http.request(url, method='GET', json=True)
+    except anvil.http.HttpError as e:
+      self.label_validation_errors.text += self.http.get_error_message(e)  
 
     self.drop_down_title_value.items = sorted([(jt,jt) for jt in job_titles], key = lambda x: x[0])
    

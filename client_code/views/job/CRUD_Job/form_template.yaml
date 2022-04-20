@@ -4,6 +4,10 @@ container:
   event_bindings: {show: form_show}
 components:
 - type: Label
+  properties: {}
+  name: label_validation_errors
+  layout_properties: {grid_position: 'RJZXMF,IRHYMD'}
+- type: Label
   properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
     visible: true, text: List Of Jobs, font_size: null, font: '', spacing_above: small,
     icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
