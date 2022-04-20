@@ -9,15 +9,11 @@ from anvil.tables import app_tables
 
 class AvailabilityReport(AvailabilityReportTemplate):
   def __init__(self, router, **properties):
-    # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.router = router
     self.av_grid.role = 'wide'
 
-    # Any code you write here will run when the form opens.
-
   def gen_report_click(self, **event_args):
-    """This method is called when the button is clicked"""
     data = anvil.http.request(f"{self.router.base_url}reports/availability", json=True)
     
     columns = data['columns']
