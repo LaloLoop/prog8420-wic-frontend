@@ -132,4 +132,4 @@ class Update_Appointment(Update_AppointmentTemplate):
       ,key= lambda x: x[0] )
     self.drop_down_date_and_time_value.selected_value = current_entity_id_to_fields[current_id]['date_and_time']
     
-    self.text_area_comments_value.text = 
+    self.text_area_comments_value.text =  current_entity_id_to_fields[current_id]['comments']
