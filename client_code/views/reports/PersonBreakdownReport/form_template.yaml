@@ -42,7 +42,7 @@ components:
       properties: {spacing_above: none, spacing_below: none, item_template: views.reports.AvailabilityReport.RowTemplate3}
       name: repeating_panel_1
       layout_properties: {}
-    event_bindings: {show: av_grid_show}
+    event_bindings: {show: pb_grid_show}
   - type: Button
     properties: {role: primary-color, align: center, tooltip: '', border: '', enabled: true,
       foreground: '', visible: true, text: Refresh, font_size: null, font: '', spacing_above: small,
