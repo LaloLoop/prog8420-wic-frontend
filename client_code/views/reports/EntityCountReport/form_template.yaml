@@ -1,6 +1,7 @@
 container:
   type: ColumnPanel
   properties: {col_widths: '{}'}
+  event_bindings: {show: form_show}
 components:
 - type: ColumnPanel
   properties: {role: card, col_widths: '{}'}
@@ -42,15 +43,39 @@ components:
       properties: {spacing_above: none, spacing_below: none, item_template: views.reports.AvailabilityReport.RowTemplate3}
       name: repeating_panel_1
       layout_properties: {}
-    event_bindings: {show: ec_grid_show}
+    event_bindings: {}
   - type: Button
-    properties: {role: primary-color, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '', visible: true, text: Refresh, font_size: null, font: '', spacing_above: small,
-      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-      underline: false, icon: ''}
-    name: gen_report
-    layout_properties: {grid_position: 'AKWPWD,OUNLGQ'}
-    event_bindings: {click: gen_report_click}
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Availability, font_size: null, font: '',
+      spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false, icon: ''}
+    name: button_availability_report
+    layout_properties: {grid_position: 'BPRREP,VVLWAD'}
+    event_bindings: {click: button_availability_report_click}
+  - type: Button
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: TImeslot Usage, font_size: null, font: '',
+      spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false, icon: ''}
+    name: button_timeslot_usage
+    layout_properties: {grid_position: 'BPRREP,XMGRDS'}
+    event_bindings: {click: button_timeslot_usage_click}
+  - type: Button
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Person PieChart, font_size: null, font: '',
+      spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false, icon: ''}
+    name: button_person_breakdown
+    layout_properties: {grid_position: 'BPRREP,YCYKKC'}
+    event_bindings: {click: button_person_breakdown_click}
+  - type: Button
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Entity Count, font_size: null, font: '',
+      spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false, icon: ''}
+    name: button_entity_count
+    layout_properties: {grid_position: 'BPRREP,REEIIN'}
+    event_bindings: {click: button_entity_count_click}
   - type: Button
     properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
       foreground: '', visible: true, text: Back, font_size: null, font: '', spacing_above: small,
@@ -59,36 +84,4 @@ components:
     name: nav_back
     layout_properties: {grid_position: 'AKWPWD,BPTMTD'}
     event_bindings: {click: nav_back_click}
-  - type: Button
-    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '', visible: true, text: Availability, font_size: null, font: '',
-      spacing_above: small, icon_align: left, spacing_below: small, italic: false,
-      background: '', bold: false, underline: false, icon: ''}
-    name: button_availability_report
-    layout_properties: {grid_position: 'OIJPPO,KKTRPZ'}
-    event_bindings: {click: button_availability_report_click}
-  - type: Button
-    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '', visible: true, text: TImeslot Usage, font_size: null, font: '',
-      spacing_above: small, icon_align: left, spacing_below: small, italic: false,
-      background: '', bold: false, underline: false, icon: ''}
-    name: button_timeslot_usage
-    layout_properties: {grid_position: 'OIJPPO,YZOAGO'}
-    event_bindings: {click: button_timeslot_usage_click}
-  - type: Button
-    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '', visible: true, text: Person PieChart, font_size: null, font: '',
-      spacing_above: small, icon_align: left, spacing_below: small, italic: false,
-      background: '', bold: false, underline: false, icon: ''}
-    name: button_person_breakdown
-    layout_properties: {grid_position: 'OIJPPO,OWUYDA'}
-    event_bindings: {click: button_person_breakdown_click}
-  - type: Button
-    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '', visible: true, text: Entity Count, font_size: null, font: '',
-      spacing_above: small, icon_align: left, spacing_below: small, italic: false,
-      background: '', bold: false, underline: false, icon: ''}
-    name: button_entity_count
-    layout_properties: {grid_position: 'OIJPPO,ODVHKU'}
-    event_bindings: {click: button_entity_count_click}
 is_package: true

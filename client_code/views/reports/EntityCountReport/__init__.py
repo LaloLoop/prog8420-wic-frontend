@@ -13,7 +13,9 @@ class EntityCountReport(EntityCountReportTemplate):
     self.router = router
     self.ec_grid.role = 'wide'
 
-  def gen_report_click(self, **event_args):
+  def form_show(self, **event_args):
+    self.ec_graph.source = f"{self.router.base_url}graphs/entity-count"
+    
     data = anvil.http.request(f"{self.router.base_url}reports/entity-count", json=True)
 
     columns = data['columns']
@@ -33,11 +35,6 @@ class EntityCountReport(EntityCountReportTemplate):
     #self.ec_grid.width = col_width * len(grid_cols)
     self.ec_grid.columns = grid_cols
     self.repeating_panel_1.items = report_data
-
-    self.get_ec_graph()
-
-  def get_ec_graph(self):
-    self.ec_graph.source = f"{self.router.base_url}graphs/entity-count"
 
   def nav_back_click(self, **event_args):
     self.router.nav_to_route_view(self, 'home', '')

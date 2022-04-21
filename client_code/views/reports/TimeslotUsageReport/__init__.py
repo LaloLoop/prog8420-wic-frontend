@@ -13,7 +13,9 @@ class TimeslotUsageReport(TimeslotUsageReportTemplate):
     self.router = router
     self.tsu_grid.role = 'wide'
 
-  def gen_report_click(self, **event_args):
+  def form_show(self, **event_args):
+    self.tsu_graph.source = f"{self.router.base_url}graphs/timeslot-usage"
+    
     data = anvil.http.request(f"{self.router.base_url}reports/timeslot-usage", json=True)
 
     columns = data['columns']
@@ -34,16 +36,8 @@ class TimeslotUsageReport(TimeslotUsageReportTemplate):
     self.tsu_grid.columns = grid_cols
     self.repeating_panel_1.items = report_data
 
-    self.get_tsu_graph()
-
-  def get_tsu_graph(self):
-    self.tsu_graph.source = f"{self.router.base_url}graphs/timeslot-usage"
-
   def nav_back_click(self, **event_args):
     self.router.nav_to_route_view(self, 'home', '')
-
-  def tsu_grid_show(self, **event_args):
-    self.gen_report_click()
 
   def button_availability_report_click(self, **event_args):
     self.router.nav_to_route_view(self, 'report', 'availability')

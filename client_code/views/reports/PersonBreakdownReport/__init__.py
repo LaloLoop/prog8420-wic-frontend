@@ -13,7 +13,9 @@ class PersonBreakdownReport(PersonBreakdownReportTemplate):
     self.router = router
     self.pb_grid.role = 'wide'
 
-  def gen_report_click(self, **event_args):
+  def form_show(self, **event_args):
+    self.pb_graph.source = f"{self.router.base_url}graphs/person-breakdown"
+    
     data = anvil.http.request(f"{self.router.base_url}reports/person-breakdown", json=True)
 
     columns = data['columns']
@@ -34,11 +36,6 @@ class PersonBreakdownReport(PersonBreakdownReportTemplate):
     self.pb_grid.columns = grid_cols
     self.repeating_panel_1.items = report_data
 
-    self.get_pb_graph()
-
-  def get_pb_graph(self):
-    self.pb_graph.source = f"{self.router.base_url}graphs/person-breakdown"
-
   def nav_back_click(self, **event_args):
     self.router.nav_to_route_view(self, 'home', '')
 
@@ -56,3 +53,4 @@ class PersonBreakdownReport(PersonBreakdownReportTemplate):
 
   def button_entity_count_click(self, **event_args):
     self.router.nav_to_route_view(self, 'report', 'entity_count')
+

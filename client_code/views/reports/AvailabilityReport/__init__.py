@@ -13,7 +13,9 @@ class AvailabilityReport(AvailabilityReportTemplate):
     self.router = router
     self.av_grid.role = 'wide'
 
-  def gen_report_click(self, **event_args):
+  def form_show(self, **event_args):
+    self.av_graph.source = f"{self.router.base_url}graphs/availability"
+    
     data = anvil.http.request(f"{self.router.base_url}reports/availability", json=True)
     
     columns = data['columns']
@@ -33,17 +35,9 @@ class AvailabilityReport(AvailabilityReportTemplate):
     #self.av_grid.width = col_width * len(grid_cols)
     self.av_grid.columns = grid_cols
     self.repeating_panel_1.items = report_data
-    
-    self.get_av_graph()
 
-  def get_av_graph(self):
-    self.av_graph.source = f"{self.router.base_url}graphs/availability"
-    
   def nav_back_click(self, **event_args):
     self.router.nav_to_route_view(self, 'home', '')
-
-  def av_grid_show(self, **event_args):
-    self.gen_report_click()
 
   def button_availability_report_click(self, **event_args):
     self.router.nav_to_route_view(self, 'report', 'availability')
@@ -56,6 +50,8 @@ class AvailabilityReport(AvailabilityReportTemplate):
 
   def button_entity_count_click(self, **event_args):
     self.router.nav_to_route_view(self, 'report', 'entity_count')
+
+
 
 
 
