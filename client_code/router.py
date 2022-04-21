@@ -47,6 +47,9 @@ from .views.appointment.Read_Appointment import Read_Appointment
 from .views.appointment.Update_Appointment import Update_Appointment
 from .views.appointment.Delete_Appointment import Delete_Appointment
 from .views.reports.AvailabilityReport import AvailabilityReport
+from .views.reports.EntityCountReport import EntityCountReport
+from .views.reports.PersonBreakdownReport import PersonBreakdownReport
+from .views.reports.TimeslotUsageReport import TimeslotUsageReport
 
 from .http import HttpClient
 
@@ -154,7 +157,10 @@ appointment_views = {
                     }
 
 report_views = {
-  'availability': AvailabilityReport(router=AuthRouter())
+  'availability': AvailabilityReport(router=AuthRouter()),
+  'entity_count': EntityCountReport(router=AuthRouter()),
+  'person_breakdown': PersonBreakdownReport(router=AuthRouter()),
+  'timeslot_usage': TimeslotUsageReport(router=AuthRouter()),
 }
 
 routes = {
