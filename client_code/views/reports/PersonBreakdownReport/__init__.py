@@ -7,6 +7,8 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
+from random import randint
+
 class PersonBreakdownReport(PersonBreakdownReportTemplate):
   def __init__(self, router, **properties):
     self.init_components(**properties)
@@ -14,7 +16,7 @@ class PersonBreakdownReport(PersonBreakdownReportTemplate):
     self.pb_grid.role = 'wide'
 
   def form_show(self, **event_args):
-    self.pb_graph.source = f"{self.router.base_url}graphs/person-breakdown"
+    self.pb_graph.source = f"{self.router.base_url}graphs/person-breakdown/{randint(0,100000)}" # fake random path param so we avoid a cached version
     
     data = anvil.http.request(f"{self.router.base_url}reports/person-breakdown", json=True)
 

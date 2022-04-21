@@ -7,6 +7,8 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
+from random import randint
+
 class AvailabilityReport(AvailabilityReportTemplate):
   def __init__(self, router, **properties):
     self.init_components(**properties)
@@ -14,7 +16,7 @@ class AvailabilityReport(AvailabilityReportTemplate):
     self.av_grid.role = 'wide'
 
   def form_show(self, **event_args):
-    self.av_graph.source = f"{self.router.base_url}graphs/availability"
+    self.av_graph.source = f"{self.router.base_url}graphs/availability/{randint(0,100000)}" # fake random path param so we avoid a cached version
     
     data = anvil.http.request(f"{self.router.base_url}reports/availability", json=True)
     
@@ -50,10 +52,3 @@ class AvailabilityReport(AvailabilityReportTemplate):
 
   def button_entity_count_click(self, **event_args):
     self.router.nav_to_route_view(self, 'report', 'entity_count')
-
-
-
-
-
-
-

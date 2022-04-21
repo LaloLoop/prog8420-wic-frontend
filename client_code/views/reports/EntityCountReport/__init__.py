@@ -7,6 +7,8 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
+from random import randint
+
 class EntityCountReport(EntityCountReportTemplate):
   def __init__(self, router, **properties):
     self.init_components(**properties)
@@ -14,7 +16,7 @@ class EntityCountReport(EntityCountReportTemplate):
     self.ec_grid.role = 'wide'
 
   def form_show(self, **event_args):
-    self.ec_graph.source = f"{self.router.base_url}graphs/entity-count"
+    self.ec_graph.source = f"{self.router.base_url}graphs/entity-count/{randint(0,100000)}" # fake random path param so we avoid a cached version
     
     data = anvil.http.request(f"{self.router.base_url}reports/entity-count", json=True)
 
