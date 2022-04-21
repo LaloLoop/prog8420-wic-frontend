@@ -18,7 +18,7 @@ components:
     properties: {role: null, vertical_align: center, height: 495, tooltip: '', border: '',
       foreground: '', visible: true, display_mode: shrink_to_fit, spacing_above: small,
       source: '', spacing_below: small, background: '', horizontal_align: center}
-    name: av_graph
+    name: tsu_graph
     layout_properties: {grid_position: 'RAZIIQ,WVBMXE'}
   - type: DataGrid
     properties:
