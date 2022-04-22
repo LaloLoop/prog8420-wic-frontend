@@ -25,8 +25,8 @@ class EntityCountReport(EntityCountReportTemplate):
     first_col_width = 200
     col_width = 100
 
-    column_names = ['Doctor'] + [s[s.index('T') + 1:-3] for s in columns[1:]]
-
+    column_names = columns
+     
     grid_cols=[{'id':col,
                 'width': first_col_width if i == 0 else col_width,
                 'title':title,

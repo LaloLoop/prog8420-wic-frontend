@@ -25,7 +25,7 @@ class PersonBreakdownReport(PersonBreakdownReportTemplate):
     first_col_width = 200
     col_width = 100
 
-    column_names = ['% of all Person Entities']
+    column_names = columns 
 
     grid_cols=[{'id':col,
                 'width': first_col_width if i == 0 else col_width,
