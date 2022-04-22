@@ -22,7 +22,7 @@ class LoginForm(LoginFormTemplate):
   def reset_login_input(self):
     #self.user_box.text = ""
     #self.password_box.text = ""
-    self.user_box.text = "danderson@gmail.com"
+    self.user_box.text = "deranderson@gmail.com"
     self.password_box.text = "admin"
   
   def signin_button_click(self, **event_args):
