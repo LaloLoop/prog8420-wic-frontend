@@ -1,6 +1,7 @@
 container:
   type: ColumnPanel
   properties: {col_widths: '{}'}
+  event_bindings: {show: form_show}
 components:
 - type: ColumnPanel
   properties: {role: card, col_widths: '{}'}
@@ -18,8 +19,8 @@ components:
     properties: {role: null, vertical_align: center, height: 495, tooltip: '', border: '',
       foreground: '', visible: true, display_mode: shrink_to_fit, spacing_above: small,
       source: '', spacing_below: small, background: '', horizontal_align: center}
-    name: av_graph
-    layout_properties: {grid_position: 'RAZIIQ,WVBMXE'}
+    name: ec_graph
+    layout_properties: {grid_position: 'TZXWGZ,JLCHGH'}
   - type: DataGrid
     properties:
       role: null
@@ -35,29 +36,21 @@ components:
       spacing_above: small
       spacing_below: small
       background: ''
-    name: av_grid
+    name: ec_grid
     layout_properties: {grid_position: 'YVQIOH,KIHDQL'}
     components:
     - type: RepeatingPanel
       properties: {spacing_above: none, spacing_below: none, item_template: views.reports.AvailabilityReport.RowTemplate3}
       name: repeating_panel_1
       layout_properties: {}
-    event_bindings: {show: av_grid_show}
-  - type: Button
-    properties: {role: primary-color, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '', visible: true, text: Refresh, font_size: null, font: '', spacing_above: small,
-      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-      underline: false, icon: ''}
-    name: gen_report
-    layout_properties: {grid_position: 'AKWPWD,OUNLGQ'}
-    event_bindings: {click: gen_report_click}
+    event_bindings: {}
   - type: Button
     properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
       foreground: '', visible: true, text: Back, font_size: null, font: '', spacing_above: small,
       icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
       underline: false, icon: ''}
     name: nav_back
-    layout_properties: {grid_position: 'AKWPWD,BPTMTD'}
+    layout_properties: {grid_position: 'BPRREP,VZBJPF'}
     event_bindings: {click: nav_back_click}
   - type: Button
     properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
@@ -65,7 +58,7 @@ components:
       spacing_above: small, icon_align: left, spacing_below: small, italic: false,
       background: '', bold: false, underline: false, icon: ''}
     name: button_availability_report
-    layout_properties: {grid_position: 'OIJPPO,KKTRPZ'}
+    layout_properties: {grid_position: 'BPRREP,VVLWAD'}
     event_bindings: {click: button_availability_report_click}
   - type: Button
     properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
@@ -73,7 +66,7 @@ components:
       spacing_above: small, icon_align: left, spacing_below: small, italic: false,
       background: '', bold: false, underline: false, icon: ''}
     name: button_timeslot_usage
-    layout_properties: {grid_position: 'OIJPPO,YZOAGO'}
+    layout_properties: {grid_position: 'BPRREP,XMGRDS'}
     event_bindings: {click: button_timeslot_usage_click}
   - type: Button
     properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
@@ -81,7 +74,7 @@ components:
       spacing_above: small, icon_align: left, spacing_below: small, italic: false,
       background: '', bold: false, underline: false, icon: ''}
     name: button_person_breakdown
-    layout_properties: {grid_position: 'OIJPPO,OWUYDA'}
+    layout_properties: {grid_position: 'BPRREP,YCYKKC'}
     event_bindings: {click: button_person_breakdown_click}
   - type: Button
     properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
@@ -89,6 +82,6 @@ components:
       spacing_above: small, icon_align: left, spacing_below: small, italic: false,
       background: '', bold: false, underline: false, icon: ''}
     name: button_entity_count
-    layout_properties: {grid_position: 'OIJPPO,ODVHKU'}
+    layout_properties: {grid_position: 'BPRREP,REEIIN'}
     event_bindings: {click: button_entity_count_click}
 is_package: true
